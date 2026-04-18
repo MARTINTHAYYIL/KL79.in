@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QLZS4VHWTK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QLZS4VHWTK');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2d4a3e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="KL79">
+    <link rel="manifest" href="/manifest.json">
+    <title>കാസർഗോഡും കണ്ണൂരും: വിനോദസഞ്ചാര ഭൂപടം</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;700;900&family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=Baloo+Chettan+2:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/kl79-theme.css">
+    <style>
+        /* പൊതുവായ ശൈലികൾ */
+        body {
+            font-family: 'Noto Sans Malayalam', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* ഇളം ആകാശനീല പശ്ചാത്തലം */
+            color: #2c3e50; /* കടും നീല ഫോണ്ട് */
+        }
+
+        /* ഹെഡർ */
+        .header {
+            background-color: #388e3c; /* കടും പച്ച */
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2em; /* മൊബൈലിന് അനുയോജ്യമായ വലുപ്പം */
+            font-weight: 700;
+        }
+        .header p {
+            margin-top: 5px;
+            font-size: 1em;
+            font-style: italic;
+        }
+
+        /* പ്രധാന കണ്ടെയ്‌നർ */
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        /* വിഭാഗം തലക്കെട്ടുകൾ */
+        h2 {
+            color: #00796b; /* ടീൽ ഗ്രീൻ */
+            font-size: 1.8em;
+            border-bottom: 3px solid #b2dfdb;
+            padding-bottom: 10px;
+            margin-top: 35px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* ആകർഷണ കാർഡ് ശൈലി (3 ടൈലുകൾ ഒരു വരിയിൽ) */
+        .attraction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; /* ഗ്യാപ്പ് കുറച്ചു */
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px; /* മൊബൈലിന് അനുയോജ്യമായ ഉയരം */
+            object-fit: cover;
+            border-bottom: 4px solid #4caf50; /* ആകർഷകമായ പച്ച ബോർഡർ */
+        }
+
+        .card-content {
+            padding: 15px;
+            flex-grow: 1;
+        }
+        .card-content h3 {
+            color: #1e8449; /* കാർഡ് തലക്കെട്ടിന് കടും പച്ച */
+            margin-top: 0;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+        }
+        .card-content p {
+            margin-bottom: 10px;
+            color: #444;
+            font-size: 0.95em;
+        }
+        .card-content strong {
+            color: #2e86c1; /* വിവരങ്ങൾക്ക് നീല നിറം */
+        }
+
+        /* മീഡിയ ക്വറി: മൊബൈലിൽ 1 കോളം മാത്രം */
+        @media (max-width: 768px) {
+            .attraction-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+        
+        /* ADDED: Ticker and Float styles */
+        .ticker-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding-right: 2rem;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #10b981;
+            color: white;
+            border-radius: 9999px;
+            padding: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            background-color: #059669;
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-green-700 shadow-lg sticky top-0 z-50 mb-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-0 lg:pr-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="https://i.imgur.com/ZJ8IuLd.png" alt="KL79.in Logo" class="h-16 w-16 text-white"/>
+                    <a href="/" class="text-3xl font-bold text-white hover:text-green-100 transition">
+                        KL79.in
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Home</a>
+                    <a href="/search.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center gap-1" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <span>Search</span>
+                    </a>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Buses</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-80 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Chittarikkal.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                            <a href="/Bheemanady.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Bheemanady - ഭീമനടി</a>
+                            <a href="/Cherupuzha.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Cherupuzha - ചെറുപുഴ</a>
+                            <a href="/Kunnumkai.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kunnumkai - കുന്നുംകൈ</a>
+                            <a href="/malom.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Malom - മാലോം</a>
+                            <a href="/Alakode.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Alakode - ആലക്കോട്</a>
+                            <a href="/Konnakkad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Konnakkad - കൊന്നക്കാട്</a>
+                            <a href="/Vellarikundu.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                            <a href="/Kanhangad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                            <a href="/Iritty.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Iritty - ഇരിട്ടി</a>
+                            <a href="/Olayambadi.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">From Olayambadi - ഓലയമ്പാടി</a>
+                            </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Trains</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Payyannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Payyannur</a>
+                            <a href="/Nileshwar.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Nileshwar</a>
+                            <a href="/Kannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">Kannur</a>
+                        </div>
+                    </div>
+                    <a href="/Whatsapp-groups.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">WhatsApp Groups</a>
+                    <a href="/Business.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Business</a>
+                    <a href="/Tourist-Places.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Tourist Places</a>
+                    <a href="/Election.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">News</a>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-white hover:bg-green-600">
+                    <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    <svg id="menu-close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="/" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Home</a>
+                <a href="/search.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">🔍 Search · തിരയുക</a>
+                <div>
+                    <button id="mobile-bus-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Buses</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-bus-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Chittarikkal.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                        <a href="/Bheemanady.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Bheemanady - ഭീമനടി</a>
+                        <a href="/Cherupuzha.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Cherupuzha - ചെറുപുഴ</a>
+                        <a href="/Kunnumkai.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kunnumkai - കുന്നുംകൈ</a>
+                        <a href="/malom.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Malom - മാലോം</a>
+                        <a href="/Alakode.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Alakode - ആലക്കോട്</a>
+                        <a href="/Vellarikundu.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                        <a href="/Kanhangad.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                      <a href="/Iritty.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Iritty - ഇരിട്ടി</a>
+                        <a href="/Olayambadi.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Olayambadi - ഓലയമ്പാടി</a>
+                        </div>
+                </div>
+                <div>
+                    <button id="mobile-train-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Trains</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-train-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Payyannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Payyannur</a>
+                        <a href="/Nileshwar.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Nileshwar</a>
+                        <a href="/Kannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Kannur</a>
+                    </div>
+                </div>
+                <a href="/Whatsapp-groups.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">WhatsApp Groups</a>
+                <a href="/Business.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Business</a>
+                <a href="/Tourist-Places.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Tourist Places</a>
+                <a href="/Election.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">News</a>
+            </div>
+        </div>
+    </nav>
+    <div class="bg-yellow-400 text-gray-900 py-2 overflow-hidden">
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+            </div>
+        </div>
+    </div>
+    <a href="https://wa.me/916238693615?text=Hello!%20I%20want%20to%20inquire%20about%20KL79%20Info%20Hub." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </a>
+    <div class="header">
+        <h1>കാസർഗോഡും കണ്ണൂരും: വിനോദസഞ്ചാര ഭൂപടം</h1>
+        <p>ഉത്തര കേരളത്തിന്റെ തീരദേശവും മലനാടും ഒരുമിക്കുന്ന കാഴ്ചകൾ</p>
+    </div>
+
+    <div class="container">
+        
+        <h2>🏞️ കാസർഗോഡ് ജില്ലയിലെ ചരിത്രവും പ്രകൃതിയും</h2>
+
+        <div class="attraction-grid">
+            
+            <div class="card">
+                <img src="https://i.imgur.com/9nVRjqW.png" alt="അറബിക്കടലിന് അഭിമുഖമായുള്ള ബേക്കൽ കോട്ട">
+                <div class="card-content">
+                    <h3>ബേക്കൽ കോട്ട</h3>
+                    <p>കേരളത്തിലെ **ഏറ്റവും വലിയ കോട്ട**. 17-ാം നൂറ്റാണ്ടിൽ നിർമ്മിച്ചത്. അറബിക്കടലിനോട് ചേർന്നുള്ള ഇതിന്റെ വാച്ച് ടവറിൽ നിന്ന് മനോഹരമായ കാഴ്ചകൾ ആസ്വദിക്കാം.</p>
+                    <p><strong>പ്രത്യേകത:</strong> ചരിത്രസ്മാരകം | <strong>സമയം:</strong> രാവിലെ 8:00 - വൈകുന്നേരം 5:30</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.imgur.com/Ej3rt4l.png" alt="പുൽമേടുകളുള്ള റാണിപുരം മലനിരകൾ">
+                <div class="card-content">
+                    <h3>റാണിപുരം മലകൾ</h3>
+                    <p>'കേരളത്തിന്റെ ഊട്ടി' എന്നറിയപ്പെടുന്നു. വിശാലമായ പുൽമേടുകൾക്കും ഷോലക്കാടുകൾക്കും പേരുകേട്ട ഈ സ്ഥലം **ട്രെക്കിംഗിന്** ഏറ്റവും അനുയോജ്യമാണ്.</p>
+                    <p><strong>പ്രത്യേകത:</strong> ട്രെക്കിംഗ് | <strong>അടുത്ത സ്ഥലം:</strong> ചിറ്റാരിക്കാൽ</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.imgur.com/8XCV82e.jpeg" alt="ചെങ്കൽ പാറകൾ നിറഞ്ഞ ഗുഹയുടെ ഉൾഭാഗം">
+                <div class="card-content">
+                    <h3>ഓടക്കൊല്ലി ഗുഹകൾ</h3>
+                    <p>കാസറഗോഡ് ജില്ല ഈസ്റ്റ്‌ എളേരി പഞ്ചായത്തിലെ ഓടക്കൊല്ലി എന്ന സ്ഥലത്തെ ഈ ഗുഹകൾ സാഹസിക സഞ്ചാരികൾക്ക് മികച്ച അനുഭവമാണ് നൽകുന്നത്. വലിയ പാറകൾക്കിടയിലൂടെ ആണ് ഗുഹ ഉള്ളത്.</p>
+                    <p><strong>പ്രത്യേകത:</strong> ഭൂമിശാസ്ത്രപരമായ അത്ഭുതം | <strong>അനുഭവം:</strong> ഗുഹാ പര്യവേക്ഷണം</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://i.imgur.com/jLpfBiU.png" alt="ചന്ദ്രഗിരി പുഴയും കടലും ചേരുന്നിടത്തെ കോട്ട">
+                <div class="card-content">
+                    <h3>ചന്ദ്രഗിരി കോട്ട</h3>
+                    <p>17-ാം നൂറ്റാണ്ടിൽ പണികഴിപ്പിച്ച ഈ കോട്ട ചന്ദ്രഗിരിപ്പുഴ അറബിക്കടലുമായി ചേരുന്നിടത്താണ് സ്ഥിതി ചെയ്യുന്നത്. മനോഹരമായ **സൂര്യാസ്തമയ കാഴ്ചകൾക്ക്** പ്രസിദ്ധമാണ്.</p>
+                    <p><strong>വ്യൂ പോയിന്റ്:</strong> നദിയും കടലും ചേരുന്നിടം | <strong>പ്രവേശന സമയം:</strong> വൈകുന്നേരം 5:30 വരെ</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.imgur.com/WgTRbYb.jpeg" alt="മാധുർ ക്ഷേത്രത്തിന്റെ മൂന്ന് തട്ടുകളുള്ള ഗോപുരം">
+                <div class="card-content">
+                    <h3>മാധുർ ക്ഷേത്രം</h3>
+                    <p>ശിവനും മഹാ ഗണപതിക്കും സമർപ്പിച്ചിരിക്കുന്ന പ്രസിദ്ധമായ ക്ഷേത്രം. **ഗജപൃഷ്ഠ വാസ്തുവിദ്യയ്ക്ക്** പേരുകേട്ടതാണ്. ഗണപതിക്ക് പ്രാധാന്യം കൂടുതൽ. പ്രശസ്തമായ മാധുരപ്പപ്പം ഇവിടുത്തെ വഴിപാടാണ്.</p>
+                    <p><strong>പ്രധാന പ്രതിഷ്ഠകൾ:</strong> ശിവൻ, ഗണപതി | <strong>പ്രത്യേക വഴിപാട്:</strong> മാധുരപ്പപ്പം</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.imgur.com/gK3vrGz.jpeg" alt="വലിയപറമ്പ് കായലിലൂടെ സഞ്ചരിക്കുന്ന ഹൗസ്‌ബോട്ട്">
+                <div class="card-content">
+                    <h3>വലിയപറമ്പ് കായൽ</h3>
+                    <p>കേരളത്തിലെ മൂന്നാമത്തെ വലിയ കായൽ. തേജസ്വിനി നദി അറബിക്കടലുമായി ചേരുന്ന ഈ സ്ഥലത്ത് ശാന്തമായ **ഹൗസ്‌ബോട്ട് യാത്ര** നടത്താം. തെങ്ങിൻ തോപ്പുകളാൽ ചുറ്റപ്പെട്ട ഒരു ദ്വീപാണിത്.</p>
+                    <p><strong>അനുഭവം:</strong> ഹൗസ്‌ബോട്ട് യാത്ര | <strong>പ്രത്യേകത:</strong> ശാന്തമായ ജലാശയം</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>🎨 കണ്ണൂരിന്റെ സംസ്കാരവും തീരദേശവും</h2>
+
+        <div class="attraction-grid">
+
+            <div class="card">
+                <img src="https://i.imgur.com/mtaLSbn.jpeg" alt="സെന്റ് ഏഞ്ചലോ കോട്ടയുടെ കടൽത്തീരത്തെ മതിൽ">
+                <div class="card-content">
+                    <h3>സെന്റ് ഏഞ്ചലോ കോട്ട</h3>
+                    <p>1505-ൽ പോർച്ചുഗീസുകാർ നിർമ്മിച്ച ത്രികോണാകൃതിയിലുള്ള കോട്ട. കണ്ണൂരിൽ അറബിക്കടലിനോട് ചേർന്ന് സ്ഥിതി ചെയ്യുന്നു. **സൂര്യാസ്തമയ കാഴ്ചകൾക്ക്** പേരുകേട്ടതാണ്.</p>
+                    <p><strong>ചരിത്രം:</strong> പോർച്ചുഗീസ് വാസ്തുവിദ്യ | <strong>മറ്റൊരു പേര്:</strong> കണ്ണൂർ കോട്ട</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.imgur.com/PRdNiX2.jpeg" alt="വിനോദ വാഹനങ്ങൾ നിരങ്ങുന്ന ബീച്ച്">
+                <div class="card-content">
+                    <h3>മുഴപ്പിലങ്ങാട് ഡ്രൈവ്-ഇൻ ബീച്ച്</h3>
+                    <p>**ഏഷ്യയിലെ ഏറ്റവും നീളമേറിയ ഡ്രൈവ്-ഇൻ ബീച്ച്**. 4 കിലോമീറ്റർ ദൂരം വാഹനങ്ങൾ മണലിലൂടെ ഓടിക്കാം. സാഹസികത ഇഷ്ടപ്പെടുന്നവർക്ക് മികച്ച അനുഭവം നൽകും.</p>
+                    <p><strong>പ്രത്യേകത:</strong> ഏഷ്യയിലെ ഏറ്റവും നീളമേറിയ ഡ്രൈവ്-ഇൻ ബീച്ച് | <strong>നീളം:</strong> 4 കി.മീ</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.imgur.com/yBUBg8n.png" alt="അലങ്കാര രൂപത്തിലുള്ള തെയ്യം കലാകാരൻ">
+                <div class="card-content">
+                    <h3>തെയ്യം</h3>
+                    <p>കണ്ണൂർ ജില്ല തെയ്യത്തിന്റെ ജന്മദേശമാണ്. വർണ്ണാഭമായ വേഷവിധാനങ്ങളോടെയുള്ള ഈ **അനുഷ്ഠാന കലാരൂപം** കാണുന്നത് അവിസ്മരണീയമായ അനുഭവമാണ് (സീസൺ: ഒക്ടോബർ മുതൽ മെയ് വരെ).</p>
+                    <p><strong>സാംസ്കാരിക ശ്രദ്ധേയത:</strong> അനുഷ്ഠാന കല | <strong>സീസൺ:</strong> ഒക്ടോബർ - മെയ്</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.imgur.com/1nPQg0T.jpeg" alt="അറക്കൽ കെട്ടിന്റെ മുൻവശം">
+                <div class="card-content">
+                    <h3>അറക്കൽ മ്യൂസിയം</h3>
+                    <p>കേരളത്തിലെ ഏക മുസ്ലീം രാജകുടുംബമായ **അറക്കൽ ആലി രാജാക്കന്മാരുടെ** ചരിത്രം വിവരിക്കുന്ന മ്യൂസിയം. രാജകീയ വസ്തുക്കളും ചരിത്രരേഖകളും ഇവിടെ പ്രദർശിപ്പിക്കുന്നു.</p>
+                    <p><strong>ചരിത്ര പ്രാധാന്യം:</strong> കേരളത്തിലെ ഏക മുസ്ലീം രാജവംശം | <strong>പ്രദർശനം:</strong> രാജകീയ അവശിഷ്ടങ്ങൾ</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.imgur.com/pugfFRj.jpeg" alt="മഞ്ഞുമൂടിയ പൈതൽമലയുടെ കാഴ്ച">
+                <div class="card-content">
+                    <h3>പൈതൽമല</h3>
+                    <p>കണ്ണൂർ ജില്ലയിലെ **ഏറ്റവും ഉയരം കൂടിയ കൊടുമുടി** (1372 മീറ്റർ). പശ്ചിമഘട്ടത്തിന്റെ മനോഹരമായ കാഴ്ചകളും, തണുപ്പുള്ള കാലാവസ്ഥയും ട്രെക്കിംഗിന് അനുയോജ്യമാണ്.</p>
+                    <p><strong>ഉയരം:</strong> 1372 മീറ്റർ | <strong>പ്രത്യേകത:</strong> പശ്ചിമഘട്ട കാഴ്ചകൾ</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.imgur.com/M5M8QkO.jpeg" alt="ശിൽപമുള്ള പയ്യാമ്പലം ബീച്ച്">
+                <div class="card-content">
+                    <h3>പയ്യാമ്പലം ബീച്ച്</h3>
+                    <p>ശാന്തവും വൃത്തിയുള്ളതുമായ ബീച്ച്. പ്രശസ്ത ശിൽപി കാനായി കുഞ്ഞിരാമൻ്റെ **'അമ്മയും കുഞ്ഞും' ശിൽപം** ഇവിടെ കാണാം. രാഷ്ട്രീയ-സാഹിത്യ രംഗത്തെ പ്രമുഖരുടെ സ്മാരകങ്ങളും ഇവിടെയുണ്ട്.</p>
+                    <p><strong>പ്രധാന അടയാളം:</strong> 'അമ്മയും കുഞ്ഞും' ശിൽപം | <strong>തരം:</strong> നഗര ബീച്ച്</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- START: Mobile Menu Toggle and Dropdown Logic (Copied from previous file) ---
+
+            // Mobile Menu Elements
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+            const mobileBusDropdown = document.getElementById('mobile-bus-dropdown');
+            const mobileBusList = document.getElementById('mobile-bus-list');
+            const mobileTrainDropdown = document.getElementById('mobile-train-dropdown');
+            const mobileTrainList = document.getElementById('mobile-train-list');
+            
+            // Mobile Menu Toggle
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    menuOpenIcon.classList.toggle('hidden');
+                    menuCloseIcon.classList.toggle('hidden');
+                });
+            }
+
+            // Mobile Bus Dropdown Toggle
+            if (mobileBusDropdown) {
+                mobileBusDropdown.addEventListener('click', () => {
+                    if (mobileBusList) {
+                        mobileBusList.classList.toggle('hidden');
+                    }
+                });
+            }
+
+            // Mobile Train Dropdown Toggle
+            if (mobileTrainDropdown) {
+                mobileTrainDropdown.addEventListener('click', () => {
+                    if (mobileTrainList) {
+                        mobileTrainList.classList.toggle('hidden');
+                    }
+                });
+            }
+            // --- END: Mobile Menu Toggle and Dropdown Logic ---
+        });
+    </script>
+    <script src="/bottom-nav.js" defer></script>
+    <script src="/pwa-register.js" defer></script>
+</body>
+</html>

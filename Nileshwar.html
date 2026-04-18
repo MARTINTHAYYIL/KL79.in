@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QLZS4VHWTK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QLZS4VHWTK');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2d4a3e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="KL79">
+    <link rel="manifest" href="/manifest.json">
+    <title>നീലേശ്വരം ട്രെയിൻ സമയങ്ങൾ | Nileshwar Train Timings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;700;900&family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=Baloo+Chettan+2:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/kl79-theme.css">
+    <style>
+        /* --- Styles added from Kanhangad.html for Navigation, Ticker, and Floating Button --- */
+        /* Custom styles for Noto Sans Malayalam font and modern aesthetic */
+        body {
+            font-family: 'Roboto', 'Noto Sans Malayalam', sans-serif; /* Kept font from Nileshwar.html */
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6eef5 100%);
+            color: #1f2937;
+        }
+        /* Style for individual bus cards (added for completeness, though not used in train list) */
+        .bus-card {
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        /* Hover effect for cards that are clickable */
+        .bus-card.clickable:hover {
+            background-color: #e5e7eb;
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.2); /* Highlight clickable cards */
+        }
+        /* Custom Colors for Bus Categories (added for completeness) */
+        .header-indigo { background-color: #0000FF; }
+        .header-red { background-color: #FF0000; }
+        .header-brown { background-color: #FF00FF; }
+        .header-teal { background-color: #0d9488; }
+        .header-purple { background-color: #6d28d9; }
+        .header-green { background-color: #f97316; }
+
+        /* Animation for the detail box when expanded */
+        .details-content {
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom indigo color for the instruction text */
+        .instruction-text {
+            color: #4f46e5; /* Tailwind's indigo-600 */
+            font-weight: 600;
+        }
+        /* Styles added for the Advertisement blocks (mostly redundant with Nileshwar.html but ensures consistency) */
+        .ad-whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background-color: #25d366;
+            color: white;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            transition: background-color 0.2s;
+        }
+        .ad-whatsapp-button:hover {
+            background-color: #1da851;
+        }
+        .ad-whatsapp-button svg {
+            fill: currentColor;
+        }
+        /* Ticker and Float styles */
+        .ticker-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding-right: 2rem;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #10b981;
+            color: white;
+            border-radius: 9999px;
+            padding: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            background-color: #059669;
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+        }
+        /* --- End Kanhangad.html added styles --- */
+
+
+        /* Custom styles for modern aesthetic and contrasting background */
+        
+        /* Apply shadow and rounded corners to the main section and header */
+        .main-header {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            background-color: #ffffff;
+        }
+
+        .category-section {
+            background-color: #ffffff; /* White background for the section */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem; /* Softer rounded corners */
+            overflow: hidden;
+        }
+
+        /* Overrides category-header from Kanhangad.html for Train Header */
+        .category-header { 
+            background-color: #3b82f6; /* Blue for Train Header */
+            color: #fff;
+            border-radius: 1rem 1rem 0 0; /* Only top corners rounded by default */
+            box-shadow: none; /* Shadow handled by category-section */
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        
+        /* Train Card Styling */
+        .train-card {
+            background-color: #f8fafc; /* Very light background for cards */
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        }
+        .train-card:hover {
+            background-color: #eff6ff; /* Subtle light blue hover */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* START MODIFICATION: Train Name Size reduced for mobile */
+        .train-name {
+            font-size: 1.1rem; /* Reduced from 1.25rem (text-xl) for mobile */
+            font-weight: 700; 
+            color: #0d1a26; 
+            font-family: 'Noto Sans Malayalam', sans-serif;
+        }
+        /* Increase size back for medium/desktop screens */
+        @media (min-width: 768px) {
+            .train-name {
+                font-size: 1.25rem; 
+            }
+        }
+        /* END MODIFICATION */
+        
+        /* Styling for Time (Dot removed) */
+        .time-accent {
+            display: flex;
+            align-items: center;
+        }
+
+        /* START MODIFICATION: Time Size reduced for mobile */
+        .train-time {
+            font-size: 2rem; /* Reduced from 2.5rem for mobile */
+            font-weight: 900; 
+            color: #dc2626;
+        }
+        /* Increase size back for medium/desktop screens */
+        @media (min-width: 768px) {
+            .train-time {
+                font-size: 2.5rem; 
+            }
+        }
+        /* END MODIFICATION */
+
+
+        /* Destination and Frequency Tag Styles */
+        .destination-tag {
+            background-color: #3b82f6; /* Blue background */
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px; /* Pill shape */
+            font-weight: 700;
+            font-size: 0.875rem; /* text-sm */
+            white-space: nowrap;
+        }
+        .frequency-info {
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin-top: 0.5rem;
+        }
+        
+        /* Style for the clickable card and description */
+        .description-toggler {
+            cursor: pointer;
+        }
+        .description-link {
+            font-size: 0.875rem; /* text-sm (Kept small for mobile fit) */
+            white-space: nowrap; 
+            font-family: 'Noto Sans Malayalam', sans-serif;
+        }
+        .description-content {
+            font-family: monospace; 
+            font-size: 0.95rem;
+            background-color: #fcfcfc;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+
+        /* Advertisement Card Styling */
+        .ad-card {
+            display: block !important;
+            visibility: visible !important;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-height: 300px;
+            background-color: #fef3c7;
+            border: 2px solid #fbbf24;
+            margin-bottom: 1rem;
+        }
+        .ad-card h4, .ad-card p {
+            display: block !important;
+            visibility: visible !important;
+            color: #111827;
+        }
+        .ad-card img {
+            display: block !important;
+            visibility: visible !important;
+            max-width: 112px;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="p-0 sm:p-0 m-0">
+
+    <nav class="bg-green-700 shadow-lg sticky top-0 z-50 mb-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-0 lg:pr-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="https://i.imgur.com/ZJ8IuLd.png" alt="KL79.in Logo" class="h-16 w-16 text-white"/>
+                    <a href="/" class="text-3xl font-bold text-white hover:text-green-100 transition">
+                        KL79.in
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Home</a>
+                    <a href="/search.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center gap-1" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <span>Search</span>
+                    </a>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Buses</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-80 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Chittarikkal.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                            <a href="/Bheemanady.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Bheemanady - ഭീമനടി</a>
+                            <a href="/Cherupuzha.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Cherupuzha - ചെറുപുഴ</a>
+                            <a href="/Kunnumkai.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kunnumkai - കുന്നുംകൈ</a>
+                            <a href="/malom.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Malom - മാലോം</a>
+                            <a href="/Alakode.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Alakode - ആലക്കോട്</a>
+                            <a href="/Konnakkad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Konnakkad - കൊന്നക്കാട്</a>
+                            <a href="/Vellarikundu.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                            <a href="/Kanhangad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                            <a href="/Iritty.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Iritty - ഇരിട്ടി</a>
+                            <a href="/Olayambadi.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">From Olayambadi - ഓലയമ്പാടി</a>
+                            </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Trains</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Payyannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Payyannur</a>
+                            <a href="/Nileshwar.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Nileshwar</a>
+                            <a href="/Kannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">Kannur</a>
+                        </div>
+                    </div>
+                    <a href="/Whatsapp-groups.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">WhatsApp Groups</a>
+                    <a href="/Business.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Business</a>
+                    <a href="/Tourist-Places.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Tourist Places</a>
+                    <a href="/Election.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">News</a>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-white hover:bg-green-600">
+                    <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    <svg id="menu-close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="/" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Home</a>
+                <a href="/search.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">🔍 Search · തിരയുക</a>
+                <div>
+                    <button id="mobile-bus-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Buses</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-bus-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Chittarikkal.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                        <a href="/Bheemanady.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Bheemanady - ഭീമനടി</a>
+                        <a href="/Cherupuzha.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Cherupuzha - ചെറുപുഴ</a>
+                        <a href="/Kunnumkai.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kunnumkai - കുന്നുംകൈ</a>
+                        <a href="/malom.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Malom - മാലോം</a>
+                        <a href="/Alakode.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Alakode - ആലക്കോട്</a>
+                        <a href="/Vellarikundu.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                        <a href="/Kanhangad.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                      <a href="/Iritty.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Iritty - ഇരിട്ടി</a>
+                        <a href="/Olayambadi.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Olayambadi - ഓലയമ്പാടി</a>
+                        </div>
+                </div>
+                <div>
+                    <button id="mobile-train-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Trains</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-train-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Payyannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Payyannur</a>
+                        <a href="/Nileshwar.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Nileshwar</a>
+                        <a href="/Kannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Kannur</a>
+                    </div>
+                </div>
+                <a href="/Whatsapp-groups.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">WhatsApp Groups</a>
+                <a href="/Business.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Business</a>
+                <a href="/Tourist-Places.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Tourist Places</a>
+                <a href="/Election.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">News</a>
+            </div>
+        </div>
+    </nav>
+    <div class="bg-yellow-400 text-gray-900 py-2 overflow-hidden">
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+            </div>
+        </div>
+    </div>
+    <a href="https://wa.me/916238693615?text=Hello!%20I%20want%20to%20inquire%20about%20KL79%20Info%20Hub." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </a>
+    <div id="app" class="max-w-6xl mx-auto p-4 sm:p-8">
+        <header class="text-center mb-8 main-header">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-[#dc2626] mb-2">
+                നീലേശ്വരം ട്രെയിൻ സമയങ്ങൾ
+            </h1>
+            <p id="source-location" class="text-xl text-gray-600 border-b pb-4 mb-0"></p>
+        </header>
+
+        <div id="timings-container" class="space-y-10">
+            </div>
+
+        <div class="mt-12 pt-6 border-t border-gray-300">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-6">
+                ✨  ✨
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="ad-card bg-yellow-50 border-2 border-yellow-300">
+                    <img src="https://i.imgur.com/10HQYuP.jpeg" alt="Travel Agency Ad" class="mx-auto mb-4 w-28 h-28">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">
+                        TRAVEL TALES
+                    </h4>
+                  <h4 class="text-l font-bold text-gray-900 mb-2">
+                        (Tours & Travels)
+                    </h4>
+                    <p class="text-gray-700 mb-4">
+                        തായ്‌ലൻഡ്, വിയറ്റ്നാം ഗ്രൂപ്പ് ടൂർ പാക്കേജുകൾക്കായി ഇപ്പോൾതന്നെ ബന്ധപ്പെടുക.
+                    </p>
+                    <p class="text-sm text-gray-500 italic">
+                        For customizable Thailand, Vietnam group tour packages from Malabar, contact right now.
+                    </p>
+                    <a href="https://wa.me/+916238693615?text=I'm%20interested%20in%20tour%20packages" class="ad-whatsapp-button" target="_blank">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.036 21.99c-5.514 0-9.982-4.468-9.982-9.982s4.468-9.982 9.982-9.982 9.982 4.468 9.982 9.982-4.468 9.982-9.982 9.982zm4.385-6.84c-.213-.355-.845-.638-1.21-.71-.366-.073-.639-.026-.883.33-1.026 1.455-2.037 1.439-3.056.96-.322-.16-.628-.432-.907-.74-.82-.82-.692-.937-.373-1.464.29-.48.163-.9-.08-1.22-.27-.35-.747-.88-.934-1.28-.187-.397-.038-.72.106-.72.29-.02.435-.045.58-.045.143 0 .216 0 .33.28.62.91 1.42 2.06 1.545 2.227.124.167.214.283.37.498.428.53.844.457 1.157.195.426-.358.55-.49.882-.716.333-.227.737-.357 1.05-.448.312-.09.673-.105 1.05-.008.41.1.84.39 1.008.647.167.257.167.47.12.78-.046.3-.173.57-.318.66-.145.09-.34.135-.58.196z"/></svg>
+                        WhatsApp ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക
+                    </a>
+                </div>
+
+                <div class="ad-card bg-indigo-50 border-2 border-indigo-300">
+                    <img src="https://i.imgur.com/ZSJSg3d.png" alt="Real Estate Ad" class="mx-auto mb-4 w-28 h-28">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">
+                        നിങ്ങളുടെ പരസ്യം ഇവിടെ നൽകാം!
+                    </h4>
+                    <p class="text-gray-700 mb-4">
+                        നിങ്ങളുടെ ബിസിനസ് കൂടുതൽ പേരിലേക്ക് എത്തിക്കാനുള്ള മികച്ച അവസരം. പരസ്യങ്ങൾക്കായി ഇപ്പോൾതന്നെ ബന്ധപ്പെടുക.
+                    </p>
+                    <p class="text-sm text-gray-500 italic">
+                        The best opportunity to take your business to more people.
+                    </p>
+                    <a href="https://wa.me/+916238693615?text=I'm%20interested%20in%20advertising" class="ad-whatsapp-button" target="_blank">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.036 21.99c-5.514 0-9.982-4.468-9.982-9.982s4.468-9.982 9.982-9.982 9.982 4.468 9.982 9.982-4.468 9.982-9.982 9.982zm4.385-6.84c-.213-.355-.845-.638-1.21-.71-.366-.073-.639-.026-.883.33-1.026 1.455-2.037 1.439-3.056.96-.322-.16-.628-.432-.907-.74-.82-.82-.692-.937-.373-1.464.29-.48.163-.9-.08-1.22-.27-.35-.747-.88-.934-1.28-.187-.397-.038-.72.106-.72.29-.02.435-.045.58-.045.143 0 .216 0 .33.28.62.91 1.42 2.06 1.545 2.227.124.167.214.283.37.498.428.53.844.457 1.157.195.426-.358.55-.49.882-.716.333-.227.737-.357 1.05-.448.312-.09.673-.105 1.05-.008.41.1.84.39 1.008.647.167.257.167.47.12.78-.046.3-.173.57-.318.66-.145.09-.34.135-.58.196z"/></svg>
+                        കൂടുതൽ വിവരങ്ങൾ അറിയാൻ
+                    </a>
+                </div>
+            </div>
+        </div>
+        <footer class="text-center mt-12 pt-6 text-gray-500 text-sm border-t border-gray-300">
+            <p>© ഡാറ്റാ ലിസ്റ്റ്. പൊതുവിവരങ്ങൾക്കായി മാത്രം.</p>
+            <p class="mt-2 text-xs">Based on PDF data from 'TRAIN Timings - Nileshwar.pdf'.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data extracted from the provided PDF: 'TRAIN Timings - Nileshwar.pdf'
+        const trainTimingsData = {
+          source_location: 'From Nileshwar - നീലേശ്വരം',
+          categories: [
+            {
+              destination_category: 'ഷൊർണൂർ ഭാഗത്തേക്ക് (തെക്ക്) - Shornur Side (South)',
+              trains: [
+                // Times and list updated based on PDF
+                { 
+                    time: '00:55', 
+                    name_ml: 'വെസ്റ്റ് കോസ്റ്റ് എക്സ്പ്രസ്', 
+                    name_en: 'WEST COAST EXP', 
+                    number: '22638', 
+                    destination: 'ചെന്നൈ സെൻട്രൽ (MAS)', 
+                    frequency: 'Daily (All Days)', 
+                    description: `
+                        **22638 വെസ്റ്റ് കോസ്റ്റ് എക്സ്പ്രസ് റൂട്ട് ഷെഡ്യൂൾ:**
+                        \nമാംഗളൂരു (MAQ) - 23:45         | കാസർഗോഡ് (KGQ) - 00:23          | കാഞ്ഞങ്ങാട് (KZE) - 00:43         | നീലേശ്വരം (NLE) - 00:54
+                        \nപയ്യന്നൂർ (PAY) - 01:11          | കണ്ണൂർ (CAN) - 01:42             | തലശ്ശേരി (TLY) - 02:03          | വടകര (BDJ) - 02:23
+                        \nകോഴിക്കോട് (CLT) - 03:00         | പരപ്പനങ്ങാടി (PGI) - 03:29        | തിരൂർ (TIR) - 03:43             | കുറ്റിപ്പുറം (KTU) - 03:59
+                        \nഷൊർണൂർ Jn (SRR) - 04:45        | ഒറ്റപ്പാലം (OTP) - 05:18          | പാലക്കാട് Jn (PGT) - 05:55       | പോടന്നൂർ Jn (PTJ) - 07:04
+                        \nകോയമ്പത്തൂർ Jn (CBE) - 07:32    | തിരുപ്പൂർ (TUP) - 08:13          | ഈറോഡ് Jn (ED) - 08:55          | ശങ്കരിദുർഗ് (SGE) - 09:29
+                        \nസേലം Jn (SA) - 10:07           | ബോമ്മിടി (BQI) - 10:49          | മൊറാപ്പൂർ (MAP) - 11:09         | തിരുപ്പത്തൂർ Jn (TPT) - 11:49
+                        \nജോലാർപ്പേട്ടൈ (JTJ) - 12:18      | കാട്പാടി Jn (KPD) - 13:28        | വാലാജാ റോഡ് (WJR) - 13:48      | അറക്കോണം Jn (AJJ) - 14:18
+                        \nപേരമ്പൂർ (PER) - 15:08          | ചെന്നൈ സെൻട്രൽ (MAS) - 16:00 (എത്തുന്നു)
+                    ` 
+                },
+                { time: '05:36', name_ml: 'നേത്രാവതി എക്സ്പ്രസ്', name_en: 'NETRAVATI EXP', number: '16345', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Daily (All Days)', description: '' },
+                { time: '06:10', name_ml: 'പരശുറാം എക്സ്പ്രസ്', name_en: 'PARASURAM EXP', number: '16649', destination: 'കന്യാകുമാരി (CAPE)', frequency: 'Daily (All Days)', description: '' },
+                { time: '08:03', name_ml: 'മംഗലാപുരം - ചെന്നൈ എക്സ്പ്രസ്', name_en: 'MAQ CHENNAI EXP', number: '16160', destination: 'താംബരം (TBM) / ചെന്നൈ എഗ്മോർ (MS)', frequency: 'Daily (All Days)', description: '' },
+                { time: '08:35', name_ml: 'ഏറനാട് എക്സ്പ്രസ്', name_en: 'ERNAD EXPRESS', number: '16605', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Daily (All Days)', description: '' },
+                { time: '08:53', name_ml: 'കണ്ണൂർ എക്സ്പ്രസ്', name_en: 'KANNUR EXP', number: '16511', destination: 'കണ്ണൂർ (CAN)', frequency: 'Daily (All Days)', description: '' },
+                { time: '12:15', name_ml: 'ഇന്റർസിറ്റി എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'INTERCITY SF EX', number: '22609', destination: 'കോയമ്പത്തൂർ Jn (CBE)', frequency: 'Daily (All Days)', description: '' },
+                { time: '15:40', name_ml: 'തിരുവനന്തപുരം എക്സ്പ്രസ്', name_en: 'TRIVANDRUM EXP', number: '16348', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Daily (All Days)', description: '' },
+                { time: '18:05', name_ml: 'മംഗലാപുരം - ചെന്നൈ എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'MAQ MAS SF EXP', number: '12686', destination: 'ചെന്നൈ സെൻട്രൽ (MAS)', frequency: 'Daily (All Days)', description: '' },
+                { time: '18:54', name_ml: 'മാവേലി എക്സ്പ്രസ്', name_en: 'MAVELI EXPRESS', number: '16603', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Daily (All Days)', description: '' },
+                { time: '19:45', name_ml: 'മലബാർ എക്സ്പ്രസ്', name_en: 'MALABAR EXPRESS', number: '16630', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Daily (All Days)', description: '' },
+                { time: '21:09', name_ml: 'മഡഗാവ് - കാച്ചെഗുഡ എക്സ്പ്രസ്', name_en: 'MRDW KCG EXP', number: '12790', destination: 'കാച്ചെഗുഡ (KCG)', frequency: 'Bi-Weekly (Wed, Sat)', description: '' },
+                { time: '23:50', name_ml: 'മംഗള ലക്ഷദ്വീപ് എക്സ്പ്രസ്', name_en: 'MNGLA LKSDP EXP', number: '12618', destination: 'എറണാകുളം Jn (ERS) / നിസാമുദ്ദീൻ (NZM)', frequency: 'Daily (All Days)', description: '' },
+              ]
+            },
+            {
+              destination_category: 'മംഗലാപുരം ഭാഗത്തേക്ക് (വടക്ക്) - Mangaluru Side (North)',
+              trains: [
+                // Times and list updated based on PDF
+                { time: '03:25', name_ml: 'വെസ്റ്റ് കോസ്റ്റ് എക്സ്പ്രസ്', name_en: 'WEST COAST EXP', number: '22637', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+                { time: '05:30', name_ml: 'ചെന്നൈ - മംഗലാപുരം എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'MAS MAQ SF EXP', number: '12685', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+                { time: '06:05', name_ml: 'മാവേലി എക്സ്പ്രസ്', name_en: 'MAVELI EXPRESS', number: '16604', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+                { time: '07:11', name_ml: 'കാച്ചെഗുഡ - മുരുഡേശ്വർ എക്സ്പ്രസ്', name_en: 'KCG MRDW SF EXP', number: '12789', destination: 'മുരുഡേശ്വർ (MRDW)', frequency: 'Twice a Week (Wed, Sat)', description: '' },
+                { time: '07:45', name_ml: 'മലബാർ എക്സ്പ്രസ്', name_en: 'MALABAR EXPRESS', number: '16629', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+                { time: '09:12', name_ml: 'മംഗലാപുരം എക്സ്പ്രസ്', name_en: 'MANGALORE EXP', number: '16347', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+                { time: '11:31', name_ml: 'ഇന്റർസിറ്റി എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'INTERCITY SF EX', number: '22610', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+                { time: '15:15', name_ml: 'ഏറനാട് എക്സ്പ്രസ്', name: 'ERNAD EXPRESS', number: '16606', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+                { time: '16:50', name_ml: 'മംഗലാപുരം - ചെന്നൈ എക്സ്പ്രസ്', name_en: 'MS MAQ EXPRESS', number: '16159', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+                { time: '17:50', name_ml: 'കണ്ണൂർ - ബാംഗ്ലൂർ എക്സ്പ്രസ്', name_en: 'CAN SBC EXPRESS', number: '16512', destination: 'കെ.എസ്.ആർ ബംഗളൂരു (SBC)', frequency: 'Daily', description: '' },
+                { time: '19:29', name_ml: 'പരശുറാം എക്സ്പ്രസ്', name_en: 'PARASURAM EXP', number: '16650', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+                { time: '19:40', name_ml: 'മംഗളദ്വീപ് എക്സ്പ്രസ്', name_en: 'MANGLADWEEP EXP', number: '12617', destination: 'ഹസ്രത്ത് നിസാമുദ്ദീൻ (NZM)', frequency: 'Daily', description: '' },
+                { time: '20:33', name_ml: 'നേത്രാവതി എക്സ്പ്രസ്', name_en: 'NETHRAVATHI EXP', number: '16346', destination: 'മംഗലാപുരം സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+              ]
+            }
+          ],
+        };
+
+        // --- Frontend Rendering Logic (updated to include new CSS classes) ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('timings-container');
+            const sourceLocation = document.getElementById('source-location');
+            
+            // --- START: Mobile Menu Elements and Variables (Copied from Kanhangad.html) ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+            const mobileBusDropdown = document.getElementById('mobile-bus-dropdown');
+            const mobileBusList = document.getElementById('mobile-bus-list');
+            const mobileTrainDropdown = document.getElementById('mobile-train-dropdown');
+            const mobileTrainList = document.getElementById('mobile-train-list');
+            // --- END: Mobile Menu Elements and Variables ---
+
+
+            // Set the main source location text
+            sourceLocation.textContent = trainTimingsData.source_location;
+
+            trainTimingsData.categories.forEach((category, categoryIndex) => {
+                // Create the Category Section
+                const categorySection = document.createElement('div');
+                categorySection.className = 'category-section space-y-4';
+
+                // 1. Accordion Header (Clickable)
+                const header = document.createElement('h2');
+                header.id = `header-${categoryIndex}`;
+                header.className = 'category-header text-xl sm:text-2xl font-bold p-4 sm:p-6 cursor-pointer flex justify-between items-center';
+                header.innerHTML = `
+                    <span>${category.destination_category}</span>
+                    <span id="icon-${categoryIndex}" class="text-xl transform transition-transform duration-300">▼</span>
+                `;
+                categorySection.appendChild(header);
+
+                // 2. Train List (Initially Hidden)
+                const trainList = document.createElement('div');
+                trainList.id = `list-${categoryIndex}`;
+                trainList.className = 'p-4 sm:p-6 space-y-4 hidden';
+
+                category.trains.forEach((train, trainIndex) => { 
+                    // Create the Train Card
+                    const card = document.createElement('div');
+                    card.className = 'train-card p-4 flex flex-col justify-between items-start space-y-2';
+
+                    // Main Info Container (Time, Train Name, Destination)
+                    const mainInfoContainer = document.createElement('div');
+                    mainInfoContainer.className = 'flex flex-col md:flex-row justify-between w-full space-y-3 md:space-y-0 items-start md:items-center';
+                    
+                    // Time and Train Info (Left/Top section)
+                    const primaryInfo = document.createElement('div');
+                    primaryInfo.className = 'flex items-start space-x-4 w-full md:w-3/5'; 
+                    primaryInfo.innerHTML = `
+                        <div class="time-accent w-1/4 md:w-auto">
+                           <p class="train-time">${train.time}</p>
+                        </div>
+                        <div class="flex flex-col border-l pl-4 flex-grow">
+                            <p class="train-name">${train.name_ml}</p>
+                            <p class="text-sm text-gray-500 italic">${train.name_en}</p>
+                        </div>
+                    `;
+                    
+                    // Destination, Number, and Frequency (Right/Bottom section)
+                    const secondaryInfo = document.createElement('div');
+                    secondaryInfo.className = 'text-gray-600 w-full md:w-2/5 md:text-right pt-2 md:pt-0 flex flex-col justify-center items-start md:items-end'; 
+                    secondaryInfo.innerHTML = `
+                        <p class="destination-tag">${train.destination}</p>
+                        <p class="frequency-info"><span class="font-bold text-gray-700">#${train.number}</span> | ${train.frequency}</p>
+                    `;
+
+                    mainInfoContainer.appendChild(primaryInfo);
+                    
+                    // --- LOGIC BLOCK: Check for existing description content in ANY train ---
+                    if (train.description && train.description.trim() !== '') { 
+                        // 1. Description Link 
+                        const descriptionLink = document.createElement('p');
+                        descriptionLink.className = 'description-link text-sm text-purple-700 font-bold hover:underline mt-2 block whitespace-nowrap'; 
+                        descriptionLink.textContent = 'ട്രെയിൻ ഷെഡ്യൂളുകൾക്ക് ക്ലിക്ക് ചെയ്യുക'; 
+                        descriptionLink.id = `link-${categoryIndex}-${trainIndex}`;
+                        
+                        // Append the link to secondary info (right side)
+                        secondaryInfo.appendChild(descriptionLink);
+                        
+                        // 2. Description Content (Initially hidden)
+                        const descriptionContent = document.createElement('div');
+                        descriptionContent.className = 'description-content p-4 text-gray-700 border-t border-purple-200 pt-3 mt-3 hidden w-full whitespace-pre-line'; 
+                        descriptionContent.innerHTML = train.description; 
+                        descriptionContent.id = `content-${categoryIndex}-${trainIndex}`;
+                        
+                        // Append secondary info to main container
+                        mainInfoContainer.appendChild(secondaryInfo);
+                        // Append main container to card
+                        card.appendChild(mainInfoContainer);
+                        // Append description content to card
+                        card.appendChild(descriptionContent);
+
+                        // Add a class for visual/click indication
+                        card.classList.add('description-toggler');
+                        
+                        // Click Handler for the entire CARD (Full row click)
+                        card.addEventListener('click', () => {
+                            const content = document.getElementById(`content-${categoryIndex}-${trainIndex}`);
+                            const link = document.getElementById(`link-${categoryIndex}-${trainIndex}`);
+                            
+                            // Toggle visibility of the description content
+                            content.classList.toggle('hidden');
+
+                            // Toggle the link text and color
+                            if (content.classList.contains('hidden')) {
+                                link.textContent = 'ട്രെയിൻ ഷെഡ്യൂളുകൾക്ക് ക്ലിക്ക് ചെയ്യുക';
+                                link.classList.remove('text-red-600');
+                                link.classList.add('text-purple-700');
+                            } else {
+                                link.textContent = 'മറയ്ക്കാൻ ക്ലിക്ക് ചെയ്യുക';
+                                link.classList.remove('text-purple-700');
+                                link.classList.add('text-red-600');
+                            }
+                        });
+                    } else {
+                        // For all other trains without a description, simply append secondary info and card
+                        mainInfoContainer.appendChild(secondaryInfo);
+                        card.appendChild(mainInfoContainer);
+                    }
+                    // --- END LOGIC BLOCK ---
+
+                    trainList.appendChild(card);
+                });
+
+                categorySection.appendChild(trainList);
+                container.appendChild(categorySection);
+
+                // Add the click handler to the category header
+                header.addEventListener('click', () => {
+                    const list = document.getElementById(`list-${categoryIndex}`);
+                    const icon = document.getElementById(`icon-${categoryIndex}`);
+
+                    // Toggle visibility
+                    list.classList.toggle('hidden');
+
+                    // Rotate icon to indicate expanded/collapsed state
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+            
+            // --- START: Mobile Menu Toggle and Dropdown Logic (Copied from Kanhangad.html) ---
+
+            // Mobile Menu Toggle
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
+            });
+
+            // Mobile Bus Dropdown Toggle
+            mobileBusDropdown.addEventListener('click', () => {
+                mobileBusList.classList.toggle('hidden');
+                // You can add an icon rotation here if needed
+            });
+
+            // Mobile Train Dropdown Toggle
+            mobileTrainDropdown.addEventListener('click', () => {
+                mobileTrainList.classList.toggle('hidden');
+                // You can add an icon rotation here if needed
+            });
+            // --- END: Mobile Menu Toggle and Dropdown Logic ---
+        });
+    </script>
+    <script src="/bottom-nav.js" defer></script>
+    <script src="/pwa-register.js" defer></script>
+</body>
+</html>

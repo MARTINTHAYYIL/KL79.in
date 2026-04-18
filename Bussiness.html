@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLZS4VHWTK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QLZS4VHWTK');
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2d4a3e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="KL79">
+    <link rel="manifest" href="/manifest.json">
+    <title>Our Businesses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;700;900&family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=Baloo+Chettan+2:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/kl79-theme.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f7f9fb 60%, #eaf3ff 100%);
+            margin: 0;
+            padding: 0;
+            /* Prevent scrolling when modal is open */
+            overflow-x: hidden;
+            scroll-behavior: smooth; /* For smooth scrolling to highlighted card */
+        }
+        .container {
+            max-width: 1250px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #0002;
+            padding: 36px 32px 44px 32px;
+        }
+        h1 {
+            font-size: 2.7rem;
+            margin: 0 0 8px 0;
+            letter-spacing: -2.5px;
+        }
+        .subtitle {
+            color: #5b6b7d;
+            margin-bottom: 36px;
+            font-size: 1.07rem;
+        }
+        .filter-order-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+            gap: 14px;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .filter-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .filter-btn {
+            background: #eceff3;
+            border: none;
+            border-radius: 22px;
+            padding: 10px 22px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: 0 1px 5px #0001;
+            transition: background 0.2s, border 0.2s, color 0.2s, transform 0.15s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .filter-btn.active {
+            background: #427bf7;
+            color: white;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .filter-btn:hover:not(.active) {
+            background: #dbeaff;
+            color: #2f579d;
+        }
+        .order-select {
+            background: #f6f8fa;
+            border: 1.5px solid #ccd9ee;
+            border-radius: 7px;
+            padding: 9px 18px 9px 12px;
+            font-size: 1rem;
+            margin-left: 0;
+        }
+        .cards {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        .card {
+            background: linear-gradient(120deg, #ffffff 80%, #f6f9fd 100%);
+            border-radius: 18px;
+            box-shadow: 0 2px 22px #427bf73c, 0 1.5px 9px #0001;
+            width: 335px;
+            margin-bottom: 18px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s,transform 0.2s, border 0.3s; /* Added border transition */
+            border: 1.6px solid #eaf0fa;
+            position: relative; /* Needed for highlight animation */
+        }
+        /* Highlight style for deep linking */
+        .card.highlighted {
+            border-color: #f7b342;
+            box-shadow: 0 0 0 4px rgba(247, 179, 66, 0.4), 0 2px 22px #427bf73c;
+            animation: glow 1.5s 2; /* Flash twice */
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(247, 179, 66, 0.5); }
+            50% { box-shadow: 0 0 0 8px rgba(247, 179, 66, 0.8); }
+        }
+
+        .card:hover {
+            box-shadow: 0 9px 34px #427bf72d, 0 6px 28px #a7ccff13;
+            transform: scale(1.027) translateY(-7px);
+            border-color: #bcd5fa;
+        }
+        /* Style for clickable media */
+        .card .media-thumbnail {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-bottom: 1px solid #e9f1fa;
+            cursor: pointer; 
+            background-color: #000;
+            position: relative;
+        }
+        .card .media-thumbnail img {
+             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+        .card .media-thumbnail:hover img {
+            opacity: 0.8;
+        }
+        .card .media-thumbnail .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            opacity: 0.9;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .card-content {
+            padding: 23px 24px 17px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-title {
+            color: #1d3f70;
+            font-size: 1.23rem;
+            font-weight: 600;
+            margin: 0 0 7px 0;
+            letter-spacing: -0.7px;
+        }
+        .card-category {
+            background: #f0f4ff;
+            color: #3867fa;
+            font-size: 1rem;
+            border-radius: 5px;
+            padding: 3px 9px;
+            width: fit-content;
+            margin-bottom: 15px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .card-desc {
+            color: #4a5568;
+            font-size: 1.01rem;
+            margin-bottom: 17px;
+            min-height: 44px;
+        }
+        .contact-info {
+            font-size: 0.97rem;
+            color: #294169;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .contact-info:not(:last-child) { margin-bottom: 4px; }
+        .card-footer {
+            margin-top: 9px;
+        }
+        /* Modified styling for contact link as green button */
+        .card-footer a {
+            display: inline-block;
+            background-color: #28a745;
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .card-footer a:hover {
+            background-color: #218838;
+        }
+        .made-in {
+            font-size: 0.82rem;
+            color: #7489ac;
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .bolt {
+            background: #427bf7;
+            color: white;
+            border-radius: 7px;
+            padding: 2.8px 9px;
+            margin-left: 7px;
+            font-size: 0.92rem;
+        }
+        @media (max-width: 1100px) {
+            .cards { flex-direction: column; }
+            .card { width: 100%; }
+        }
+        @media (max-width: 800px) {
+            .container { padding: 24px 16px 36px 16px; }
+            h1 { font-size: 2.07rem; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 0.95rem; }
+            .filter-order-row { flex-direction: column; align-items: stretch; gap: 12px; }
+            .filter-bar { width: 100%; gap: 6px; flex-wrap: nowrap; }
+            .filter-btn { padding: 7px 14px; font-size: 0.85rem; }
+            .order-select { width: 100%; font-size: 0.95rem; padding: 8px 12px; }
+        }
+        /* ADDED: Ticker and Float styles */
+        .ticker-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding-right: 2rem;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #10b981;
+            color: white;
+            border-radius: 9999px;
+            padding: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            background-color: #059669;
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+        }
+
+        /* --- GALLERY MODAL STYLES --- */
+        #gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        #gallery-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .gallery-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+        
+        /* Common style for both image and video embed */
+        .gallery-item {
+            max-width: 100%;
+            max-height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.1) rotate(5deg); 
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+        }
+
+        .gallery-item.active {
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .gallery-item.prev {
+            transform: translate(-50%, -50%) translateX(-150%) scale(0.8) rotate(-15deg);
+            opacity: 0;
+        }
+
+        .gallery-item.next {
+            transform: translate(-50%, -50%) translateX(150%) scale(0.8) rotate(15deg);
+            opacity: 0;
+        }
+
+        /* Video specific sizing for iframe */
+        .gallery-item.video-embed {
+            width: 80%; 
+            height: 80%;
+            max-width: 1000px;
+            max-height: 563px; /* 16:9 aspect ratio for video */
+            transform: translate(-50%, -50%) scale(0.1); /* Remove rotation for videos */
+        }
+        .gallery-item.video-embed.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 20;
+            border-radius: 9999px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        #prev-btn { left: 20px; }
+        #next-btn { right: 20px; }
+        
+        #close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 30;
+            transition: background 0.2s;
+        }
+        #close-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        /* Mobile styles for gallery */
+        @media (max-width: 640px) {
+            .nav-btn {
+                font-size: 1.5rem;
+                width: 40px;
+                height: 40px;
+            }
+            #prev-btn { left: 5px; }
+            #next-btn { right: 5px; }
+            .gallery-item.video-embed {
+                width: 95%; 
+                height: 50%;
+            }
+        }
+
+    </style>
+    <script>
+        // Utility to extract YouTube video ID
+        function getYouTubeId(url) {
+            const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|\/(?:v|e|embed)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+            const match = url.match(regex);
+            return (match && match[1]) ? match[1] : null;
+        }
+        
+        // Data structure updated: 'images' can now contain YouTube URLs
+        const businesses = [
+            // Added video link example:
+            { id: "travel-tales", category: "Travel", title: "Travel Tales Tours & Travels", images: ["https://i.imgur.com/10HQYuP.jpeg", "https://i.imgur.com/yMDQm01.png"], desc: "For customizable Thailand, Vietnam group tour packages from Malabar, contact right now.", phone: "+91 6238693615", email: "traveltales.tnt@gmail.com", address: "Chittarikkal and Kannur", website: "https://wa.me/916238693615", order: 1, visible: true },
+            { id: "annakutty-holidays", category: "Travel", title: "ANNAKUTTY Holidays", images: ["https://i.imgur.com/UnV0ogI.jpeg"], desc: "ഓരോ യാത്രയും സുരക്ഷിതമാകട്ടെ. കുടുംബയാത്രകൾക്കും സുഹൃദ് യാത്രകൾക്കും ഏറ്റവും വിശ്വസ്തമായ തിരഞ്ഞെടുപ്പ്.", phone: "+91 8157949235", email: "SEAT 14,17,49", address: "BHEEMANADY", website: "https://wa.me/+918157949235", order: 1, visible: true },
+            { id: "kerala-beef-jerky", category: "Food", title: "Kerala Beef Jerky", images: ["https://i.imgur.com/A2pTWfd.jpeg"], desc: "Taste the spice. Feel the kick. Kerala Beef Jerky – a perfect blend of smoky heat, coconut oil magic, and traditional masala vibes", phone: "+91 9995151655", email: "ttuffbites@gmail.com", address: "Chittarikkal, Kasargod", website: "https://wa.me/919995151655", order: 1, visible: true },
+            { id: "green-leaf-cafe", category: "Food", title: "Green Leaf Cafe (Hidden)", images: ["https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"], desc: "Organic and healthy snacks, juices, and breakfast items.", phone: "+91 9000000004", email: "contact@greenleafcafe.com", address: "24 Health Ave, East End", website: "https://greenleafcafe.com/contact", order: 2, visible: false },
+            { id: "star-multiplex", category: "Entertainment", title: "Star Multiplex (Hidden)", images: ["https://images.unsplash.com/photo-1526178613658-3eaa8b1b97c2?auto=format&fit=crop&w=400&q=80"], desc: "Multi-screen cinema with 3D, IMAX, and luxury seating.", phone: "+91 9000000005", email: "booking@starmultiplex.com", address: "76 Cinema Lane, Entertainment Hub", website: "https://wa.me/919000000005", order: 2, visible: false },
+            { id: "fun-zone", category: "Entertainment", title: "Fun Zone (Hidden)", images: ["https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=400&q=80", "https://placehold.co/800x600/6366f1/white?text=Fun+Image+2"], desc: "Arcade games, bowling, and family entertainment center.", phone: "+91 9000000006", email: "info@funzone.com", address: "15 Game Street, Fun District", website: "https://funzone.com/more", order: 2, visible: false },
+            { id: "m3-creations", category: "IT", title: "M³ Creations", images: ["https://i.imgur.com/yjuIIAW.png"], desc: "M³ Creations: Crafting Your Online Foundation.", phone: "+91 6238693615", email: "traveltales.tnt@gmail.com", address: "Chittarikkal and Kannur", website: "https://wa.me/916238693615", order: 2, visible: true },
+            { id: "cybernex-it", category: "IT", title: "CyberNex IT Services (Hidden)", images: ["https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80"], desc: "Cloud solutions, cybersecurity, and tech consulting for enterprises.", phone: "+91 9000000008", email: "contact@cybernex.com", address: "50 Mega Center, HiTech City", website: "https://cybernex.com", order: 2, visible: false }, // Hidden example
+            { id: "plant-house", category: "Agriculture", title: "Plant Hose Alakode", images: ["https://i.imgur.com/O1aQNt1.jpeg"], desc: "Nursery & Garden for a Better Nature", phone: "+91 9496137146", email: "", address: "Near Film City Alakode", website: "https://www.instagram.com/plant_house_alakode_?igsh=MXdzeGJ1dDZ5cHFkNw==", order: 1, visible: true },
+            { id: "agromach", category: "Agriculture", title: "AgroMach (Hidden)", images: ["https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80"], desc: "Modern agricultural machinery and tractor dealership.", phone: "+91 9000000010", email: "info@agromach.com", address: "19 Machinery Road, Agro Town", website: "https://agromach.com", order: 2, visible: false },
+            { id: "city-bookstore", category: "Others", title: "City Bookstore (Hidden)", images: ["https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=400&q=80"], desc: "A vast collection of books from fiction, non-fiction, and local authors.", phone: "+91 9000000011", email: "hello@citybookstore.com", address: "100 Library Lane, Book Town", website: "https://citybookstore.com", order: 2, visible: false },
+            { id: "quick-print", category: "Others", title: "Quick Print Services (Hidden)", images: ["https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"], desc: "Professional printing and copying for business and personal needs.", phone: "+91 9000000012", email: "contact@quickprint.com", address: "23 Print Avenue, Downtown", website: "https://quickprint.com/contact", order: 2, visible: false } // Hidden example
+        ];
+        
+        // --- GALLERY LOGIC STATE ---
+        let currentGalleryImages = [];
+        let currentImageIndex = 0;
+        
+        // Declare variables globally, but assign them inside window.onload
+        let galleryModal; 
+        let slideContainer;
+        let prevBtn;
+        let nextBtn;
+        let closeBtn;
+
+        // Handles touch swipe events for mobile sliding
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleGesture() {
+            if (touchEndX < touchStartX - 50) { // Swiped Left
+                updateGallery(1);
+            }
+            if (touchEndX > touchStartX + 50) { // Swiped Right
+                updateGallery(-1);
+            }
+        }
+
+        // Compute categories dynamically based on visible businesses
+        function getVisibleCategories(){
+            const cats = new Set();
+            businesses.forEach(b => {
+                if(b.visible !== false) cats.add(b.category);
+            });
+            return ['All', ...cats];
+        }
+
+        function renderGallery() {
+            if (!slideContainer) {
+                console.error("Gallery container not initialized.");
+                return;
+            }
+            slideContainer.innerHTML = '';
+            
+            // Re-enable nav buttons (might have been disabled for single-item gallery)
+            if (prevBtn && nextBtn) {
+                prevBtn.style.display = currentGalleryImages.length > 1 ? 'flex' : 'none';
+                nextBtn.style.display = currentGalleryImages.length > 1 ? 'flex' : 'none';
+            }
+
+            currentGalleryImages.forEach((src, index) => {
+                const isVideo = getYouTubeId(src);
+                let item;
+
+                if (isVideo) {
+                    // Create iframe for YouTube video
+                    const embedUrl = `https://www.youtube.com/embed/${isVideo}?autoplay=1&rel=0&showinfo=0`;
+                    const iframe = document.createElement('iframe');
+                    iframe.setAttribute('src', embedUrl);
+                    iframe.setAttribute('frameborder', '0');
+                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                    iframe.setAttribute('allowfullscreen', 'true');
+                    iframe.classList.add('gallery-item', 'video-embed');
+                    item = iframe;
+
+                } else {
+                    // Create image element
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = 'Business Image ' + (index + 1);
+                    img.classList.add('gallery-item', 'gallery-image');
+                    item = img;
+                }
+
+                if (index === currentImageIndex) {
+                    item.classList.add('active');
+                }
+                slideContainer.appendChild(item);
+            });
+        }
+
+        function updateGallery(direction) {
+            const totalItems = currentGalleryImages.length;
+            if (totalItems <= 1) return;
+
+            // Get all gallery items (img and iframe)
+            const items = slideContainer.querySelectorAll('.gallery-item');
+
+            const prevIndex = currentImageIndex;
+            let nextIndex = (currentImageIndex + direction) % totalItems;
+            if (nextIndex < 0) nextIndex = totalItems - 1;
+
+            if (!slideContainer) return; // Safety check
+            
+            // 1. Remove active class from the current item
+            items[prevIndex].classList.remove('active');
+            
+            // 2. Apply transition class to the item moving out
+            if (direction > 0) {
+                items[prevIndex].classList.add('prev');
+                setTimeout(() => items[prevIndex].classList.remove('prev'), 500);
+            } else {
+                items[prevIndex].classList.add('next');
+                setTimeout(() => items[prevIndex].classList.remove('next'), 500);
+            }
+            
+            // 3. Set the new item as active
+            items[nextIndex].classList.add('active');
+            
+            currentImageIndex = nextIndex;
+        }
+
+        function openGallery(images) {
+            if (!galleryModal || !slideContainer) return;
+            currentGalleryImages = images; // Store the array of media links
+            currentImageIndex = 0; // Always start at the first item
+
+            renderGallery();
+            
+            // Show modal and prevent body scroll
+            document.body.style.overflow = 'hidden'; 
+            galleryModal.classList.add('show');
+            
+            // Set up click listeners for navigation (ADDED e.stopPropagation())
+            if (prevBtn) prevBtn.onclick = (e) => { e.stopPropagation(); updateGallery(-1); };
+            if (nextBtn) nextBtn.onclick = (e) => { e.stopPropagation(); updateGallery(1); };
+
+            // Set up touch listeners for swipe (only if multiple items)
+            if (images.length > 1) {
+                slideContainer.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                slideContainer.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleGesture();
+                });
+            } else {
+                 // Hide nav buttons if only one item exists
+                if (prevBtn && nextBtn) {
+                    prevBtn.style.display = 'none';
+                    nextBtn.style.display = 'none';
+                }
+            }
+        }
+
+        function closeGallery() {
+            document.body.style.overflow = ''; // Restore main body scroll
+            if (galleryModal) galleryModal.classList.remove('show');
+            
+            // Remove image elements after transition to clean up DOM
+            setTimeout(() => {
+                if (slideContainer) slideContainer.innerHTML = '';
+                currentGalleryImages = []; // Clear stored data
+                currentImageIndex = 0;
+            }, 300);
+        }
+
+        // Function to create card HTML
+        function createCardHtml(b, index) {
+            const hasMultipleMedia = b.images && b.images.length > 1;
+            const dataAttrs = hasMultipleMedia 
+                ? `data-business-index="${index}" class="media-thumbnail"` 
+                : 'class="media-thumbnail"';
+
+            // Check if the thumbnail is a video or image
+            const thumbnailSrc = b.images[0] || 'https://placehold.co/400x170/eaf0fa/5b6b7d?text=No+Media';
+            const isVideoThumb = getYouTubeId(thumbnailSrc);
+            const thumbUrl = isVideoThumb 
+                             ? `https://img.youtube.com/vi/${isVideoThumb}/mqdefault.jpg` // YouTube standard thumbnail
+                             : thumbnailSrc;
+            
+            // Add a unique ID to the card for deep linking
+            const cardId = `business-card-${b.id}`;
+
+            return `
+                <div class="card" id="${cardId}">
+                    <div ${dataAttrs}>
+                        <img src="${thumbUrl}" alt="${b.title} Thumbnail" />
+                        ${isVideoThumb ? '<span class="play-icon">▶</span>' : ''}
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">${b.title}</div>
+                        <span class="card-category">${b.category}</span>
+                        <div class="card-desc">${b.desc}</div>
+                        <div class="contact-info">📞 ${b.phone}</div>
+                        ${b.email ? `<div class="contact-info">✉️ ${b.email}</div>` : ''}
+                        <div class="contact-info">📍 ${b.address}</div>
+                        <div class="card-footer">
+                            <a href="${b.website}" target="_blank" rel="noopener noreferrer">Click to contact or more info</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCards(selectedCat, orderBy="Custom") {
+            const cardsDiv = document.getElementById("cards");
+            let filtered = businesses.filter(b => b.visible !== false);
+            if (selectedCat !== "All") {
+                filtered = filtered.filter(b => b.category === selectedCat);
+            }
+
+            if(orderBy === "Title"){
+                filtered = [...filtered].sort((a,b) => a.title.localeCompare(b.title));
+            } else if(orderBy === "Category"){
+                filtered = [...filtered].sort((a,b) => a.category.localeCompare(b.category) || a.title.localeCompare(b.title));
+            } else if(orderBy === "Random"){
+                filtered = [...filtered].sort(() => Math.random() - 0.5);
+            } else { // Custom
+                filtered = [...filtered].sort((a,b) => a.order - b.order);
+            }
+            
+            // Pass index to createCardHtml so we can reference the original business data
+            cardsDiv.innerHTML = filtered.map((b, index) => createCardHtml(b, businesses.indexOf(b))).join("");
+        }
+
+        function setupTabs() {
+            const filterBar = document.querySelector('.filter-bar');
+            const orderSelect = document.getElementById("order");
+            // Clear existing tabs
+            filterBar.innerHTML = '';
+            const categories = getVisibleCategories();
+
+            // Create tabs for visible categories
+            categories.forEach((cat, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.id = 'btn-' + cat.replace(/ /g, '');
+                btn.textContent = cat;
+                if(idx === 0) btn.classList.add('active');
+                btn.onclick = function() {
+                    // Remove active from all buttons
+                    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderCards(cat, orderSelect.value);
+                };
+                filterBar.appendChild(btn);
+            });
+
+            orderSelect.onchange = function(){
+                const activeTabButton = document.querySelector('.filter-btn.active');
+                if(activeTabButton){
+                    const activeCat = activeTabButton.textContent;
+                    renderCards(activeCat, orderSelect.value);
+                }
+            };
+
+            // Render initial
+            renderCards('All', orderSelect.value);
+        }
+
+        // --- DEEP LINKING LOGIC ---
+        function checkDeepLink() {
+            const hash = window.location.hash.substring(1); // Get hash without '#'
+            if (hash) {
+                const targetCard = document.getElementById(`business-card-${hash}`);
+                if (targetCard) {
+                    // 1. Highlight the card
+                    targetCard.classList.add('highlighted');
+                    // 2. Scroll the card into view
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // 3. Remove highlight after the animation is done
+                    setTimeout(() => {
+                        targetCard.classList.remove('highlighted');
+                    }, 3500); // Wait for the glow animation (1.5s * 2 + buffer)
+                }
+            }
+        }
+
+        window.onload = function() {
+            // --- FIX: Initialize DOM elements here where they are guaranteed to exist ---
+            galleryModal = document.getElementById('gallery-modal');
+            slideContainer = document.getElementById('slide-container');
+            prevBtn = document.getElementById('prev-btn');
+            nextBtn = document.getElementById('next-btn');
+            closeBtn = document.getElementById('close-btn');
+            // --------------------------------------------------------------------------
+
+            setupTabs();
+            
+            // UPDATED: Attach modal backdrop click listener to simply call closeGallery
+            // Clicks on child elements will be stopped from bubbling up to here.
+            if (galleryModal) {
+                galleryModal.onclick = closeGallery;
+            }
+
+            // NEW: Stop propagation for the slide container to prevent accidental closing
+            if (slideContainer) {
+                slideContainer.addEventListener('click', (e) => e.stopPropagation());
+            }
+
+            // UPDATED: Close button explicitly calls stopPropagation
+            if (closeBtn) {
+                closeBtn.onclick = (e) => {
+                    e.stopPropagation(); // Prevent the click from bubbling up to modal.onclick
+                    closeGallery();
+                };
+            }
+
+
+            // --- DELEGATED CLICK HANDLER FOR IMAGES ---
+            const cardsContainer = document.getElementById('cards');
+            if (cardsContainer) {
+                cardsContainer.addEventListener('click', (e) => {
+                    const target = e.target.closest('.media-thumbnail');
+                    // Check if the clicked element is an image container with the 'media-thumbnail' class
+                    if (target) {
+                        const businessIndex = target.getAttribute('data-business-index');
+                        if (businessIndex !== null) {
+                            const index = parseInt(businessIndex);
+                            const businessData = businesses[index];
+                            if (businessData && businessData.images.length > 0) {
+                                openGallery(businessData.images);
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Execute deep linking logic
+            checkDeepLink();
+
+            // Handle deep linking when hash changes (useful if navigating on the same page)
+            window.addEventListener('hashchange', checkDeepLink);
+
+
+            // --- START: Mobile Menu Toggle and Dropdown Logic (Copied from previous file) ---
+
+            // Mobile Menu Elements
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+            const mobileBusDropdown = document.getElementById('mobile-bus-dropdown');
+            const mobileBusList = document.getElementById('mobile-bus-list');
+            const mobileTrainDropdown = document.getElementById('mobile-train-dropdown');
+            const mobileTrainList = document.getElementById('mobile-train-list');
+            
+            // Mobile Menu Toggle
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    menuOpenIcon.classList.toggle('hidden');
+                    menuCloseIcon.classList.toggle('hidden');
+                });
+            }
+
+            // Mobile Bus Dropdown Toggle
+            if (mobileBusDropdown) {
+                mobileBusDropdown.addEventListener('click', () => {
+                    if (mobileBusList) {
+                        mobileBusList.classList.toggle('hidden');
+                    }
+                });
+            }
+
+            // Mobile Train Dropdown Toggle
+            if (mobileTrainDropdown) {
+                mobileTrainDropdown.addEventListener('click', () => {
+                    if (mobileTrainList) {
+                        mobileTrainList.classList.toggle('hidden');
+                    }
+                });
+            }
+            // --- END: Mobile Menu Toggle and Dropdown Logic ---
+        };
+    </script>
+</head>
+<body>
+    <nav class="bg-green-700 shadow-lg sticky top-0 z-50 mb-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-0 lg:pr-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="https://i.imgur.com/ZJ8IuLd.png" alt="KL79.in Logo" class="h-16 w-16 text-white"/>
+                    <a href="/" class="text-3xl font-bold text-white hover:text-green-100 transition">
+                        KL79.in
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Home</a>
+                    <a href="/search.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center gap-1" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <span>Search</span>
+                    </a>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Buses</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-80 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Chittarikkal.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                            <a href="/Bheemanady.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Bheemanady - ഭീമനടി</a>
+                            <a href="/Cherupuzha.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Cherupuzha - ചെറുപുഴ</a>
+                            <a href="/Kunnumkai.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kunnumkai - കുന്നുംകൈ</a>
+                            <a href="/malom.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Malom - മാലോം</a>
+                            <a href="/Alakode.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Alakode - ആലക്കോട്</a>
+                            <a href="/Konnakkad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Konnakkad - കൊന്നക്കാട്</a>
+                            <a href="/Vellarikundu.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                            <a href="/Kanhangad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                            <a href="/Iritty.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Iritty - ഇരിട്ടി</a>
+                            <a href="/Olayambadi.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">From Olayambadi - ഓലയമ്പാടി</a>
+                            </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Trains</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Payyannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Payyannur</a>
+                            <a href="/Nileshwar.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Nileshwar</a>
+                            <a href="/Kannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">Kannur</a>
+                        </div>
+                    </div>
+                    <a href="/Whatsapp-groups.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">WhatsApp Groups</a>
+                    <a href="/Business.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Business</a>
+                    <a href="/Tourist-Places.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Tourist Places</a>
+                    <a href="/Election.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">News</a>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-white hover:bg-green-600">
+                    <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    <svg id="menu-close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="/" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Home</a>
+                <a href="/search.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">🔍 Search · തിരയുക</a>
+                <div>
+                    <button id="mobile-bus-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Buses</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-bus-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Chittarikkal.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                        <a href="/Bheemanady.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Bheemanady - ഭീമനടി</a>
+                        <a href="/Cherupuzha.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Cherupuzha - ചെറുപുഴ</a>
+                        <a href="/Kunnumkai.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kunnumkai - കുന്നുംകൈ</a>
+                        <a href="/malom.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Malom - മാലോം</a>
+                        <a href="/Alakode.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Alakode - ആലക്കോട്</a>
+                        <a href="/Vellarikundu.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                        <a href="/Kanhangad.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                      <a href="/Iritty.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Iritty - ഇരിട്ടി</a>
+                        <a href="/Olayambadi.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Olayambadi - ഓലയമ്പാടി</a>
+                        </div>
+                </div>
+                <div>
+                    <button id="mobile-train-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Trains</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-train-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Payyannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Payyannur</a>
+                        <a href="/Nileshwar.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Nileshwar</a>
+                        <a href="/Kannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Kannur</a>
+                    </div>
+                </div>
+                <a href="/Whatsapp-groups.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">WhatsApp Groups</a>
+                <a href="/Business.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Business</a>
+                <a href="/Tourist-Places.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Tourist Places</a>
+                <a href="/Election.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">News</a>
+            </div>
+        </div>
+    </nav>
+    <div class="bg-yellow-400 text-gray-900 py-2 overflow-hidden">
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+            </div>
+        </div>
+    </div>
+    <a href="https://wa.me/916238693615?text=Hello!%20I%20want%20to%20inquire%20about%20KL79%20Info%20Hub." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </a>
+    <div class="container">
+        <h1>Our Businesses</h1>
+        <div class="subtitle">Discover our partner businesses and services</div>
+        <div class="filter-order-row">
+            <div class="filter-bar">
+                </div>
+            <div>
+                <select class="order-select" id="order">
+                    <option value="Custom">Custom Order</option>
+                    <option value="Title">Order by Title</option>
+                    <option value="Category">Order by Category</option>
+                    <option value="Random">Random Order</option>
+                </select>
+            </div>
+        </div>
+        <div class="cards" id="cards">
+            </div>
+        
+    </div>
+  <div style="margin: 40px 0 20px 0; padding: 24px; text-align: center; background-color: #2371f5; border-radius: 12px; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.08);">
+        <h2 style="font-size: 2.1em; color: #fff;">Want to be featured here?</h2>
+        <p style="font-size: 1.1em; color: #fff;">Add your business to our directory and reach local customers!</p>
+        <a href="https://wa.me/916238693615?text=Hello!%20I%20want%20to%20list%20my%20business%20on%20KL79%20Info%20Hub." 
+           style="color: #25d366; background: #fff; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px;"
+           target="_blank">Contact Us on WhatsApp</a>
+    </div>
+
+    <div id="gallery-modal" class="modal">
+        <button id="close-btn">&times;</button>
+        <div class="gallery-content">
+            <button id="prev-btn" class="nav-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <div id="slide-container" class="slide-container">
+                </div>
+            <button id="next-btn" class="nav-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+        </div>
+    </div>
+    <script src="/bottom-nav.js" defer></script>
+    <script src="/pwa-register.js" defer></script>
+    </body>
+</html>

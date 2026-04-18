@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QLZS4VHWTK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QLZS4VHWTK');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#2d4a3e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="KL79">
+  <link rel="manifest" href="/manifest.json">
+  <title>കണ്ണൂർ ട്രെയിൻ സമയം | Kannur Train Timings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;700;900&family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=Baloo+Chettan+2:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/kl79-theme.css">
+  <style>
+    body {
+      font-family: 'Roboto', 'Noto Sans Malayalam', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #e6eef5 100%);
+      color: #1f2937;
+    }
+    .main-header {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      background-color: #ffffff;
+    }
+    .main-header h1 {
+      color: #dc2626; /* Changed to red as requested */
+    }
+    .category-section {
+      background-color: #ffffff;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+    .category-header {
+      background-color: #3b82f6;
+      color: #fff;
+      border-radius: 1rem 1rem 0 0;
+      box-shadow: none;
+      font-family: 'Roboto', sans-serif;
+    }
+    .train-card {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+    .train-card:hover {
+      background-color: #eff6ff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+    .train-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0d1a26;
+      font-family: 'Noto Sans Malayalam', sans-serif;
+    }
+    @media (min-width: 768px) {
+      .train-name {
+        font-size: 1.25rem;
+      }
+    }
+    .time-accent {
+      display: flex;
+      align-items: center;
+    }
+    .train-time {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #dc2626;
+    }
+    @media (min-width: 768px) {
+      .train-time {
+        font-size: 2.5rem;
+      }
+    }
+    .destination-tag {
+      background-color: #3b82f6;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      white-space: nowrap;
+    }
+    .frequency-info {
+      font-size: 0.875rem;
+      color: #4b5563;
+      margin-top: 0.5rem;
+    }
+    .description-toggler {
+      cursor: pointer;
+    }
+    .description-link {
+      font-size: 0.875rem;
+      white-space: nowrap;
+      font-family: 'Noto Sans Malayalam', sans-serif;
+      color: #6b21a8; /* purple-700 */
+      font-weight: 700;
+      margin-top: 0.5rem;
+      display: block;
+      user-select: none;
+    }
+    .description-link:hover {
+      text-decoration: underline;
+      color: #b91c1c; /* red-600 on hover */
+    }
+    .description-content {
+      font-family: monospace;
+      font-size: 0.95rem;
+      background-color: #fcfcfc;
+      border-radius: 0 0 0.5rem 0.5rem;
+      border-top: 1px solid #d8b4fe; /* purple-200 */
+      padding: 1rem;
+      color: #374151; /* gray-700 */
+      white-space: pre-line;
+      margin-top: 0.5rem;
+    }
+    .ad-card {
+      display: block !important;
+      visibility: visible !important;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      min-height: 300px;
+      background-color: #fef3c7;
+      border: 2px solid #fbbf24;
+      margin-bottom: 1rem;
+    }
+    .ad-card h4, .ad-card p {
+      display: block !important;
+      visibility: visible !important;
+      color: #111827;
+    }
+    .ad-card img {
+      display: block !important;
+      visibility: visible !important;
+      max-width: 112px;
+      height: auto;
+    }
+    .ad-whatsapp-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      background-color: #25d366;
+      color: white;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      transition: background-color 0.2s;
+    }
+    .ad-whatsapp-button:hover {
+      background-color: #1da851;
+    }
+    .ad-whatsapp-button svg {
+      fill: currentColor;
+    }
+
+    /* --- ADDED STYLES FOR NAV, TICKER, WHATSAPP FLOAT --- */
+    .ticker-wrapper {
+      width: 100%;
+      overflow: hidden;
+    }
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: ticker 30s linear infinite;
+    }
+    .ticker-item {
+      display: inline-block;
+      padding-right: 2rem;
+    }
+    @keyframes ticker {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background-color: #10b981;
+      color: white;
+      border-radius: 9999px;
+      padding: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      transition: all 0.3s ease;
+    }
+    .whatsapp-float:hover {
+      background-color: #059669;
+      transform: scale(1.1);
+      box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+    }
+    /* ------------------------------------------- */
+  </style>
+</head>
+<body class="p-0 sm:p-0 m-0">
+  <nav class="bg-green-700 shadow-lg sticky top-0 z-50 mb-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-0 lg:pr-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <img
+            src="https://i.imgur.com/ZJ8IuLd.png"
+            alt="KL79.in Logo"
+            class="h-16 w-16 text-white"
+          />
+          <a
+            href="/"
+            class="text-3xl font-bold text-white hover:text-green-100 transition"
+          >
+            KL79.in
+          </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-1">
+          <a
+            href="/"
+            class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition"
+            >Home</a
+          >
+          <a href="/search.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center gap-1" aria-label="Search">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>Search</span>
+          </a>
+          <div class="relative group">
+            <button
+              class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1"
+            >
+              <span>Buses</span><span class="text-xs">▼</span>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-0 w-80 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block"
+            >
+              <a
+                href="/Chittarikkal.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >From Chittarikkal - ചിറ്റാരിക്കാൽ</a
+              >
+              <a
+                href="/Bheemanady.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >From Bheemanady - ഭീമനടി</a
+              >
+              <a
+                href="/Cherupuzha.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >From Cherupuzha - ചെറുപുഴ</a
+              >
+              <a
+                href="/Kunnumkai.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >From Kunnumkai - കുന്നുംകൈ</a
+              >
+              <a
+                href="/malom.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >From Malom - മാലോം</a
+              >
+              <a
+                href="/Alakode.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >From Alakode - ആലക്കോട്</a
+              >
+              <a
+                href="/Konnakkad.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >From Konnakkad - കൊന്നക്കാട്</a
+              >
+              <a
+                href="/Vellarikundu.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >From Vellarikundu - വെള്ളരിക്കുണ്ട്</a
+              >
+              <a
+                href="/Kanhangad.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a
+              >
+                <a href="/Iritty.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Iritty - ഇരിട്ടി</a>
+              <a
+                href="/Olayambadi.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition"
+                >From Olayambadi - ഓലയമ്പാടി</a
+              >
+            </div>
+          </div>
+          <div class="relative group">
+            <button
+              class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1"
+            >
+              <span>Trains</span><span class="text-xs">▼</span>
+            </button>
+            <div
+              class="absolute top-full left-0 mt-0 w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block"
+            >
+              <a
+                href="/Payyannur.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >Payyannur</a
+              >
+              <a
+                href="/Nileshwar.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100"
+                >Nileshwar</a
+              >
+              <a
+                href="/Kannur.html"
+                class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition"
+                >Kannur</a
+              >
+            </div>
+          </div>
+          <a
+            href="/Whatsapp-groups.html"
+            class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition"
+            >WhatsApp Groups</a
+          >
+          <a
+            href="/Business.html"
+            class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition"
+            >Business</a
+          >
+          <a
+            href="/Tourist-Places.html"
+            class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition"
+            >Tourist Places</a
+          >
+          <a
+            href="/Election.html"
+            class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition"
+            >News</a
+          >
+        </div>
+
+        <button
+          id="mobile-menu-button"
+          class="md:hidden p-2 rounded-md text-white hover:bg-green-600"
+        >
+          <svg
+            id="menu-open-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="4" x2="20" y1="12" y2="12" />
+            <line x1="4" x2="20" y1="6" y2="6" />
+            <line x1="4" x2="20" y1="18" y2="18" />
+          </svg>
+          <svg
+            id="menu-close-icon"
+            class="hidden"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+        <a
+          href="/"
+          class="block px-4 py-2 text-white hover:bg-green-600 rounded-md"
+          >Home</a
+        >
+        <a href="/search.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">🔍 Search · തിരയുക</a>
+        <div>
+          <button
+            id="mobile-bus-dropdown"
+            class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center"
+          >
+            <span>Buses</span><span class="text-xs">▼</span>
+          </button>
+          <div id="mobile-bus-list" class="hidden ml-4 mt-1 space-y-1">
+            <a
+              href="/Chittarikkal.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Chittarikkal - ചിറ്റാരിക്കാൽ</a
+            >
+            <a
+              href="/Bheemanady.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Bheemanady - ഭീമനടി</a
+            >
+            <a
+              href="/Cherupuzha.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Cherupuzha - ചെറുപുഴ</a
+            >
+            <a
+              href="/Kunnumkai.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Kunnumkai - കുന്നുംകൈ</a
+            >
+            <a
+              href="/malom.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Malom - മാലോം</a
+            >
+            <a
+              href="/Alakode.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Alakode - ആലക്കോട്</a
+            >
+            <a
+              href="/Konnakkad.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Konnakkad - കൊന്നക്കാട്</a
+            >
+            <a
+              href="/Vellarikundu.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Vellarikundu - വെള്ളരിക്കുണ്ട്</a
+            >
+            <a
+              href="/Kanhangad.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a
+            >
+            <a href="/Iritty.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Iritty - ഇരിട്ടി</a>
+            <a
+              href="/Olayambadi.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >From Olayambadi - ഓലയമ്പാടി</a
+            >
+          </div>
+        </div>
+        <div>
+          <button
+            id="mobile-train-dropdown"
+            class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center"
+          >
+            <span>Trains</span><span class="text-xs">▼</span>
+          </button>
+          <div id="mobile-train-list" class="hidden ml-4 mt-1 space-y-1">
+            <a
+              href="/Payyannur.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >Payyannur</a
+            >
+            <a
+              href="/Nileshwar.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >Nileshwar</a
+            >
+            <a
+              href="/Kannur.html"
+              class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md"
+              >Kannur</a
+            >
+          </div>
+        </div>
+        <a
+          href="/Whatsapp-groups.html"
+          class="block px-4 py-2 text-white hover:bg-green-600 rounded-md"
+          >WhatsApp Groups</a
+        >
+        <a
+          href="/Business.html"
+          class="block px-4 py-2 text-white hover:bg-green-600 rounded-md"
+          >Business</a
+        >
+        <a
+          href="/Tourist-Places.html"
+          class="block px-4 py-2 text-white hover:bg-green-600 rounded-md"
+          >Tourist Places</a
+        >
+        <a
+          href="/Election.html"
+          class="block px-4 py-2 text-white hover:bg-green-600 rounded-md"
+          >News</a
+        >
+      </div>
+    </div>
+  </nav>
+
+  <div class="bg-yellow-400 text-gray-900 py-2 overflow-hidden">
+    <div class="ticker-wrapper">
+      <div class="ticker-content">
+        <span class="ticker-item"
+          >🚆 Train/Bus Timings Updated! If there's any change in train or bus
+          schedules — added, removed, or modified — click the WhatsApp icon 📱 to
+          get in touch with us instantly. | 💻 Contact us for Website Creation
+          services and exclusive Thailand Group Packages from Malabar! ✈️ |
+        </span>
+        <span class="ticker-item"
+          >🚆 Train/Bus Timings Updated! If there's any change in train or bus
+          schedules — added, removed, or modified — click the WhatsApp icon 📱 to
+          get in touch with us instantly. | 💻 Contact us for Website Creation
+          services and exclusive Thailand Group Packages from Malabar! ✈️ |
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <a
+    href="https://wa.me/916238693615?text=Hello!%20I%20want%20to%20inquire%20about%20KL79%20Info%20Hub."
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-float"
+    aria-label="Contact us on WhatsApp"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="white"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path
+        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+      />
+    </svg>
+  </a>
+
+  <div id="app" class="max-w-6xl mx-auto p-4 sm:p-8">
+    <header class="text-center mb-8 main-header">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-2">
+        കണ്ണൂർ ട്രെയിൻ സമയം
+      </h1>
+      <p
+        id="source-location"
+        class="text-xl text-gray-600 border-b pb-4 mb-0"
+      ></p>
+    </header>
+
+    <div id="timings-container" class="space-y-10"></div>
+
+    <div class="mt-12 pt-6 border-t border-gray-300">
+      <h3 class="text-3xl font-bold text-center text-gray-800 mb-6">
+        ✨ ✨
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="ad-card bg-yellow-50 border-2 border-yellow-300">
+          <img
+            src="https://i.imgur.com/10HQYuP.jpeg"
+            alt="Travel Agency Ad"
+            class="mx-auto mb-4 w-28 h-28"
+          />
+          <h4 class="text-2xl font-bold text-gray-900 mb-2">TRAVEL TALES</h4>
+          <h4 class="text-l font-bold text-gray-900 mb-2">(Tours & Travels)</h4>
+          <p class="text-gray-700 mb-4">
+            തായ്‌ലൻഡ്, വിയറ്റ്നാം ഗ്രൂപ്പ് ടൂർ പാക്കേജുകൾക്കായി ഇപ്പോൾതന്നെ
+            ബന്ധപ്പെടുക.
+          </p>
+          <p class="text-sm text-gray-500 italic">
+            For customizable Thailand, Vietnam group tour packages from Malabar,
+            contact right now.
+          </p>
+          <a
+            href="https://wa.me/+916238693615?text=I'm%20interested%20in%20tour%20packages"
+            target="_blank"
+            class="ad-whatsapp-button"
+          >
+            <svg
+              class="w-5 h-5 mr-2"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M12.036 21.99c-5.514 0-9.982-4.468-9.982-9.982s4.468-9.982 9.982-9.982 9.982 4.468 9.982 9.982-4.468 9.982-9.982 9.982zm4.385-6.84c-.213-.355-.845-.638-1.21-.71-.366-.073-.639-.026-.883.33-1.026 1.455-2.037 1.439-3.056.96-.322-.16-.628-.432-.907-.74-.82-.82-.692-.937-.373-1.464.29-.48.163-.9-.08-1.22-.27-.35-.747-.88-.934-1.28-.187-.397-.038-.72.106-.72.29-.02.435-.045.58-.045.143 0 .216 0 .33.28.62.91 1.42 2.06 1.545 2.227.124.167.214.283.37.498.428.53.844.457 1.157.195.426-.358.55-.49.882-.716.333-.227.737-.357 1.05-.448.312-.09.673-.105 1.05-.008.41.1.84.39 1.008.647.167.257.167.47.12.78-.046.3-.173.57-.318.66-.145.09-.34.135-.58.196z"
+              />
+            </svg>
+            WhatsApp ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക
+          </a>
+        </div>
+        <div class="ad-card bg-indigo-50 border-2 border-indigo-300">
+          <img
+            src="https://i.imgur.com/ZSJSg3d.png"
+            alt="Real Estate Ad"
+            class="mx-auto mb-4 w-28 h-28"
+          />
+          <h4 class="text-2xl font-bold text-gray-900 mb-2">
+            നിങ്ങളുടെ പരസ്യം ഇവിടെ നൽകാം!
+          </h4>
+          <p class="text-gray-700 mb-4">
+            നിങ്ങളുടെ ബിസിനസ് കൂടുതൽ പേരിലേക്ക് എത്തിക്കാനുള്ള മികച്ച അവസരം.
+            പരസ്യങ്ങൾക്കായി ഇപ്പോൾതന്നെ ബന്ധപ്പെടുക.
+          </p>
+          <p class="text-sm text-gray-500 italic">
+            The best opportunity to take your business to more people.
+          </p>
+          <a
+            href="https://wa.me/+916238693615?text=I'm%20interested%20in%20advertising"
+            target="_blank"
+            class="ad-whatsapp-button"
+          >
+            <svg
+              class="w-5 h-5 mr-2"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M12.036 21.99c-5.514 0-9.982-4.468-9.982-9.982s4.468-9.982 9.982-9.982 9.982 4.468 9.982 9.982-4.468 9.982-9.982 9.982zm4.385-6.84c-.213-.355-.845-.638-1.21-.71-.366-.073-.639-.026-.883.33-1.026 1.455-2.037 1.439-3.056.96-.322-.16-.628-.432-.907-.74-.82-.82-.692-.937-.373-1.464.29-.48.163-.9-.08-1.22-.27-.35-.747-.88-.934-1.28-.187-.397-.038-.72.106-.72.29-.02.435-.045.58-.045.143 0 .216 0 .33.28.62.91 1.42 2.06 1.545 2.227.124.167.214.283.37.498.428.53.844.457 1.157.195.426-.358.55-.49.882-.716.333-.227.737-.357 1.05-.448.312-.09.673-.105 1.05-.008.41.1.84.39 1.008.647.167.257.167.47.12.78-.046.3-.173.57-.318.66-.145.09-.34.135-.58.196z"
+              />
+            </svg>
+            കൂടുതൽ വിവരങ്ങൾ അറിയാൻ
+          </a>
+        </div>
+      </div>
+    </div>
+    <footer
+      class="text-center mt-12 pt-6 text-gray-500 text-sm border-t border-gray-300"
+    >
+      <p>© ഡാറ്റാ ലിസ്റ്റ്. പൊതുവിവരങ്ങൾക്കായി മാത്രം.</p>
+      <p class="mt-2 text-xs">Based on PDF data from 'TRAIN-Timings-KANNUR.pdf'.</p>
+    </footer>
+  </div>
+  <script>
+    const trainTimingsData = {
+      source_location: 'From Kannur - കണ്ണൂർ',
+      categories: [
+       {
+          destination_category: 'ഷൊർണൂർ ഭാഗത്തേക്ക് (തെക്ക്) - Shornur Side (South)',
+          trains: [
+            { time: '00:40', name_ml: 'മംഗള ലക്ഷദ്വീപ് എക്സ്പ്രസ്', name_en: 'MNGLA LKSDP EXP (Mangala Lakshadweep Express)', number: '12618', destination: 'എറണാകുളം Jn (ERS)', frequency: 'Daily', description: '' },
+            { time: '01:00', name_ml: 'സന്ത്രാഗാച്ചി വിവേക് എക്സ്പ്രസ്', name_en: 'Santragachi Vivek Express', number: '22852', destination: 'സന്ത്രാഗാച്ചി Jn (SRC)', frequency: 'Weekly (Sun)', description: '' },
+            { time: '01:45', name_ml: 'വെസ്റ്റ് കോസ്റ്റ് എക്സ്പ്രസ്', name_en: 'WEST COAST EXP (West Coast Express)', number: '22638', destination: 'MGR ചെന്നൈ സെൻട്രൽ (MAS)', frequency: 'Daily', description: '' },
+            { time: '01:55', name_ml: 'കേരള സമ്പർക്ക് ക്രാന്തി എക്സ്പ്രസ്', name_en: 'KERLA S KRANTI (Kerala Sampark Kranti Express)', number: '12218', destination: 'ചണ്ഡീഗഡ് (CDG)', frequency: 'Bi-Weekly (Sun, Fri)', description: '' },
+            { time: '01:55', name_ml: 'യോഗ ഋഷികേശ് - കൊച്ചുവേളി എക്സ്പ്രസ്', name_en: 'YNRK TVCN EXP (Yog Nagari Rishikesh - Kochuveli)', number: '22660', destination: 'കൊച്ചുവേളി (KCVL)', frequency: 'Weekly (Wed)', description: '' },
+            { time: '01:55', name_ml: 'അമൃത്സർ - കൊച്ചുവേളി എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'ASR KCVL SF EXP (Amritsar - Kochuveli SF Express)', number: '12484', destination: 'കൊച്ചുവേളി (KCVL)', frequency: 'Weekly (Tue)', description: '' },
+            { time: '02:35', name_ml: 'മഡ്ഗോൺ - എറണാകുളം എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'MADGAON ERS EXP (Madgaon - Ernakulam SF Express)', number: '10215', destination: 'എറണാകുളം Jn (ERS)', frequency: 'Weekly (Mon)', description: '' },
+            { time: '04:50', name_ml: 'കണ്ണൂർ - തിരുവനന്തപുരം ജൻശതാബ്ദി എക്സ്പ്രസ്', name_en: 'TVC JANSHATABDI (Kannur - Thiruvananthapuram Jan Shatabdi)', number: '12081', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: '5 days a week (Except Wed and Sunday)', description: '' },
+            { time: '05:00', name_ml: 'ജാംനഗർ - തിരുനെൽവേലി എക്സ്പ്രസ്', name_en: 'JAM TEN EXP (Jamnagar - Tirunelveli Express)', number: '19578', destination: 'തിരുനെൽവേലി Jn (TEN)', frequency: 'Bi-Weekly (Sun, Mon)', description: '' },
+            { time: '05:00', name_ml: 'പോർബന്ദർ - കൊച്ചുവേളി എക്സ്പ്രസ്', name_en: 'PBR KCVL EXP (Porbandar - Kochuveli Weekly Express)', number: '20910', destination: 'കൊച്ചുവേളി (KCVL)', frequency: 'Weekly (Sat)', description: '' },
+            { time: '05:00', name_ml: 'ഇൻഡോർ - കൊച്ചുവേളി എക്സ്പ്രസ്', name_en: 'INDB KCVL EXP (Indore - Kochuveli Weekly Express)', number: '20932', destination: 'കൊച്ചുവേളി (KCVL)', frequency: 'Weekly (Thu)', description: '' },
+            { time: '05:10', name_ml: 'കണ്ണൂർ - ആലപ്പുഴ എക്സിക്യൂട്ടീവ് എക്സ്പ്രസ്', name_en: 'CAN ALLP EXP (Kannur - Alappuzha Executive Express)', number: '16308', destination: 'ആലപ്പുഴ (ALLP)', frequency: 'Daily', description: '' },
+            { time: '06:35', name_ml: 'നേത്രാവതി എക്സ്പ്രസ്', name_en: 'NETRAVATI EXP (Netravati Express)', number: '16345', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Daily', description: '' },
+            { time: '07:05', name_ml: 'പരശുറാം എക്സ്പ്രസ്', name_en: 'PARASURAM EXP (Parasuram Express)', number: '16649', destination: 'നാഗർകോവിൽ Jn (NCJ)', frequency: 'Daily', description: '' },
+            { time: '07:57', name_ml: 'മംഗളൂരു - തിരുവനന്തപുരം വന്ദേ ഭാരത് എക്സ്പ്രസ്', name_en: 'MAQ TVC VB EXP (Mangaluru Central - Thiruvananthapuram Vande Bharat)', number: '20631', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: '6 days a week (Except Wed)', description: '' },
+            { time: '08:40', name_ml: 'ശ്രീ ഗംഗാനഗർ - കൊച്ചുവേളി എക്സ്പ്രസ്', name_en: 'SGNR KCVL EXP (Shri Ganganagar - Kochuveli Express)', number: '16311', destination: 'കൊച്ചുവേളി (KCVL)', frequency: 'Weekly (Thu)', description: '' },
+            { time: '08:40', name_ml: 'ഹിസാർ - കോയമ്പത്തൂർ എ.സി. എക്സ്പ്രസ്', name_en: 'HSR CBE AC EXP (Hisar Coimbatore AC Express)', number: '22475', destination: 'കോയമ്പത്തൂർ Jn (CBE)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '08:40', name_ml: 'ജബൽപൂർ - കോയമ്പത്തൂർ സ്പെഷ്യൽ', name_en: 'JBP CBE SPECIAL (Jabalpur - Coimbatore Special)', number: '2198', destination: 'കോയമ്പത്തൂർ Jn (CBE)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '09:05', name_ml: 'മംഗളൂരു - ചെന്നൈ എഗ്മോർ എക്സ്പ്രസ്', name_en: 'MAQ CHENNAΙ ΕΧΡ (Mangaluru Central - Chennai Egmore Express)', number: '16160', destination: 'ചെന്നൈ Egmore (MS)', frequency: 'Daily', description: '' },
+            { time: '09:25', name_ml: 'ഹസ്റത്ത് നിസാമുദ്ദീൻ - തിരുവനന്തപുരം എക്സ്പ്രസ്', name_en: 'NZM TVC EXPRESS (Hazrat Nizamuddin - Thiruvananthapuram Central SF Express)', number: '22634', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Weekly (Sun)', description: '' },
+            { time: '09:25', name_ml: 'തിരുനെൽവേലി - ഹുമസഫർ എക്സ്പ്രസ്', name_en: 'TEN HUMSAFAR (Tirunelveli - Hazur Sahib Nanded Humsafar)', number: '20924', destination: 'തിരുനെൽവേലി Jn (TEN)', frequency: 'Weekly (Tue)', description: '' },
+            { time: '09:35', name_ml: 'ഏറനാട് എക്സ്പ്രസ്', name_en: 'ERNAD EXPRESS (Ernad Express)', number: '16605', destination: 'നാഗർകോവിൽ Jn (NCJ)', frequency: 'Daily', description: '' },
+            { time: '10:00', name_ml: 'എൽ.ടി.ടി - കൊച്ചുവേളി എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'LTT KCVL SF EXP (LTT - Kochuveli SF Express)', number: '22113', destination: 'കൊച്ചുവേളി (KCVL)', frequency: 'Bi-Weekly (Wed, Sun)', description: '' },
+            { time: '10:00', name_ml: 'മുംബൈ എൽ.ടി.ടി - കൊച്ചുവേളി ഗരീബ് രഥ്', name_en: 'KCVL GARIBRATH (Mumbai LTT - Kochuveli Garibrath)', number: '12201', destination: 'കൊച്ചുവേളി (KCVL)', frequency: 'Bi-Weekly (Tue, Sat)', description: '' },
+            { time: '11:50', name_ml: 'എൽ.ടി.ടി - തിരുവനന്തപുരം നോർത്ത് സ്പെഷ്യൽ', name_en: 'LTT TVNC SPECIAL', number: '16605', destination: 'തിരുവനന്തപുരം നോർത്ത് (TVC North)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '13:00', name_ml: 'ഇന്റർസിറ്റി എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'INTERCITY SF EX (Mangaluru Central - Coimbatore Intercity SF)', number: '22609', destination: 'കോയമ്പത്തൂർ Jn (CBE)', frequency: 'Daily', description: '' },
+            { time: '13:20', name_ml: 'പൂനെ - എറണാകുളം എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'PUNE ERS SF EXP (Pune - Ernakulam SF Express)', number: '22150', destination: 'എറണാകുളം Jn (ERS)', frequency: 'Bi-Weekly (Mon, Thu)', description: '' },
+            { time: '14:00', name_ml: 'തിരുവനന്തപുരം - ഹസ്റത്ത് നിസാമുദ്ദീൻ രാജ്യധനി എക്സ്പ്രസ്', name_en: 'TVC RAJDHANI (Thiruvananthapuram - Hazrat Nizamuddin Rajdhani)', number: '12432', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Tri-Weekly (Mon, Wed, Thu)', description: '' },
+            { time: '14:00', name_ml: 'ദാദർ - തിരുനെൽവേലി എക്സ്പ്രസ്', name_en: 'DADAR TEN EXP (Dadar - Tirunelveli Express)', number: '22629', destination: 'തിരുനെൽവേലി Jn (TEN)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '14:50', name_ml: 'കണ്ണൂർ - എറണാകുളം എക്സ്പ്രസ്', name_en: 'CAN ERS EXP (Kannur - Ernakulam Jn Express)', number: '16306', destination: 'എറണാകുളം Jn (ERS)', frequency: 'Daily', description: '' },
+            { time: '16:00', name_ml: 'മംഗളൂരു - ചെന്നൈ മെയിൽ', name_en: 'MAQ CHENNAIMAIL (Mangaluru Central - MGR Chennai Central Mail)', number: '12602', destination: 'MGR ചെന്നൈ സെൻട്രൽ (MAS)', frequency: 'Daily', description: '' },
+            { time: '16:55', name_ml: 'മംഗളൂരു - തിരുവനന്തപുരം എക്സ്പ്രസ്', name_en: 'TRIVANDRUM EXP (Mangaluru Central - Thiruvananthapuram Express)', number: '16348', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Daily', description: '' },
+            { time: '17:10', name_ml: 'ഗാന്ധിധാം - നാഗർകോവിൽ എക്സ്പ്രസ്', name_en: 'GIMB NCJ EXP (Gandhidham - Nagercoil Express)', number: '16335', destination: 'നാഗർകോവിൽ Jn (NCJ)', frequency: 'Weekly (Sat)', description: '' },
+            { time: '17:10', name_ml: 'ഓഖ - എറണാകുളം എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'OKHA ERS EXP (Okha - Ernakulam SF Express)', number: '16337', destination: 'എറണാകുളം Jn (ERS)', frequency: 'Bi-Weekly (Tue, Sun)', description: '' },
+            { time: '17:10', name_ml: 'വെരാവൽ - തിരുവനന്തപുരം എക്സ്പ്രസ്', name_en: 'VRL TVC EXP (Veraval - Thiruvananthapuram Express)', number: '16333', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '17:10', name_ml: 'ഭാവ്നഗർ - കൊച്ചുവേളി എക്സ്പ്രസ്', name_en: 'BVC KCVL EXP (Bhavnagar Terminus - Kochuveli Express)', number: '19260', destination: 'കൊച്ചുവേളി (KCVL)', frequency: 'Weekly (Wed)', description: '' },
+            { time: '17:55', name_ml: 'ഹസ്റത്ത് നിസാമുദ്ദീൻ - തിരുവനന്തപുരം എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'NZM TVC SF EXP (Hazrat Nizamuddin - Thiruvananthapuram SF Express)', number: '22654', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Weekly (Tue)', description: '' },
+            { time: '17:55', name_ml: 'ഹസ്റത്ത് നിസാമുദ്ദീൻ - എറണാകുളം എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'NZM ERS SF EXP (Hazrat Nizamuddin - Ernakulam SF Express)', number: '22656', destination: 'എറണാകുളം Jn (ERS)', frequency: 'Weekly (Sat)', description: '' },
+            { time: '18:05', name_ml: 'കണ്ണൂർ - യശ്വന്ത്പൂർ എക്സ്പ്രസ്', name_en: 'YESVANTPUR EXP (Kannur - Yesvantpur Express)', number: '16528 / 16565', destination: 'യശ്വന്ത്പൂർ Jn (YPR)', frequency: 'Daily', description: '' },
+            { time: '18:35', name_ml: 'മംഗളൂരു - പുതുച്ചേരി എക്സ്പ്രസ്', name_en: 'MAQ PDY EXPRESS (Mangaluru Central - Puducherry Express)', number: '16856', destination: 'പുതുച്ചേരി (PDY)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '18:35', name_ml: 'മംഗളൂരു - പുതുച്ചേരി എക്സ്പ്രസ്', name_en: 'MAQ PDY EXPRESS (Mangaluru Central - Puducherry Express)', number: '16858', destination: 'പുതുച്ചേരി (PDY)', frequency: 'Weekly (Sun)', description: '' },
+            { time: '19:00', name_ml: 'മംഗളൂരു - എം.ജി.ആർ ചെന്നൈ സെൻട്രൽ എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'MAQ MAS SF EXP (Mangaluru Central - MGR Chennai Central SF Express)', number: '12686', destination: 'MGR ചെന്നൈ സെൻട്രൽ (MAS)', frequency: 'Daily', description: '' },
+            { time: '20:00', name_ml: 'മാവേലി എക്സ്പ്രസ്', name_en: 'MAVELI EXPRESS (Mangaluru Central - Thiruvananthapuram Maveli Express)', number: '16603', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Daily', description: '' },
+            { time: '20:55', name_ml: 'മലബാർ എക്സ്പ്രസ്', name_en: 'MALABAR EXPRESS (Mangaluru Central - Thiruvananthapuram Malabar Express)', number: '16630', destination: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)', frequency: 'Daily', description: '' },
+            { time: '21:20', name_ml: 'പൂനെ - എറണാകുളം പൂർണ്ണ എക്സ്പ്രസ്', name_en: 'POORNA EXPRESS (Pune - Ernakulam Poorna Express)', number: '11097', destination: 'എറണാകുളം Jn (ERS)', frequency: 'Weekly (Sun)', description: '' },
+            { time: '22:05', name_ml: 'മുരുഡേശ്വർ - കാച്ചെഗുഡ എക്സ്പ്രസ്', name_en: 'MRDW KCG EXP (Murdeshwar - Kacheguda Express)', number: '12790', destination: 'കാച്ചെഗുഡ (KCG)', frequency: 'Weekly (Wed, Sat)', description: '' },
+            { time: '22:05', name_ml: 'മംഗളൂരു - യശ്വന്ത്പൂർ എക്സ്പ്രസ്', name_en: 'MAQ YPR EXPRESS (Mangaluru Central - Yesvantpur Express)', number: '16566', destination: 'യശ്വന്ത്പൂർ Jn (YPR)', frequency: 'Weekly (Mon)', description: '' },
+            { time: '23:45', name_ml: 'മാറു സഗർ എക്സ്പ്രസ്', name_en: 'MARU SAGAR EXP (Ajmer - Ernakulam Maru Sagar Express)', number: '12978', destination: 'എറണാകുളം Jn (ERS)', frequency: 'Weekly (Sat)', description: '' }
+          ],
+        },
+        {
+          destination_category: 'മംഗലാപുരം ഭാഗത്തേക്ക് (വടക്ക്) - Mangaluru Side (North)',
+          trains: [
+            { time: '01:40', name_ml: 'മാറു സഗർ എക്സ്പ്രസ്', name_en: 'MARU SAGAR EXP (Ernakulam - Ajmer Maru Sagar Express)', number: '12977', destination: 'അജ്മേർ Jn (Ajmer)', frequency: 'Weekly (Mon)', description: '' },
+            { time: '01:40', name_ml: 'എറണാകുളം - ഓഖ എക്സ്പ്രസ്', name_en: 'Ernakulam Okha Express', number: '16338', destination: 'ഓഖ (OKHA)', frequency: 'Bi-Weekly (Thu, Sat)', description: '' },
+            { time: '01:40', name_ml: 'തിരുവനന്തപുരം - ഭാവ്നഗർ ടെർമിനസ് എക്സ്പ്രസ്', name_en: 'TVCN - Bhavnagar Terminus Express', number: '19259', destination: 'ഭാവ്നഗർ ടെർമിനസ് (BVC)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '01:40', name_ml: 'തിരുവനന്തപുരം - വെരാവൽ എക്സ്പ്രസ്', name_en: 'TVCN - Veraval Express', number: '16334', destination: 'വെരാവൽ (VRL)', frequency: 'Weekly (Tue)', description: '' },
+            { time: '01:40', name_ml: 'തിരുവനന്തപുരം - ഗാന്ധിധാം എക്സ്പ്രസ്', name_en: 'TVCN - Gandhidham Express', number: '16336', destination: 'ഗാന്ധിധാം (GIMB)', frequency: 'Weekly (Wed)', description: '' },
+            { time: '01:40', name_ml: 'തിരുവനന്തപുരം - ശ്രീ ഗംഗാനഗർ എക്സ്പ്രസ്', name_en: 'TVCN SGNR EXP (Trivandrum - Shri Ganganagar Express)', number: '16312', destination: 'ശ്രീ ഗംഗാനഗർ (SGNR)', frequency: 'Weekly (Sun)', description: '' },
+            { time: '02:03', name_ml: 'തിരുവനന്തപുരം - എൽ.ടി.ടി സ്പെഷ്യൽ', name_en: 'TVCN LTT SPL (Trivandrum - LTT Special)', number: '1464', destination: 'ലോക്മാന്യ തിലക് ടെർമിനസ് (LTT)', frequency: 'Weekly (Sun)', description: '' },
+            { time: '02:40', name_ml: 'വെസ്റ്റ് കോസ്റ്റ് എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'West Coast SF Express', number: '22637', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '03:15', name_ml: 'തിരുവനന്തപുരം - ഹസ്റത്ത് നിസാമുദ്ദീൻ എക്സ്പ്രസ്', name_en: 'Thiruvananthapuram - Hazrat Nizamuddin Express', number: '12431', destination: 'ഹസ്റത്ത് നിസാമുദ്ദീൻ (NZM)', frequency: 'Tri-Weekly (Wed, Fri, Sat)', description: '' },
+            { time: '04:40', name_ml: 'എം.ജി.ആർ ചെന്നൈ സെൻട്രൽ - മംഗളൂരു സെൻട്രൽ എക്സ്പ്രസ്', name_en: 'MGR Chennai Central - Mangaluru Central Express', number: '12685', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '05:00', name_ml: 'മാവേലി എക്സ്പ്രസ്', name_en: 'Maveli Express', number: '16604', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '06:10', name_ml: 'കൊച്ചുവേളി - മംഗളൂരു ജം. അന്ത്യോദയ എക്സ്പ്രസ്', name_en: 'KCVL - Mangaluru Jn. Antyodaya Express', number: '16355', destination: 'മംഗളൂരു ജം (MAJN)', frequency: 'Bi-Weekly (Su, F)', description: '' },
+            { time: '06:10', name_ml: 'മംഗളൂരു വിവേക് എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'MAQ VIVEK SF EX (Santragachi Vivek SF Express)', number: '22851', destination: 'മംഗളൂരു ജം (MAJN)', frequency: 'Weekly (Sun)', description: '' },
+            { time: '06:20', name_ml: 'കാച്ചെഗുഡ - മുരുഡേശ്വർ എക്സ്പ്രസ്', name_en: 'KCG MRDW EXP (Kacheguda - Murdeshwar Express)', number: '12789', destination: 'മുരുഡേശ്വർ (MRDW)', frequency: 'Weekly (Wed, Sat)', description: '' },
+            { time: '06:20', name_ml: 'പുതുച്ചേരി - മംഗളൂരു എക്സ്പ്രസ്', name_en: 'PDY MAQ EXPRESS (Puducherry - Mangaluru Express)', number: '16855', destination: 'മംഗളൂരു ജം (MAJN)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '06:40', name_ml: 'മലബാർ എക്സ്പ്രസ്', name_en: 'Malabar Express', number: '16629', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '07:20', name_ml: 'പുതുച്ചേരി - മംഗളൂരു എക്സ്പ്രസ്', name_en: 'PDY MAQ EXPRESS (Puducherry - Mangaluru Express)', number: '16857', destination: 'മംഗളൂരു ജം (MAJN)', frequency: 'Weekly (Sun)', description: '' },
+            { time: '08:00', name_ml: 'തിരുവനന്തപുരം - മംഗളൂരു സെൻട്രൽ എക്സ്പ്രസ്', name_en: 'Thiruvananthapuram - Mangaluru Central Express', number: '16347', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '09:15', name_ml: 'എം.ജി.ആർ ചെന്നൈ സെൻട്രൽ - മംഗളൂരു സെൻട്രൽ മെയിൽ', name_en: 'MGR Chennai Central - Mangaluru Central Mail', number: '12601', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '10:00', name_ml: 'തിരുവനന്തപുരം - എൽ.ടി.ടി എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'TVCN LTT SF EXP (Trivandrum - LTT SF Express)', number: '22114', destination: 'ലോക്മാന്യ തിലക് ടെർമിനസ് (LTT)', frequency: 'Bi-Weekly (Mon, Thu)', description: '' },
+            { time: '10:00', name_ml: 'എറണാകുളം - പൂനെ എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'Ernakulam Jn. - Pune SF Express', number: '22149', destination: 'പൂനെ Jn (PUNE)', frequency: 'Bi-Weekly (Tue, Fri)', description: '' },
+            { time: '10:45', name_ml: 'ഇന്റർസിറ്റി എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'Intercity SF Express', number: '22610', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '12:05', name_ml: 'വന്ദേ ഭാരത് എക്സ്പ്രസ്', name_en: 'Vande Bharat Express', number: '20634', destination: 'കാസരഗോഡ് (KGQ)', frequency: 'Daily (Except Thu)', description: '' },
+            { time: '13:25', name_ml: 'യശ്വന്ത്പൂർ - മംഗളൂരു എക്സ്പ്രസ്', name_en: 'YPR MAQ EXPRESS (Yesvantpur - Mangaluru Express)', number: '16566', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Weekly (Mon)', description: '' },
+            { time: '14:15', name_ml: 'ഏറനാട് എക്സ്പ്രസ്', name_en: 'Ernad Express', number: '16606', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '15:30', name_ml: 'തിരുവനന്തപുരം - കാസരഗോഡ് വന്ദേ ഭാരത്', name_en: 'TVC VANDEBHARAT (Thiruvananthapuram - Kasaragod Vande Bharat)', number: '20633', destination: 'കാസരഗോഡ് (KGQ)', frequency: '6 days a week (Except Thu)', description: '' },
+            { time: '15:40', name_ml: 'എറണാകുളം - മഡ്ഗോൺ എക്സ്പ്രസ്', name_en: 'ERS MADGAON EXP (Ernakulam - Madgaon Express)', number: '10215', destination: 'മഡ്ഗോൺ (MAO)', frequency: 'Weekly (Mon)', description: '' },
+            { time: '15:50', name_ml: 'ചെന്നൈ എഗ്മോർ - മംഗളൂരു എക്സ്പ്രസ്', name_en: 'CHENNAI MAQ EXP (Chennai Egmore - Mangaluru Express)', number: '15159', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '17:05', name_ml: 'കണ്ണൂർ - കെ.എസ്.ആർ ബെംഗളൂരു എക്സ്പ്രസ്', name_en: 'Kannur - KSR Bengaluru Express', number: '16512', destination: 'KSR ബെംഗളൂരു (SBC)', frequency: 'Daily', description: '' },
+            { time: '17:55', name_ml: 'തിരുവനന്തപുരം - അമൃത്സർ എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'TVCN ASR SF EXP (Trivandrum - Amritsar SF Express)', number: '12483', destination: 'അമൃത്സർ (ASR)', frequency: 'Weekly (Wed)', description: '' },
+            { time: '17:55', name_ml: 'തിരുവനന്തപുരം - യോഗ നഗരി റിഷികേഷ് എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'TVCN-Yog Nagari Rishikesh SF Express', number: '22659', destination: 'യോഗ നഗരി റിഷികേഷ് (YNRK)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '17:55', name_ml: 'കേരള സമ്പർക്ക് ക്രാന്തി എക്സ്പ്രസ്', name_en: 'Kerala Sampark Kranti Express', number: '12217', destination: 'ചണ്ഡീഗഡ് (CDG) ', frequency: 'Bi-Weekly (Mon, Sat)', description: '' },
+            { time: '17:55', name_ml: 'തിരുവനന്തപുരം - മുംബൈ എൽ.ടി.ടി ഗരീബ് രഥ്', name_en: 'LTT GARIBRATH (TVCN - Mumbai LTT Garibrath)', number: '12202', destination: 'മുംബൈ (LTT)', frequency: 'Bi-Weekly (Thu, Sun)', description: '' },
+            { time: '18:29', name_ml: 'പരശുറാം എക്സ്പ്രസ്', name_en: 'Parasuram Express', number: '16650', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily', description: '' },
+            { time: '18:42', name_ml: 'മംഗള ലക്ഷദ്വീപ് എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'Mangala Lakshadweep SF Express', number: '12617', destination: 'ഹസ്റത്ത് നിസാമുദ്ദീൻ (NZM)', frequency: 'Daily', description: '' },
+            { time: '19:35', name_ml: 'നേത്രാവതി എക്സ്പ്രസ്', name_en: 'Netravati Express', number: '16346', destination: 'ലോക്മാന്യ തിലക് ടെർമിനസ് (LTT)', frequency: 'Daily', description: '' },
+            { time: '19:50', name_ml: 'തിരുനെൽവേലി - ദാദർ എക്സ്പ്രസ്', name_en: 'TEN DADAR EXP (Tirunelveli - Dadar Express)', number: '22630', destination: 'ദാദർ (DR)', frequency: 'Weekly (Wed)', description: '' },
+            { time: '19:50', name_ml: 'തിരുനെൽവേലി - ജാംനഗർ എക്സ്പ്രസ്', name_en: 'TEN JAM EXP (Tirunelveli - Jamnagar Express)', number: '19577', destination: 'ജാംനഗർ (JAM)', frequency: 'Bi-Weekly (Mon, Tue)', description: '' },
+            { time: '19:50', name_ml: 'തിരുനെൽവേലി - ഗാന്ധിധാം ഹുമസഫർ', name_en: 'GIMB HUMSAFAR (Tirunelveli - Gandhidham Humsafar)', number: '20923', destination: 'ഗാന്ധിധാം ബി.ജി (GIMB BG)', frequency: 'Weekly (Thu)', description: '' },
+            { time: '19:50', name_ml: 'തിരുവനന്തപുരം - ഇൻഡോർ എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'TVCN - Indore SF Express', number: '20931', destination: 'ഇൻഡോർ (INDB)', frequency: 'Weekly (Fri)', description: '' },
+            { time: '19:50', name_ml: 'തിരുവനന്തപുരം - പോർബന്ദർ എക്സ്പ്രസ്', name_en: 'TVCN PBR EXP (Trivandrum - Porbandar Express)', number: '20909', destination: 'പോർബന്ദർ (PBR)', frequency: 'Weekly (Sun)', description: '' },
+            { time: '22:38', name_ml: 'വന്ദേ ഭാരത് എക്സ്പ്രസ്', name_en: 'Vande Bharat Express', number: '20632', destination: 'മംഗളൂരു സെൻട്രൽ (MAQ)', frequency: 'Daily (Except Wed)', description: '' },
+            { time: '23:00', name_ml: 'കോയമ്പത്തൂർ - ജബൽപൂർ സ്പെഷ്യൽ', name_en: 'CBE JBP SPECIAL (Coimbatore - Jabalpur Special)', number: '2197', destination: 'ജബൽപൂർ (JBE)', frequency: 'Weekly (Mon)', description: '' },
+            { time: '23:40', name_ml: 'തിരുവനന്തപുരം - ഹസ്റത്ത് നിസാമുദ്ദീൻ എസ്.എഫ്. എക്സ്പ്രസ്', name_en: 'TVC-NZM SF Express', number: '22633', destination: 'ഹസ്റത്ത് നിസാമുദ്ദീൻ (NZM)', frequency: 'Weekly (Wed)', description: '' },
+            { time: '23:40', name_ml: 'എറണാകുളം - പൂനെ പൂർണ്ണ എക്സ്പ്രസ്', name_en: 'POORNA EXPRESS (Ernakulam - Pune Poorna Express)', number: '11098', destination: 'പൂനെ Jn (PUNE)', frequency: 'Weekly (Mon)', description: '' },
+          ],
+        },
+      ],
+    };
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('timings-container');
+      const sourceLocation = document.getElementById('source-location');
+      sourceLocation.textContent = trainTimingsData.source_location;
+
+      // --- ADDED MOBILE MENU ELEMENTS ---
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuOpenIcon = document.getElementById('menu-open-icon');
+      const menuCloseIcon = document.getElementById('menu-close-icon');
+      const mobileBusDropdown = document.getElementById('mobile-bus-dropdown');
+      const mobileBusList = document.getElementById('mobile-bus-list');
+      const mobileTrainDropdown = document.getElementById('mobile-train-dropdown');
+      const mobileTrainList = document.getElementById('mobile-train-list');
+      // ------------------------------------
+
+      trainTimingsData.categories.forEach((category, catIdx) => {
+        const section = document.createElement('div');
+        section.className = 'category-section space-y-4';
+
+        const header = document.createElement('h2');
+        header.id = `header-${catIdx}`;
+        header.className =
+          'category-header text-xl sm:text-2xl font-bold p-4 sm:p-6 cursor-pointer flex justify-between items-center';
+        header.innerHTML = `
+          <span>${category.destination_category}</span>
+          <span id="icon-${catIdx}" class="text-xl transform transition-transform duration-300">▼</span>
+        `;
+        section.appendChild(header);
+
+        const trainList = document.createElement('div');
+        trainList.id = `list-${catIdx}`;
+        trainList.className = 'p-4 sm:p-6 space-y-4 hidden';
+
+        category.trains.forEach((train, trainIdx) => {
+          const card = document.createElement('div');
+          card.className =
+            'train-card p-4 flex flex-col justify-between items-start space-y-2';
+
+          const mainInfo = document.createElement('div');
+          mainInfo.className =
+            'flex flex-col md:flex-row justify-between w-full space-y-3 md:space-y-0 items-start md:items-center';
+
+          const primaryInfo = document.createElement('div');
+          primaryInfo.className = 'flex items-start space-x-4 w-full md:w-3/5';
+          primaryInfo.innerHTML = `
+            <div class="time-accent w-1/4 md:w-auto">
+              <p class="train-time">${train.time}</p>
+            </div>
+            <div class="flex flex-col border-l pl-4 flex-grow">
+              <p class="train-name">${train.name_ml}</p>
+              <p class="text-sm text-gray-500 italic">${train.name_en}</p>
+            </div>
+          `;
+
+          const secondaryInfo = document.createElement('div');
+          secondaryInfo.className =
+            'text-gray-600 w-full md:w-2/5 md:text-right pt-2 md:pt-0 flex flex-col justify-center items-start md:items-end';
+          secondaryInfo.innerHTML = `
+            <p class="destination-tag">${train.destination}</p>
+            <p class="frequency-info"><span class="font-bold text-gray-700">#${train.number}</span> | ${train.frequency}</p>
+          `;
+
+          if (train.description && train.description.trim() !== '') {
+            const descriptionLink = document.createElement('p');
+            descriptionLink.className = 'description-link';
+            descriptionLink.textContent = 'ട്രെയിൻ ഷെഡ്യൂളുകൾക്ക് ക്ലിക്ക് ചെയ്യുക';
+            descriptionLink.id = `link-${catIdx}-${trainIdx}`;
+            secondaryInfo.appendChild(descriptionLink);
+
+            const descriptionContent = document.createElement('div');
+            descriptionContent.className = 'description-content hidden';
+            descriptionContent.id = `content-${catIdx}-${trainIdx}`;
+            descriptionContent.innerHTML = train.description;
+
+            mainInfo.appendChild(primaryInfo);
+            mainInfo.appendChild(secondaryInfo);
+            card.appendChild(mainInfo);
+            card.appendChild(descriptionContent);
+
+            card.classList.add('description-toggler');
+
+            card.addEventListener('click', () => {
+              const contentEl = document.getElementById(`content-${catIdx}-${trainIdx}`);
+              const linkEl = document.getElementById(`link-${catIdx}-${trainIdx}`);
+
+              contentEl.classList.toggle('hidden');
+
+              if (contentEl.classList.contains('hidden')) {
+                linkEl.textContent = 'ട്രെയിൻ ഷെഡ്യൂളുകൾക്ക് ക്ലിക്ക് ചെയ്യുക';
+                linkEl.classList.remove('text-red-600');
+                linkEl.classList.add('text-purple-700');
+              } else {
+                linkEl.textContent = 'മറയ്ക്കാൻ ക്ലിക്ക് ചെയ്യുക';
+                linkEl.classList.remove('text-purple-700');
+                linkEl.classList.add('text-red-600');
+              }
+            });
+          } else {
+            mainInfo.appendChild(primaryInfo);
+            mainInfo.appendChild(secondaryInfo);
+            card.appendChild(mainInfo);
+          }
+          trainList.appendChild(card);
+        });
+
+        section.appendChild(trainList);
+        container.appendChild(section);
+
+        header.addEventListener('click', () => {
+          const listEl = document.getElementById(`list-${catIdx}`);
+          const iconEl = document.getElementById(`icon-${catIdx}`);
+          listEl.classList.toggle('hidden');
+          iconEl.classList.toggle('rotate-180');
+        });
+      });
+
+      // --- ADDED MOBILE MENU TOGGLE AND DROPDOWN LOGIC ---
+
+      // Mobile Menu Toggle
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        menuOpenIcon.classList.toggle('hidden');
+        menuCloseIcon.classList.toggle('hidden');
+      });
+
+      // Mobile Bus Dropdown Toggle
+      mobileBusDropdown.addEventListener('click', () => {
+        mobileBusList.classList.toggle('hidden');
+      });
+
+      // Mobile Train Dropdown Toggle
+      mobileTrainDropdown.addEventListener('click', () => {
+        mobileTrainList.classList.toggle('hidden');
+      });
+      // ----------------------------------------------------
+    });
+  </script>
+  <script src="/bottom-nav.js" defer></script>
+  <script src="/pwa-register.js" defer></script>
+</body>
+</html>

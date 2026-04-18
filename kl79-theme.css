@@ -1,0 +1,234 @@
+/* ==========================================================
+   KL79.in  -  Shared Theme
+   Paper-warm palette · Forest-green primary · Laterite accent
+   Loaded AFTER Tailwind so the overrides stick.
+   ========================================================== */
+
+:root {
+    --paper:        #f4ede1;
+    --paper-soft:   #faf4e8;
+    --paper-light:  #fffdf6;
+    --laterite:     #b8472a;
+    --laterite-d:   #9b3a1f;
+    --forest:       #2d4a3e;
+    --forest-d:     #1e3529;
+    --forest-l:     #3e6654;
+    --gold:         #c89a4a;
+    --ink:          #1a1410;
+    --ink-soft:     #5b5342;
+    --ink-muted:    #8a8270;
+    --line:         #e8dcc0;
+
+    --font-sans:    'Manrope', 'Inter', system-ui, sans-serif;
+    --font-display: 'Fraunces', 'Noto Sans Malayalam', serif;
+    --font-ml:      'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+    --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ------ Body + typography ------------------------------------ */
+body {
+    background: var(--paper-soft);
+    color: var(--ink);
+    font-family: var(--font-sans);
+}
+
+/* Headings stay readable on paper */
+h1, h2, h3, h4 { color: var(--forest); letter-spacing: -0.01em; }
+
+/* Malayalam text gets the rounded Baloo face */
+.font-malayalam,
+[lang="ml"] {
+    font-family: var(--font-ml);
+}
+
+/* ------ Tailwind green overrides (nav, buttons, accents) ----- */
+/* We keep Tailwind for layout but remap its greens to our forest */
+.bg-green-700 { background-color: var(--forest) !important; }
+.bg-green-800 { background-color: var(--forest-d) !important; }
+.bg-green-600 { background-color: var(--forest-l) !important; }
+.hover\:bg-green-600:hover,
+.hover\:bg-green-700:hover { background-color: var(--forest-l) !important; }
+.hover\:bg-green-800:hover { background-color: var(--forest-d) !important; }
+
+.text-green-700,
+.text-green-800,
+.text-green-900 { color: var(--forest) !important; }
+.text-green-600 { color: var(--forest-l) !important; }
+.text-green-100,
+.text-green-200,
+.text-green-300 { color: var(--paper-light) !important; }
+
+.border-green-600,
+.border-green-700,
+.border-green-800 { border-color: var(--forest) !important; }
+
+.bg-green-50  { background-color: var(--paper-soft) !important; }
+.bg-green-100 { background-color: #e4dcc4 !important; }
+
+/* Yellow highlight → gold */
+.bg-yellow-400,
+.border-yellow-400 {
+    background-color: var(--gold) !important;
+    border-color: var(--gold) !important;
+}
+.text-yellow-600,
+.text-yellow-700,
+.text-yellow-800 { color: var(--laterite) !important; }
+
+/* ------ Generic card polish ---------------------------------- */
+.kl79-card {
+    background: var(--paper-light);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px -16px rgba(45, 74, 62, 0.2);
+}
+.kl79-card-accent {
+    border-left: 4px solid var(--laterite);
+}
+
+/* ------ Buttons ---------------------------------------------- */
+.kl79-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 0.5rem;
+    background: var(--forest); color: var(--paper-light);
+    border: none; border-radius: 10px;
+    padding: 0.7rem 1.2rem; font-weight: 700; cursor: pointer;
+    transition: background 0.18s, transform 0.08s;
+}
+.kl79-btn:hover  { background: var(--forest-d); }
+.kl79-btn:active { transform: translateY(1px); }
+.kl79-btn.ghost  { background: transparent; color: var(--forest);
+                   border: 1.5px solid var(--forest); }
+.kl79-btn.ghost:hover { background: var(--forest); color: var(--paper-light); }
+
+/* ==========================================================
+   LEAVING SOON widget (used on bus pages)
+   ========================================================== */
+.ls-card {
+    background: linear-gradient(180deg, #fff6ef 0%, #f8e8d7 100%);
+    border: 1px solid #e9d2ba;
+    border-left: 5px solid var(--laterite);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin: 1rem auto 1.5rem;
+    max-width: 72rem;
+}
+/* Force the same Malayalam font the pages use, overriding anything
+   from Tailwind / page-level styles. */
+.ls-card,
+.ls-card * {
+    font-family: 'Noto Sans Malayalam', 'Inter', system-ui, sans-serif !important;
+}
+.ls-card .ls-time,
+.ls-card .ls-countdown {
+    font-family: 'JetBrains Mono', ui-monospace, monospace !important;
+}
+
+.ls-title {
+    display: flex; align-items: center; gap: 0.5rem;
+    color: var(--laterite); font-weight: 800; font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+}
+.ls-title .ls-dot {
+    display: inline-block; width: 8px; height: 8px; background: var(--laterite);
+    border-radius: 50%; animation: ls-pulse 1.8s ease-in-out infinite;
+}
+@keyframes ls-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+}
+.ls-row {
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 0.6rem 0.9rem; align-items: center;
+    padding: 0.5rem 0; border-top: 1px dashed rgba(184, 71, 42, 0.2);
+}
+.ls-row:first-of-type { border-top: none; }
+.ls-time {
+    font-family: var(--font-mono); font-weight: 700;
+    color: var(--ink); font-size: 1rem; min-width: 70px;
+}
+.ls-countdown {
+    font-size: 0.72rem; color: var(--laterite); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+}
+.ls-info {
+    font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;
+    color: var(--ink); font-size: 0.92rem; line-height: 1.4;
+}
+.ls-info b { font-weight: 700; color: var(--forest); }
+.ls-share {
+    color: var(--forest); background: transparent; border: 1px solid var(--forest);
+    border-radius: 8px; padding: 0.25rem 0.55rem; font-size: 0.72rem;
+    font-weight: 700; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    white-space: nowrap; text-decoration: none;
+}
+.ls-share:hover { background: var(--forest); color: var(--paper-light); }
+.ls-none {
+    color: var(--ink-soft); font-style: italic;
+    padding: 0.5rem 0;
+}
+
+/* ==========================================================
+   ROUTE FINDER  -  skeleton loading rows
+   ========================================================== */
+.rf-skeleton {
+    background: #fffdf6; border: 1px solid var(--line);
+    border-left: 4px solid var(--line);
+    border-radius: 10px; padding: 0.85rem 1rem;
+    display: grid; grid-template-columns: 70px 1fr 90px; gap: 0.75rem;
+    align-items: center;
+}
+.rf-sk-bar {
+    height: 12px; border-radius: 6px;
+    background: linear-gradient(90deg, #ece2cf 0%, #f6efe0 50%, #ece2cf 100%);
+    background-size: 200% 100%;
+    animation: rf-shimmer 1.4s linear infinite;
+}
+.rf-sk-bar.short { width: 60%; }
+.rf-sk-bar.tall  { height: 16px; margin-bottom: 0.3rem; }
+@keyframes rf-shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+/* ==========================================================
+   MOBILE BOTTOM NAV BAR
+   Shown on phones only, fixed to bottom edge. Pushes page
+   content up so nothing is hidden behind it.
+   ========================================================== */
+.kl79-bottom-nav { display: none; }
+
+@media (max-width: 767px) {
+    body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
+
+    .kl79-bottom-nav {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        position: fixed; left: 0; right: 0; bottom: 0;
+        background: var(--paper-light);
+        border-top: 1px solid var(--line);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        z-index: 50;
+        box-shadow: 0 -4px 20px -8px rgba(45, 74, 62, 0.15);
+    }
+    .kl79-bottom-nav a {
+        display: flex; flex-direction: column; align-items: center;
+        justify-content: center; gap: 2px;
+        padding: 0.5rem 0.25rem; color: var(--ink-soft);
+        font-size: 0.65rem; font-weight: 600;
+        text-decoration: none; transition: color 0.15s;
+    }
+    .kl79-bottom-nav a svg { width: 22px; height: 22px; stroke-width: 2; }
+    .kl79-bottom-nav a:hover,
+    .kl79-bottom-nav a.active { color: var(--forest); }
+    .kl79-bottom-nav a.active { font-weight: 800; }
+    .kl79-bottom-nav a.accent { color: var(--laterite); }
+    .kl79-bottom-nav a.accent:hover { color: var(--laterite-d); }
+
+    /* Lift the floating WhatsApp button above the bottom bar */
+    .whatsapp-float {
+        bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+}

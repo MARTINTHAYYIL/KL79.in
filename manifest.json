@@ -1,0 +1,52 @@
+{
+    "name": "KL79.in — Kasaragod Info Hub",
+    "short_name": "KL79",
+    "description": "Bus & train timings, businesses and local info for the Vellarikundu RTO / Kasaragod (KL79) region.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#f4ede1",
+    "theme_color": "#2d4a3e",
+    "lang": "ml",
+    "dir": "ltr",
+    "categories": ["travel", "navigation", "utilities"],
+    "icons": [
+        {
+            "src": "/icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Route Finder",
+            "short_name": "Routes",
+            "description": "Find buses between two places",
+            "url": "/#route-finder"
+        },
+        {
+            "name": "Search",
+            "short_name": "Search",
+            "url": "/search.html"
+        },
+        {
+            "name": "Bus from Chittarikkal",
+            "short_name": "Chittarikkal",
+            "url": "/Chittarikkal.html"
+        }
+    ]
+}

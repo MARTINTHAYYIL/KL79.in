@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QLZS4VHWTK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QLZS4VHWTK');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2d4a3e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="KL79">
+    <link rel="manifest" href="/manifest.json">
+    <title>കുന്നുംകൈ ബസ് സമയങ്ങൾ | Kunnumkai Bus Timings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;700;900&family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=Baloo+Chettan+2:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/kl79-theme.css">
+    <style>
+        /* Custom styles for Noto Sans Malayalam font and modern aesthetic */
+        body {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            background-color: #f0f4f8; /* Light blue-grey background */
+            color: #333;
+        }
+        /* Style for individual bus cards */
+        .bus-card {
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        /* Hover effect for cards that are clickable */
+        .bus-card.clickable:hover {
+            background-color: #e5e7eb;
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.2); /* Highlight clickable cards */
+        }
+        /* Style for the blue category headers (Accordion functionality remains) */
+        .category-header {
+            color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* Custom Colors for Categories (Matching the original file) */
+        .header-indigo { background-color: #0000FF; } /* Indigo-900 (Darker) */
+        .header-red { background-color: #FF0000; } /* Red-700 */
+        .header-brown { background-color: #FF00FF; } /* Amber-900 / Brown */
+        .header-teal { background-color: #0d9488; } /* Teal-600 */
+        .header-purple { background-color: #6d28d9; } /* Violet-700 */
+        .header-green { background-color: #15803d; } /* Green-700 */
+
+        /* Animation for the detail box when expanded */
+        .details-content {
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom indigo color for the instruction text */
+        .instruction-text {
+            color: #4f46e5; /* Tailwind's indigo-600 */
+            font-weight: 600;
+        }
+        /* Styles added for the Advertisement blocks */
+        .ad-section-container {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #d1d5db;
+        }
+        .ad-grid {
+            display: grid !important;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .ad-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .ad-card {
+            display: block !important;
+            visibility: visible !important;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-height: 300px;
+            background-color: #fef3c7;
+            border: 2px solid #fbbf24;
+            margin-bottom: 1rem;
+        }
+        .ad-card h4, .ad-card p {
+            display: block !important;
+            visibility: visible !important;
+            color: #111827;
+        }
+        .ad-card img {
+            display: block !important;
+            visibility: visible !important;
+            max-width: 112px;
+            height: auto;
+        }
+        .ad-whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background-color: #25d366;
+            color: white;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            transition: background-color 0.2s;
+        }
+        .ad-whatsapp-button:hover {
+            background-color: #1da851;
+        }
+        .ad-whatsapp-button svg {
+            fill: currentColor;
+        }
+
+        /* --- STYLES COPIED FROM niles ticker.html --- */
+        .train-card {
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        .train-name {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            color: #1f2937; /* gray-800 */
+        }
+        .route-info {
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563; /* gray-600 */
+        }
+        .ticker-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding-right: 2rem;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #10b981;
+            color: white;
+            border-radius: 9999px;
+            padding: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            background-color: #059669;
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+        }
+        /* ------------------------------------------- */
+    </style>
+</head>
+<body class="p-0 sm:p-0 m-0">
+    
+    <nav class="bg-green-700 shadow-lg sticky top-0 z-50 mb-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-0 lg:pr-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="https://i.imgur.com/ZJ8IuLd.png" alt="KL79.in Logo" class="h-16 w-16 text-white"/>
+                    <a href="/" class="text-3xl font-bold text-white hover:text-green-100 transition">
+                        KL79.in
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Home</a>
+                    <a href="/search.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center gap-1" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <span>Search</span>
+                    </a>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Buses</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-80 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Chittarikkal.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                            <a href="/Bheemanady.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Bheemanady - ഭീമനടി</a>
+                            <a href="/Cherupuzha.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Cherupuzha - ചെറുപുഴ</a>
+                            <a href="/Kunnumkai.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kunnumkai - കുന്നുംകൈ</a>
+                            <a href="/malom.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Malom - മാലോം</a>
+                            <a href="/Alakode.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Alakode - ആലക്കോട്</a>
+                            <a href="/Konnakkad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Konnakkad - കൊന്നക്കാട്</a>
+                            <a href="/Vellarikundu.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                            <a href="/Kanhangad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                            <a href="/Iritty.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Iritty - ഇരിട്ടി</a>
+                            <a href="/Olayambadi.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">From Olayambadi - ഓലയമ്പാടി</a>
+                            </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Trains</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Payyannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Payyannur</a>
+                            <a href="/Nileshwar.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Nileshwar</a>
+                            <a href="/Kannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">Kannur</a>
+                        </div>
+                    </div>
+                    <a href="/Whatsapp-groups.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">WhatsApp Groups</a>
+                    <a href="/Business.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Business</a>
+                    <a href="/Tourist-Places.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Tourist Places</a>
+                    <a href="/Election.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">News</a>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-white hover:bg-green-600">
+                    <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    <svg id="menu-close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="/" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Home</a>
+                <a href="/search.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">🔍 Search · തിരയുക</a>
+                <div>
+                    <button id="mobile-bus-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Buses</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-bus-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Chittarikkal.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                        <a href="/Bheemanady.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Bheemanady - ഭീമനടി</a>
+                        <a href="/Cherupuzha.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Cherupuzha - ചെറുപുഴ</a>
+                        <a href="/Kunnumkai.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kunnumkai - കുന്നുംകൈ</a>
+                        <a href="/malom.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Malom - മാലോം</a>
+                        <a href="/Alakode.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Alakode - ആലക്കോട്</a>
+                        <a href="/Vellarikundu.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                        <a href="/Kanhangad.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                      <a href="/Iritty.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Iritty - ഇരിട്ടി</a>
+                        <a href="/Olayambadi.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Olayambadi - ഓലയമ്പാടി</a>
+                        </div>
+                </div>
+                <div>
+                    <button id="mobile-train-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Trains</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-train-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Payyannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Payyannur</a>
+                        <a href="/Nileshwar.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Nileshwar</a>
+                        <a href="/Kannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Kannur</a>
+                    </div>
+                </div>
+                <a href="/Whatsapp-groups.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">WhatsApp Groups</a>
+                <a href="/Business.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Business</a>
+                <a href="/Tourist-Places.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Tourist Places</a>
+                <a href="/Election.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">News</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-yellow-400 text-gray-900 py-2 overflow-hidden">
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+            </div>
+        </div>
+    </div>
+    
+    <a href="https://wa.me/916238693615?text=Hello!%20I%20want%20to%20inquire%20about%20KL79%20Info%20Hub." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </a>
+    
+    <div id="app" class="max-w-6xl mx-auto p-4 sm:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-[#1e3a8a] mb-2">
+                കുന്നുംകൈ ബസ് സമയങ്ങൾ
+            </h1>
+            <p id="source-location" class="text-xl text-gray-600 border-b pb-4 mb-8"></p>
+        </header>
+
+        <div id="leaving-soon" class="px-4 sm:px-8"></div>
+
+        <div id="timings-container" class="space-y-10">
+            </div>
+
+        <div class="ad-section-container">
+          <h3 class="text-3xl font-bold text-center text-gray-800 mb-6">✨ ✨</h3>
+          <div class="ad-grid">
+            <div class="ad-card bg-yellow-50 border-2 border-yellow-300">
+              <img
+                src="https://i.imgur.com/10HQYuP.jpeg"
+                alt="Travel Agency Ad"
+                class="mx-auto mb-4 w-28 h-28"
+              />
+              <h4 class="text-2xl font-bold text-gray-900 mb-2">TRAVEL TALES</h4>
+              <h4 class="text-l font-bold text-gray-900 mb-2">(Tours & Travels)</h4>
+              <p class="text-gray-700 mb-4">
+                തായ്‌ലൻഡ്, വിയറ്റ്നാം ഗ്രൂപ്പ് ടൂർ പാകേജുകൾക്കായി ഇപ്പോൾതന്നെ ബന്ധപ്പെടുക.
+              </p>
+              <p class="text-sm text-gray-500 italic">
+                For customizable Thailand, Vietnam group tour packages from Malabar, contact right now.
+              </p>
+              <a
+                href="https://wa.me/+916238693615?text=I'm%20interested%20in%20train%20ticket%20booking"
+                target="_blank"
+                class="ad-whatsapp-button"
+              >
+                <svg
+                  class="w-5 h-5 mr-2"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12.036 21.99c-5.514 0-9.982-4.468-9.982-9.982s4.468-9.982 9.982-9.982 9.982 4.468 9.982 9.982-4.468 9.982-9.982 9.982zm4.385-6.84c-.213-.355-.845-.638-1.21-.71-.366-.073-.639-.026-.883.33-1.026 1.455-2.037 1.439-3.056.96-.322-.16-.628-.432-.907-.74-.82-.82-.692-.937-.373-1.464.29-.48.163-.9-.08-1.22-.27-.35-.747-.88-.934-1.28-.187-.397-.038-.72.106-.72.29-.02.435-.045.58-.045.143 0 .216 0 .33.28.62.91 1.42 2.06 1.545 2.227.124.167.214.283.37.498.428.53.844.457 1.157.195.426-.358.55-.49.882-.716.333-.227.737-.357 1.05-.448.312-.09.673-.105 1.05-.008.41.1.84.39 1.008.647.167.257.167.47.12.78-.046.3-.173.57-.318.66-.145.09-.34.135-.58.196z"
+                  />
+                </svg>
+                WhatsApp ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക
+              </a>
+            </div>
+            <div class="ad-card bg-indigo-50 border-2 border-indigo-300">
+              <img
+                src="https://i.imgur.com/ZSJSg3d.png"
+                alt="Real Estate Ad"
+                class="mx-auto mb-4 w-28 h-28"
+              />
+              <h4 class="text-2xl font-bold text-gray-900 mb-2">നിങ്ങളുടെ പരസ്യം ഇവിടെ നൽകാം!</h4>
+              <p class="text-gray-700 mb-4">
+                നിങ്ങളുടെ ബിസിനസ് കൂടുതൽ പേരിലേക്ക് എത്തിക്കാനുള്ള മികച്ച അവസരം. പരസ്യങ്ങൾക്കായി ഇപ്പോൾതന്നെ ബന്ധപ്പെടുക.
+              </p>
+              <p class="text-sm text-gray-500 italic">The best opportunity to take your business to more people.</p>
+              <a
+                href="https://wa.me/+916238693615?text=I'm%20interested%20in%20tour%20packages"
+                target="_blank"
+                class="ad-whatsapp-button"
+              >
+                <svg
+                  class="w-5 h-5 mr-2"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12.036 21.99c-5.514 0-9.982-4.468-9.982-9.982s4.468-9.982 9.982-9.982 9.982 4.468 9.982 9.982-4.468 9.982-9.982 9.982zm4.385-6.84c-.213-.355-.845-.638-1.21-.71-.366-.073-.639-.026-.883.33-1.026 1.455-2.037 1.439-3.056.96-.322-.16-.628-.432-.907-.74-.82-.82-.692-.937-.373-1.464.29-.48.163-.9-.08-1.22-.27-.35-.747-.88-.934-1.28-.187-.397-.038-.72.106-.72.29-.02.435-.045.58-.045.143 0 .216 0 .33.28.62.91 1.42 2.06 1.545 2.227.124.167.214.283.37.498.428.53.844.457 1.157.195.426-.358.55-.49.882-.716.333-.227.737-.357 1.05-.448.312-.09.673-.105 1.05-.008.41.1.84.39 1.008.647.167.257.167.47.12.78-.046.3-.173.57-.318.66-.145.09-.34.135-.58.196z"
+                  />
+                </svg>
+                കൂടുതൽ വിവരങ്ങൾ അറിയാൻ
+              </a>
+            </div>
+          </div>
+        </div>
+        <footer class="text-center mt-12 pt-6 text-gray-500 text-sm border-t border-gray-300">
+            <p>© ഡാറ്റാ ലിസ്റ്റ്. പൊതുവിവരങ്ങൾക്കായി മാത്രം.</p>
+            <p class="mt-2 text-xs">Based on PDF data from 'Bus Timings - From Kunnumkai - കുന്നുംകൈ.pdf'.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data structure generated from 'Bus Timings - From Kunnumkai - കുന്നുംകൈ.pdf'
+        const busTimingsData = {
+          source_location: 'From Kunnumkai - കുന്നുംകൈ',
+          categories: [
+            {
+              destination_category: 'നീലേശ്വരം ഭാഗത്തേക്ക്',
+              header_class: 'header-indigo',
+              buses: [
+                { time: '4:50 AM', bus_name: 'KSRTC', destination: 'മംഗലാപുരം', route_details: '', service_type: '', description: '' },
+                { time: '5:30 AM', bus_name: 'KSRTC', destination: 'മംഗലാപുരം', route_details: '', service_type: '', description: '' },
+                { time: '6:10 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '6:30 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട് - കാസർഗോഡ്', route_details: '', service_type: '', description: '' },
+                { time: '6:40 AM', bus_name: 'DAMAS', destination: 'നീലേശ്വരം', route_details: '', service_type: '', description: '' },
+                { time: '6:50 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '7:05 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട് - മംഗലാപുരം', route_details: '', service_type: '', description: '' },
+                { time: '7:20 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '7:40 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട് - കാസർഗോഡ്', route_details: '', service_type: '', description: '' },
+                { time: '7:50 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '8:10 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '8:20 AM', bus_name: 'SUPER', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '8:35 AM', bus_name: 'KSRTC', destination: 'നീലേശ്വരം', route_details: '', service_type: '', description: '' },
+                { time: '8:45 AM', bus_name: 'RMS', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '9:00 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '9:10 AM', bus_name: 'SREE MUTHPAN', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '9:35 AM', bus_name: 'SOOPANAM', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '9:50 AM', bus_name: 'KSRTC', destination: 'നീലേശ്വരം', route_details: '', service_type: '', description: '' },
+                { time: '10:05 AM', bus_name: 'MALABAR', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '10:30 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '11:00 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '11:15 AM', bus_name: 'KSRTC', destination: 'നീലേശ്വരം - പയ്യന്നൂർ', route_details: '', service_type: '', description: '' },
+                { time: '11:25 AM', bus_name: 'DAMAS', destination: 'നീലേശ്വരം', route_details: '', service_type: '', description: '' },
+                { time: '11:35 AM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '11:45 AM', bus_name: 'ST. THOMAS', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '12:20 PM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '12:50 PM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '1:25 PM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '1:45 PM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '2:10 PM', bus_name: 'SUPER', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '2:25 PM', bus_name: 'DAMAS', destination: 'നീലേശ്വരം', route_details: '', service_type: '', description: '' },
+                { time: '2:50 PM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '3:00 PM', bus_name: 'RMS', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '3:25 PM', bus_name: 'MUTHPAN', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '3:55 PM', bus_name: 'SOOPANAM', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '4:10 PM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '4:30 PM', bus_name: 'KSRTC', destination: 'നീലേശ്വരം', route_details: '', service_type: '', description: '' },
+                { time: '4:50 PM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '5:05 PM', bus_name: 'MALABAR', destination: 'നീലേശ്വരം', route_details: '', service_type: '', description: '' },
+                { time: '5:20 PM', bus_name: 'KSRTC', destination: 'നീലേശ്വരം', route_details: '', service_type: '', description: '' },
+                { time: '5:30 PM', bus_name: 'DAMAS', destination: 'നീലേശ്വരം', route_details: '', service_type: '', description: '' },
+                { time: '6:10 PM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '6:50 PM', bus_name: 'KSRTC', destination: 'കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+              ],
+            },
+            {
+              destination_category: 'ചിറ്റാരിക്കാൽ - ചെറുപുഴ ഭാഗത്തേക്ക്',
+              header_class: 'header-red',
+              buses: [
+                { time: '7:00 AM', bus_name: 'ഹോളി മേരി (Holy Mary)', destination: 'ചിറ്റാരിക്കാൽ - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                { time: '7:35 AM', bus_name: 'St. തോമസ് (St. Thomas)', destination: 'ചിറ്റാരിക്കാൽ', route_details: '', service_type: '', description: '' },
+                { time: '8:00 AM', bus_name: 'KSRTC', destination: 'ചിറ്റാരിക്കാൽ - കമ്പല്ലൂർ', route_details: '', service_type: '', description: '' },
+                { time: '9:35 AM', bus_name: 'ഡാമാസ് (DAMAS)', destination: 'ചിറ്റാരിക്കാൽ - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                { time: '10:30 AM', bus_name: 'GOLDEN', destination: 'ചിറ്റാരിക്കാൽ - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                { time: '11:05 AM', bus_name: 'St. തോമസ് (St. Thomas)', destination: 'ചിറ്റാരിക്കാൽ - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                { time: '12:05 PM', bus_name: 'ഭഗവതി (Bhagavathi)', destination: 'ചിറ്റാരിക്കാൽ - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                { time: '1:00 PM', bus_name: 'ഡാമാസ് (DAMAS)', destination: 'ചിറ്റാരിക്കാൽ', route_details: '', service_type: '', description: '' },
+                { time: '1:35 PM', bus_name: 'St. തോമസ് (St. Thomas)', destination: 'ചിറ്റാരിക്കാൽ - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                { time: '2:35 PM', bus_name: 'ഭഗവതി (Bhagavathi)', destination: 'ചിറ്റാരിക്കാൽ - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                { time: '2:45 PM', bus_name: 'St. തോമസ് (St. Thomas)', destination: 'ചിറ്റാരിക്കാൽ', route_details: '', service_type: '', description: '' },
+                { time: '4:25 PM', bus_name: 'ഡാമാസ് (DAMAS)', destination: 'ചിറ്റാരിക്കാൽ', route_details: '', service_type: '', description: '' },
+                { time: '5:00 PM', bus_name: 'St. തോമസ് (St. Thomas)', destination: 'ചിറ്റാരിക്കാൽ', route_details: '', service_type: '', description: '' },
+                { time: '5:50 PM', bus_name: 'KSRTC', destination: 'ചിറ്റാരിക്കാൽ - കമ്പല്ലൂർ', route_details: '', service_type: '', description: '' },
+                { time: '6:50 PM', bus_name: 'ഹോളി മേരി (Holy Mary)', destination: 'കോട്ടയം', route_details: '', service_type: '', description: '' },
+                { time: '7:45 PM', bus_name: 'ഡാമാസ് (DAMAS)', destination: 'ചിറ്റാരിക്കാൽ', route_details: '', service_type: '', description: '' },
+              ],
+            },
+            {
+              destination_category: 'മൗക്കോട് ഭാഗത്തേക്ക്',
+              header_class: 'header-brown',
+              buses: [
+                { time: '8:00 AM', bus_name: 'RABEEH', destination: 'മൗക്കോട് - ചീമേനി - ചെറുവത്തൂർ', route_details: '', service_type: '', description: '' },
+                 { time: '12:20 PM', bus_name: 'RABEEH', destination: 'മൗക്കോട് - ചീമേനി - ചെറുവത്തൂർ', route_details: '', service_type: '', description: '' },
+                { time: '1:20 PM', bus_name: 'ഡാമാസ് (DAMAS)', destination: 'മൗക്കോട് - ചീമേനി - ചെറുവത്തൂർ', route_details: '', service_type: '', description: '' },
+                { time: '4:00 PM', bus_name: 'KSRTC', destination: 'മൗക്കോട് - ചീമേനി - ചെറുവത്തൂർ', route_details: '', service_type: '', description: '' },
+                { time: '5:30 PM', bus_name: 'വരദ രാജ് (Varada Raj)', destination: 'മൗക്കോട് - കടുമേനി - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                 { time: '6:15 APM', bus_name: 'RABEEH', destination: 'മൗക്കോട് - ചീമേനി - ചെറുവത്തൂർ', route_details: '', service_type: '', description: '' },
+              ],
+            },
+            {
+              destination_category: 'ഭീമനടി ഭാഗത്തേക്ക്',
+              header_class: 'header-teal',
+              buses: [
+                 { time: '7:10 AM', bus_name: 'RABEEH', destination: 'വെള്ളരിക്കുണ്ട്', route_details: '', service_type: '', description: '' },
+                { time: '7:25 AM', bus_name: 'മലബാർ (Malabar)', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '8:05 AM', bus_name: 'ഷഹൽ (Shahal)', destination: 'വെള്ളരിക്കുണ്ട് - ബളാൽ - ബന്തടുക്ക', route_details: '', service_type: '', description: '' },
+                { time: '8:15 AM', bus_name: 'St. ജോർജ്ജ് (St. George)', destination: 'വെള്ളരിക്കുണ്ട് - ഒടയംചാൽ', route_details: '', service_type: '', description: '' },
+                { time: '8:50 AM', bus_name: 'KSRTC', destination: 'ചീർക്കയം - പുങ്ങംചാൽ', route_details: '', service_type: '', description: '' },
+                { time: '9:05 AM', bus_name: 'St. തോമസ് (St. Thomas)', destination: 'വെള്ളരിക്കുണ്ട് - മാലോം', route_details: '', service_type: '', description: '' },
+                { time: '9:10 AM', bus_name: 'KSRTC', destination: 'ഭീമനടി - നർകിലക്കാട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '9:25 AM', bus_name: 'KSRTC', destination: 'ഭീമനടി - എളേരി - പുങ്ങംചാൽ', route_details: '', service_type: '', description: '' },
+                { time: '9:50 AM', bus_name: 'KSRTC', destination: 'വെള്ളരിക്കുണ്ട്', route_details: '', service_type: '', description: '' },
+                { time: '10:10 AM', bus_name: 'KSRTC', destination: 'എളേരി - പറമ്പ് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '10:30 AM', bus_name: 'KSRTC', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '10:40 AM', bus_name: 'RABEEH', destination: 'വെള്ളരിക്കുണ്ട് - പരപ്പ', route_details: '', service_type: '', description: '' },
+                { time: '11:30 AM', bus_name: 'സൂപ്പർ (Super)', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '11:45 AM', bus_name: 'മുത്തപ്പൻ (Muthappan)', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '12:05 PM', bus_name: 'KSRTC', destination: 'എളേരി - മാലോം', route_details: '', service_type: '', description: '' },
+                { time: '12:05 PM', bus_name: 'ഡാമാസ് (DAMAS)', destination: 'ഭീമനടി - വെള്ളരിക്കുണ്ട്', route_details: '', service_type: '', description: '' },
+                { time: '12:35 PM', bus_name: 'KSRTC', destination: 'എളേരി - മാലോം - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '12:40 PM', bus_name: 'St.', destination: 'വെള്ളരിക്കുണ്ട്', route_details: '', service_type: '', description: '' },
+                { time: '1:10 PM', bus_name: 'KSRTC', destination: 'ഭീമനടി - ചിറ്റാരിക്കാൽ - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                { time: '1:25 PM', bus_name: 'ഭഗവതി (Bhagavathi)', destination: 'വെള്ളരിക്കുണ്ട്', route_details: '', service_type: '', description: '' },
+                { time: '1:35 PM', bus_name: 'RMS', destination: 'ചീർക്കയം - പുങ്ങംചാൽ', route_details: '', service_type: '', description: '' },
+                { time: '1:45 PM', bus_name: 'സോപാനം (Sopanam)', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '2:00 PM', bus_name: 'മലബാർ (Malabar)', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '2:25 PM', bus_name: 'KSRTC', destination: 'ഭീമനടി - എളേരി - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '2:50 PM', bus_name: 'KSRTC', destination: 'ചീർക്കയം - പുങ്ങംചാൽ', route_details: '', service_type: '', description: '' },
+                { time: '3:05 PM', bus_name: 'KSRTC', destination: 'ഭീമനടി - വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '3:10 PM', bus_name: 'RABEEH', destination: 'വെള്ളരിക്കുണ്ട് - പരപ്പ - ഒടയംചാൽ', route_details: '', service_type: '', description: '' },
+                { time: '3:20 PM', bus_name: 'St.', destination: 'വെള്ളരിക്കുണ്ട് - പരപ്പ', route_details: '', service_type: '', description: '' },
+                { time: '3:25 PM', bus_name: 'KSRTC', destination: 'എളേരി - മാലോം', route_details: '', service_type: '', description: '' },
+                { time: '3:50 PM', bus_name: 'KSRTC', destination: 'ഭീമനടി - ചിറ്റാരിക്കാൽ - ചെറുപുഴ', route_details: '', service_type: '', description: '' },
+                { time: '4:00 PM', bus_name: 'ഭഗവതി (Bhagavathi)', destination: 'വെള്ളരിക്കുണ്ട് - ഒടയംചാൽ - കാഞ്ഞങ്ങാട്', route_details: '', service_type: '', description: '' },
+                { time: '4:20 PM', bus_name: 'KSRTC', destination: 'ഭീമനടി - എളേരി - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '4:35 PM', bus_name: 'St. തോമസ് (St. Thomas)', destination: 'ഭീമനടി - വെള്ളരിക്കുണ്ട്', route_details: '', service_type: '', description: '' },
+                { time: '5:10 PM', bus_name: 'സൂപ്പർ (Super)', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '5:25 PM', bus_name: 'KSRTC', destination: 'എളേരി - മാലോം', route_details: '', service_type: '', description: '' },
+                { time: '6:10 PM', bus_name: 'KSRTC', destination: 'ഭീമനടി - ചിറ്റാരിക്കാൽ - ആലക്കോട്', route_details: '', service_type: '', description: '' },
+                { time: '6:30 PM', bus_name: 'KSRTC', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '6:35 PM', bus_name: 'മുത്തപ്പൻ (Muthappan)', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '7:00 PM', bus_name: 'KSRTC', destination: 'എളേരി - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '7:10 PM', bus_name: 'RMS', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '7:25 PM', bus_name: 'സോപാനം (Sopanam)', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '8:00 PM', bus_name: 'KSRTC', destination: 'ഭീമനടി - ചിറ്റാരിക്കാൽ', route_details: '', service_type: '', description: '' },
+                { time: '8:20 PM', bus_name: 'KSRTC', destination: 'എളേരി', route_details: '', service_type: '', description: '' },
+                { time: '9:00 PM', bus_name: 'KSRTC', destination: 'വെള്ളരിക്കുണ്ട് - കൊന്നക്കാട്', route_details: '', service_type: '', description: '' },
+                { time: '9:45 PM', bus_name: 'KSRTC', destination: 'ഭീമനടി - ചിറ്റാരിക്കാൽ', route_details: '', service_type: '', description: '' },
+              ],
+            },
+          ],
+        };
+        window.busTimingsData = busTimingsData;
+
+        // --- Frontend Rendering Logic (Copied from previous template) ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('timings-container');
+            const sourceLocation = document.getElementById('source-location');
+            
+            // --- Mobile Menu Elements (COPIED FROM niles ticker.html) ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+            const mobileBusDropdown = document.getElementById('mobile-bus-dropdown');
+            const mobileBusList = document.getElementById('mobile-bus-list');
+            const mobileTrainDropdown = document.getElementById('mobile-train-dropdown');
+            const mobileTrainList = document.getElementById('mobile-train-list');
+            // -----------------------------------------------------------
+
+
+            // Set the main source location text
+            sourceLocation.textContent = busTimingsData.source_location;
+
+            busTimingsData.categories.forEach((category, categoryIndex) => {
+                // Create the Category Section
+                const categorySection = document.createElement('div');
+                categorySection.className = 'bg-white shadow-lg rounded-xl overflow-hidden';
+
+                // 1. Accordion Header (Clickable)
+                const header = document.createElement('h2');
+                // MODIFIED LINE: Added the category-specific class from data
+                header.id = `header-${categoryIndex}`;
+                header.className = `category-header ${category.header_class} text-xl sm:text-2xl font-bold p-4 sm:p-6 cursor-pointer flex justify-between items-center`;
+                header.innerHTML = `
+                    <span>${category.destination_category}</span>
+                    <span id="icon-${categoryIndex}" class="text-xl transform transition-transform duration-300">▼</span>
+                `;
+                categorySection.appendChild(header);
+
+                // 2. Bus List (Initially Hidden - This creates the accordion effect)
+                const busList = document.createElement('div');
+                busList.id = `list-${categoryIndex}`;
+                busList.className = 'p-4 sm:p-6 space-y-4 hidden';
+
+                category.buses.forEach(bus => {
+                    const hasRouteDetails = bus.route_details && bus.route_details.trim().length > 0;
+                    const hasServiceType = bus.service_type && bus.service_type.trim().length > 0;
+                    const hasDescription = bus.description && bus.description.trim().length > 0;
+                    
+                    // The card is only clickable if there are additional details (description) to show/hide
+                    const isClickable = hasDescription;
+                    
+                    // Create the Bus Card
+                    const card = document.createElement('div');
+                    let cardClasses = 'bus-card bg-gray-50 p-4 border border-gray-200 rounded-lg flex flex-col justify-between items-start space-y-2';
+                    
+                    if (isClickable) {
+                         cardClasses += ' clickable cursor-pointer'; 
+                    }
+                    card.className = cardClasses;
+
+                    // Main Info Container (Time, Bus Name/Service Type, Destination, Route Details)
+                    const mainInfoContainer = document.createElement('div');
+                    mainInfoContainer.className = 'flex flex-col sm:flex-row justify-between w-full space-y-2 sm:space-y-0';
+                    
+                    // Time and Bus Name/Service Type (Left/Top section)
+                    const primaryInfo = document.createElement('div');
+                    primaryInfo.className = 'flex items-center space-x-4 w-full sm:w-1/2';
+                    // MODIFIED LINE: Changed classes to enforce text-xl (smaller time on mobile) and whitespace-nowrap (single line)
+                    primaryInfo.innerHTML = `
+                        <p class="text-xl sm:text-2xl font-bold text-red-700 whitespace-nowrap">${bus.time}</p>
+                        <div class="border-l pl-4 flex-grow">
+                            <p class="text-lg font-semibold text-gray-800">${bus.bus_name}</p>
+                            ${hasServiceType ? `<p class="text-sm text-gray-500 mt-0.5">സർവീസ് തരം: ${bus.service_type}</p>` : ''}
+                        </div>
+                    `;
+                    
+                    // Destination and Route Details/Instruction (Right/Bottom section)
+                    const secondaryInfo = document.createElement('div');
+                    secondaryInfo.className = 'text-gray-600 w-full sm:w-1/2 sm:text-right pt-2 sm:pt-0';
+                    secondaryInfo.innerHTML = `
+                        <p class="text-xl sm:text-3xl font-bold text-indigo-800 mb-1">${bus.destination}</p>
+                        ${hasRouteDetails ? `<p class="text-sm sm:text-base italic text-gray-600">(${bus.route_details})</p>` : ''}
+                        
+                        ${isClickable
+                            ? `<p id="desc-instruction-${categoryIndex}-${category.buses.indexOf(bus)}" class="text-sm sm:text-base italic mt-1 instruction-text">വിശദാംശങ്ങൾ അറിയുവാൻ ക്ലിക്ക് ചെയ്യുക</p>`
+                            : ''
+                        }
+                    `;
+
+                    mainInfoContainer.appendChild(primaryInfo);
+                    mainInfoContainer.appendChild(secondaryInfo);
+                    card.appendChild(mainInfoContainer);
+                    
+                    // Description Details Area (Initially Hidden, for the description field)
+                    if (hasDescription) {
+                        const descriptionDetailsArea = document.createElement('div');
+                        descriptionDetailsArea.id = `description-details-${categoryIndex}-${category.buses.indexOf(bus)}`;
+                        descriptionDetailsArea.className = 'details-content text-sm text-gray-800 pt-3 mt-3 border-t border-gray-300 w-full hidden';
+                        descriptionDetailsArea.innerHTML = `
+                            <p class="font-bold text-indigo-700 mb-1">അധിക വിവരങ്ങൾ (Description):</p>
+                            <p>${bus.description}</p>
+                        `;
+                        card.appendChild(descriptionDetailsArea);
+                        
+                        // Add click listener only if the card is clickable (i.e., hasDescription)
+                        if (isClickable) {
+                            card.addEventListener('click', (event) => {
+                                const details = document.getElementById(`description-details-${categoryIndex}-${category.buses.indexOf(bus)}`);
+                                const instruction = document.getElementById(`desc-instruction-${categoryIndex}-${category.buses.indexOf(bus)}`);
+                                
+                                details.classList.toggle('hidden');
+
+                                // Update instruction text and card background
+                                if (instruction) { 
+                                    if (details.classList.contains('hidden')) {
+                                        instruction.textContent = 'വിശദാംശങ്ങൾ അറിയുവാൻ ക്ലിക്ക് ചെയ്യുക';
+                                        card.classList.remove('bg-white'); 
+                                    } else {
+                                        instruction.textContent = 'മറയ്ക്കാൻ ക്ലിക്ക് ചെയ്യുക';
+                                        card.classList.add('bg-white'); 
+                                    }
+                                } else {
+                                    // Fallback for visual change if instruction text is somehow missing
+                                    card.classList.toggle('bg-white');
+                                }
+                            });
+                        }
+                    }
+                    
+                    busList.appendChild(card);
+                });
+
+                categorySection.appendChild(busList);
+                container.appendChild(categorySection);
+
+                // Add the click handler to the category header to toggle the bus list (Accordion)
+                header.addEventListener('click', () => {
+                    const list = document.getElementById(`list-${categoryIndex}`);
+                    const icon = document.getElementById(`icon-${categoryIndex}`);
+
+                    // Toggle visibility of the list
+                    list.classList.toggle('hidden');
+
+                    // Rotate icon (down arrow <-> up arrow)
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+            
+            // --- Mobile Menu Toggle and Dropdown Logic (COPIED FROM niles ticker.html) ---
+
+            // Mobile Menu Toggle
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
+            });
+
+            // Mobile Bus Dropdown Toggle
+            mobileBusDropdown.addEventListener('click', () => {
+                mobileBusList.classList.toggle('hidden');
+                // You can add an icon rotation here if needed
+            });
+
+            // Mobile Train Dropdown Toggle
+            mobileTrainDropdown.addEventListener('click', () => {
+                mobileTrainList.classList.toggle('hidden');
+                // You can add an icon rotation here if needed
+            });
+            // ---------------------------------------------------------------------------
+        });
+    </script>
+    <script src="/leaving-soon.js" defer></script>
+    <script src="/bottom-nav.js" defer></script>
+    <script src="/pwa-register.js" defer></script>
+</body>
+</html>

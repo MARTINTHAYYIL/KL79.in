@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLZS4VHWTK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QLZS4VHWTK');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2d4a3e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="KL79">
+    <link rel="manifest" href="/manifest.json">
+    <title>വാർത്തകൾ | KL79 News Updates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;700;900&family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=Baloo+Chettan+2:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/kl79-theme.css">
+    <style>
+        /* Custom styles for Noto Sans Malayalam font and modern aesthetic */
+        body {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+        
+        /* Ticker Animation */
+        .ticker-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding-right: 2rem;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #10b981;
+            color: white;
+            border-radius: 9999px;
+            padding: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            background-color: #059669;
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+        }
+
+        /* --- NEWS SPECIFIC STYLES --- */
+        .news-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Scrollbar hiding for multiple image gallery */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="p-0 sm:p-0 m-0">
+    
+    <nav class="bg-green-700 shadow-lg sticky top-0 z-50 mb-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-0 lg:pr-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="https://i.imgur.com/ZJ8IuLd.png" alt="KL79.in Logo" class="h-16 w-16 text-white"/>
+                    <a href="/" class="text-3xl font-bold text-white hover:text-green-100 transition">
+                        KL79.in
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="/" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Home</a>
+                    <a href="/search.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center gap-1" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <span>Search</span>
+                    </a>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Buses</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-80 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Chittarikkal.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                            <a href="/Bheemanady.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Bheemanady - ഭീമനടി</a>
+                            <a href="/Cherupuzha.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Cherupuzha - ചെറുപുഴ</a>
+                            <a href="/Kunnumkai.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kunnumkai - കുന്നുംകൈ</a>
+                            <a href="/malom.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Malom - മാലോം</a>
+                            <a href="/Alakode.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Alakode - ആലക്കോട്</a>
+                            <a href="/Konnakkad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Konnakkad - കൊന്നക്കാട്</a>
+                            <a href="/Vellarikundu.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                            <a href="/Kanhangad.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                          <a href="/Iritty.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">From Iritty - ഇരിട്ടി</a>
+                            <a href="/Olayambadi.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">From Olayambadi - ഓലയമ്പാടി</a>
+                            </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition flex items-center space-x-1">
+                            <span>Trains</span><span class="text-xs">▼</span>
+                        </button>
+                        <div class="absolute top-full left-0 mt-0 w-64 bg-white shadow-xl rounded-lg py-2 border border-gray-200 hidden group-hover:block">
+                            <a href="/Payyannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Payyannur</a>
+                            <a href="/Nileshwar.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition border-b border-gray-100">Nileshwar</a>
+                            <a href="/Kannur.html" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 transition">Kannur</a>
+                        </div>
+                    </div>
+                    <a href="/Whatsapp-groups.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">WhatsApp Groups</a>
+                    <a href="/Business.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Business</a>
+                    <a href="/Tourist-Places.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">Tourist Places</a>
+                    <a href="/Election.html" class="px-4 py-2 rounded-md text-white hover:bg-green-600 font-medium transition">News</a>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-white hover:bg-green-600">
+                    <svg id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    <svg id="menu-close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="/" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Home</a>
+                <a href="/search.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">🔍 Search · തിരയുക</a>
+                <div>
+                    <button id="mobile-bus-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Buses</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-bus-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Chittarikkal.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Chittarikkal - ചിറ്റാരിക്കാൽ</a>
+                        <a href="/Bheemanady.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Bheemanady - ഭീമനടി</a>
+                        <a href="/Cherupuzha.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Cherupuzha - ചെറുപുഴ</a>
+                        <a href="/Kunnumkai.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kunnumkai - കുന്നുംകൈ</a>
+                        <a href="/malom.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Malom - മാലോം</a>
+                        <a href="/Alakode.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Alakode - ആലക്കോട്</a>
+                        <a href="/Konnakkad.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Konnakkad - കൊന്നക്കാട്</a>
+                        <a href="/Vellarikundu.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Vellarikundu - വെള്ളരിക്കുണ്ട്</a>
+                        <a href="/Kanhangad.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Kanhangad/Nileshwar - കാഞ്ഞങ്ങാട്/നീലേശ്വരം</a>
+                      <a href="/Iritty.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Iritty - ഇരിട്ടി</a>
+                        <a href="/Olayambadi.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">From Olayambadi - ഓലയമ്പാടി</a>
+                        </div>
+                </div>
+                <div>
+                    <button id="mobile-train-dropdown" class="w-full text-left px-4 py-2 text-white hover:bg-green-600 rounded-md flex justify-between items-center">
+                        <span>Trains</span><span class="text-xs">▼</span>
+                    </button>
+                    <div id="mobile-train-list" class="hidden ml-4 mt-1 space-y-1">
+                        <a href="/Payyannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Payyannur</a>
+                        <a href="/Nileshwar.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Nileshwar</a>
+                        <a href="/Kannur.html" class="block px-4 py-2 text-sm text-white hover:bg-green-600 rounded-md">Kannur</a>
+                    </div>
+                </div>
+                <a href="/Whatsapp-groups.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">WhatsApp Groups</a>
+                <a href="/Business.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Business</a>
+                <a href="/Tourist-Places.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">Tourist Places</a>
+                <a href="/Election.html" class="block px-4 py-2 text-white hover:bg-green-600 rounded-md">News</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-yellow-400 text-gray-900 py-2 overflow-hidden">
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+                <span class="ticker-item">🚆 Train/Bus Timings Updated! If there's any change in train or bus schedules — added, removed, or modified — click the WhatsApp icon 📱 to get in touch with us instantly. | 💻 Contact us for Website Creation services and exclusive Thailand Group Packages from Malabar! ✈️ | </span>
+            </div>
+        </div>
+    </div>
+    
+    <a href="https://wa.me/916238693615?text=Hello!%20I%20want%20to%20inquire%20about%20KL79%20Info%20Hub." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </a>
+    
+    <div id="app" class="max-w-4xl mx-auto p-4 sm:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-[#1e3a8a] mb-3">
+                പ്രാദേശിക വാർത്തകൾ
+            </h1>
+            <p class="text-gray-600 text-lg">KL79 Region News & Updates</p>
+            <div class="w-24 h-1 bg-green-500 mx-auto mt-4 rounded"></div>
+        </header>
+
+        <div id="news-container" class="space-y-8">
+            </div>
+
+        <footer class="text-center mt-16 pt-6 text-gray-500 text-sm border-t border-gray-300">
+            <p>© KL79.in. Data & News Portal.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- DATA SECTION: ADD YOUR NEWS HERE ---
+        const newsData = [
+            {
+                id: 1,
+                title: "Nexora January 16 മുതൽ സർവ്വീസ് ആരംഭിക്കുന്നു.",
+                date: "January 14, 2026",
+                // Single Image - This will now show fully without cropping
+                images: ["https://i.imgur.com/jc1h00Z.jpeg"], 
+                content: `നിങ്ങളുടെ യാത്ര സുഖംകരമാക്കാൻ Nexora ജനുവരി 16 മുതൽ സർവ്വീസ് ആരംഭിക്കുന്നു. സീറ്റുകൾ റിസർവ് ചെയ്യാൻ വെബ്‌സൈറ്റിലോ, ഫോണിലോ ബന്ധപ്പെടുക.
+
+ചിറ്റാരിക്കാൽ 🔁കോട്ടയം 
+ചിറ്റാരിക്കാൽ ~ ചെറുപുഴ ~ തേർത്തല്ലി~
+ആലക്കോട് ~കരുവഞ്ചാൽ ~നടുവിൽ ~ചെമ്പേരി ~പയ്യാവൂർ ~ ഇരിട്ടി~തലശ്ശേരി ~ കോഴിക്കോട് ~തൃശൂർ ~ എറണാകുളം ~ പാല ~ കോട്ടയം..`
+            },
+            {
+                id: 2,
+                title: "ചിറ്റാരിക്കാലിൽ വര്‍ധിപ്പിച്ച ഹോട്ടൽ ഭക്ഷണ വില കുറച്ചു",
+                date: "January 10, 2026",
+                // Single Image
+                images: ["https://i.imgur.com/ZIJdY60.jpeg"], 
+                content: `ചിറ്റാരിക്കാൽ: ടൗണിലെ ഹോട്ടലുകളിൽ ഭക്ഷണ സാധനങ്ങൾക്ക് വർദ്ധിപ്പിച്ച വില കുറച്ചു. പഞ്ചായത്ത് അധികൃതരുടെ ശക്തമായ ഇടപെടലിനെ തുടർന്നാണ് ഹോട്ടൽ ഉടമകൾ വില കുറയ്ക്കാൻ തയ്യാറായത്.
+നേരത്തെ വർധിപ്പിച്ചിരുന്ന വിലയാണ് ഇപ്പോൾ കുറച്ചിരിക്കുന്നത്. പുതുക്കിയ നിരക്ക് പ്രകാരം ചായയ്ക്കും പലഹാരങ്ങൾക്കും (കടി) 13 രൂപ വീതവും, ഓംലെറ്റിന് 35 രൂപയുമായിരിക്കും ഇനി മുതൽ ഈടാക്കുക.`
+            },
+            {
+                id: 3,
+                title: "തൃക്കരിപ്പൂർ സീറ്റ്‌ ആർക്കും വിട്ടുകൊടുക്കില്ലെന്ന് കേരള കോൺഗ്രസ് (ജോസഫ്) കാസര്‍ഗോഡ് ജില്ലാ പ്രസിഡന്റ്‌ ജെറ്റോ ജോസഫ്‌",
+                date: "January 09, 2026",
+                // Single Image
+                images: ["https://i.imgur.com/Mqru5ob.jpeg"], 
+                content: `തൃക്കരിപ്പൂർ സീറ്റ്‌ ആർക്കും വിട്ടുകൊടുക്കില്ലെന്ന് കേരള കോൺഗ്രസ് (ജോസഫ്) കാസര്‍ഗോഡ് ജില്ലാ പ്രസിഡന്റ്‌ ജെറ്റോ ജോസഫ്‌ പത്രസമ്മേളനത്തില്‍ പറഞ്ഞു. കഴിഞ്ഞ തവണ മല്‍സരിച്ച 10 നിയമസഭാ സീറ്റിലും ഇത്തവണ മല്‍സരിക്കുമെന്ന് അദേഹം വ്യക്തമാക്കി.
+പാർട്ടി പറഞ്ഞാൽ  ഇത്തവണ തൃക്കരിപ്പൂരില്‍ ജനവിധി തേടാനിറങ്ങും. തികഞ്ഞ വിജയപ്രതീക്ഷയിലാണ് കേരള കോണ്‍ഗ്രസ് തിരഞ്ഞെടുപ്പ് പ്രവര്‍ത്തനങ്ങളുമായി മുന്നോട്ട് പോകുന്നതെന്ന് അദേഹം പറഞ്ഞു.`
+            }
+        ];
+
+        // --- RENDER LOGIC ---
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('news-container');
+
+            newsData.forEach(news => {
+                const article = document.createElement('article');
+                article.className = 'bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden news-card';
+
+                // 1. Image Logic
+                let imageHTML = '';
+                if (news.images.length === 1) {
+                    // Single Image - FULL VIEW FIX
+                    // Removed 'h-64' and 'object-cover'. Added 'w-full h-auto'.
+                    imageHTML = `
+                        <div class="w-full relative group cursor-pointer border-b border-gray-100">
+                            <img src="${news.images[0]}" alt="News Image" class="w-full h-auto object-contain">
+                        </div>
+                    `;
+                } else if (news.images.length > 1) {
+                    // Multiple Images - FULL VIEW FIX with Background
+                    // Added bg-black and object-contain so images aren't cropped
+                    let imagesList = news.images.map(img => `
+                        <div class="min-w-full sm:min-w-[50%] h-80 sm:h-96 flex-shrink-0 snap-center border-r border-gray-800 bg-black flex items-center justify-center">
+                            <img src="${img}" class="max-w-full max-h-full object-contain" alt="News Image">
+                        </div>
+                    `).join('');
+                    
+                    imageHTML = `
+                        <div class="relative group bg-black">
+                            <div class="flex overflow-x-auto snap-x snap-mandatory hide-scroll">
+                                ${imagesList}
+                            </div>
+                            <div class="absolute bottom-2 right-2 bg-white bg-opacity-80 text-black text-xs font-bold px-2 py-1 rounded-full pointer-events-none shadow-sm">
+                                📷 ${news.images.length} Photos (Swipe)
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // 2. Content Structure
+                article.innerHTML = `
+                    ${imageHTML}
+                    <div class="p-6 sm:p-8">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-bold uppercase rounded-full tracking-wide">News</span>
+                            <span class="text-gray-400 text-sm">•</span>
+                            <span class="text-gray-500 text-sm font-medium">${news.date}</span>
+                        </div>
+                        
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 leading-tight hover:text-green-700 transition-colors">
+                            ${news.title}
+                        </h2>
+                        
+                        <div class="prose prose-green max-w-none">
+                            <p class="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
+                                ${news.content}
+                            </p>
+                        </div>
+
+                         <div class="mt-6 pt-4 border-t border-gray-100 flex justify-end">
+                            <a href="https://wa.me/?text=${encodeURIComponent(news.title + ' - Read more at KL79.in')}" target="_blank" class="flex items-center text-green-600 font-semibold hover:text-green-800 transition">
+                                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                                Share
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(article);
+            });
+
+            // --- MOBILE MENU LOGIC ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+            const mobileBusDropdown = document.getElementById('mobile-bus-dropdown');
+            const mobileBusList = document.getElementById('mobile-bus-list');
+            const mobileTrainDropdown = document.getElementById('mobile-train-dropdown');
+            const mobileTrainList = document.getElementById('mobile-train-list');
+
+            // Mobile Menu Toggle
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
+            });
+
+            // Mobile Bus Dropdown Toggle
+            mobileBusDropdown.addEventListener('click', () => {
+                mobileBusList.classList.toggle('hidden');
+            });
+
+            // Mobile Train Dropdown Toggle
+            mobileTrainDropdown.addEventListener('click', () => {
+                mobileTrainList.classList.toggle('hidden');
+            });
+        });
+    </script>
+    <script src="/bottom-nav.js" defer></script>
+    <script src="/pwa-register.js" defer></script>
+</body>
+</html>
