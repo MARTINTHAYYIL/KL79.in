@@ -213,17 +213,24 @@ h1, h2, h3, h4 { color: var(--forest); letter-spacing: -0.01em; }
         z-index: 50;
         box-shadow: 0 -4px 20px -8px rgba(45, 74, 62, 0.15);
     }
-    .kl79-bottom-nav a {
+    .kl79-bottom-nav a,
+    .kl79-bottom-nav button {
         display: flex; flex-direction: column; align-items: center;
         justify-content: center; gap: 2px;
         padding: 0.5rem 0.25rem; color: var(--ink-soft);
         font-size: 0.65rem; font-weight: 600;
         text-decoration: none; transition: color 0.15s;
+        background: transparent; border: 0; cursor: pointer;
+        font-family: inherit;
     }
-    .kl79-bottom-nav a svg { width: 22px; height: 22px; stroke-width: 2; }
+    .kl79-bottom-nav a svg,
+    .kl79-bottom-nav button svg { width: 22px; height: 22px; stroke-width: 2; }
     .kl79-bottom-nav a:hover,
-    .kl79-bottom-nav a.active { color: var(--forest); }
-    .kl79-bottom-nav a.active { font-weight: 800; }
+    .kl79-bottom-nav a.active,
+    .kl79-bottom-nav button:hover,
+    .kl79-bottom-nav button.active { color: var(--forest); }
+    .kl79-bottom-nav a.active,
+    .kl79-bottom-nav button.active { font-weight: 800; }
     .kl79-bottom-nav a.accent { color: var(--laterite); }
     .kl79-bottom-nav a.accent:hover { color: var(--laterite-d); }
 
@@ -231,4 +238,142 @@ h1, h2, h3, h4 { color: var(--forest); letter-spacing: -0.01em; }
     .whatsapp-float {
         bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
     }
+}
+
+/* ==========================================================
+   BOTTOM SHEET — used by the mobile "Bus" tab to show the list
+   of 11 source towns instead of jumping to a single page.
+   ========================================================== */
+.kl79-sheet-overlay {
+    position: fixed; inset: 0;
+    background: rgba(26, 20, 16, 0.45);
+    backdrop-filter: blur(2px);
+    z-index: 60;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.kl79-sheet-overlay.open { opacity: 1; }
+
+.kl79-sheet {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: var(--paper-light, #f4ede1);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    box-shadow: 0 -10px 40px -8px rgba(26, 20, 16, 0.25);
+    z-index: 61;
+    max-height: 82vh;
+    display: flex; flex-direction: column;
+    padding: 0.5rem 0 env(safe-area-inset-bottom, 0.5rem);
+    transform: translateY(100%);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;
+}
+.kl79-sheet.open { transform: translateY(0); }
+
+.kl79-sheet-handle {
+    width: 44px; height: 5px;
+    background: rgba(45, 74, 62, 0.22);
+    border-radius: 3px;
+    margin: 0.5rem auto 0.75rem;
+}
+.kl79-sheet-head {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1rem;
+    padding: 0 1.25rem 0.75rem;
+    border-bottom: 1px solid var(--line, rgba(26,20,16,0.08));
+}
+.kl79-sheet-title {
+    font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;
+    font-size: 1.15rem; font-weight: 800;
+    color: var(--ink, #1a1410);
+    line-height: 1.3;
+}
+.kl79-sheet-subtitle {
+    font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;
+    font-size: 0.78rem; color: var(--ink-soft, #5a4a3f);
+    margin-top: 2px;
+}
+.kl79-sheet-close {
+    background: transparent; border: 0; cursor: pointer;
+    color: var(--ink-soft, #5a4a3f);
+    padding: 6px; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 0.15s, color 0.15s;
+}
+.kl79-sheet-close svg { width: 22px; height: 22px; stroke-width: 2; }
+.kl79-sheet-close:hover {
+    background: rgba(45, 74, 62, 0.08);
+    color: var(--forest, #2d4a3e);
+}
+
+.kl79-sheet-list {
+    overflow-y: auto;
+    padding: 0.5rem 0.75rem 1rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Generic sheet row — used by the Bus source list + More menu */
+.kl79-sheet-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 0.85rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--ink, #1a1410);
+    transition: background 0.15s;
+    border: 1px solid transparent;
+}
+.kl79-sheet-row:hover,
+.kl79-sheet-row:active {
+    background: rgba(45, 74, 62, 0.06);
+    border-color: rgba(45, 74, 62, 0.12);
+}
+.kl79-sheet-row + .kl79-sheet-row {
+    margin-top: 0.25rem;
+}
+
+.kl79-sheet-row-main {
+    flex: 1;
+    font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--ink, #1a1410);
+}
+.kl79-sheet-row-arrow {
+    width: 20px; height: 20px;
+    color: var(--forest, #2d4a3e);
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+/* Variant for the More menu — icon + ML + EN */
+.kl79-sheet-row-more {
+    padding: 0.75rem 0.85rem;
+}
+.kl79-sheet-row-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(45, 74, 62, 0.1);
+    color: var(--forest, #2d4a3e);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.kl79-sheet-row-icon svg { width: 22px; height: 22px; }
+.kl79-sheet-row-text {
+    flex: 1; display: flex; flex-direction: column; gap: 1px;
+}
+.kl79-sheet-row-ml {
+    font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--ink, #1a1410);
+    line-height: 1.35;
+}
+.kl79-sheet-row-en {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: var(--ink-soft, #5a4a3f);
+    letter-spacing: 0.2px;
 }

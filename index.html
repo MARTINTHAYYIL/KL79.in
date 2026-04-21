@@ -245,8 +245,8 @@
         }
         @media (min-width: 640px) { .rf-title { font-size: 2rem; } }
         .rf-title-ml {
-            font-family: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
-            font-weight: 600; color: #b8472a; display: inline-block; margin-left: 0.4rem;
+            font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;
+            font-weight: 700; color: #b8472a; display: inline-block; margin-left: 0.4rem;
             font-size: 0.75em;
         }
         .rf-sub { color: #5b5342; font-size: 0.9rem; margin-top: 0.25rem; }
@@ -279,6 +279,13 @@
         .rf-field input:focus {
             outline: none; border-color: #2d4a3e;
             box-shadow: 0 0 0 3px rgba(45, 74, 62, 0.15);
+        }
+
+        /* Make sure the native datalist dropdown text renders Malayalam
+           correctly in Chrome — the browser uses this font for the input
+           AND its suggestion list. */
+        .rf-field input {
+            font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;
         }
         .rf-arrow {
             color: #b8472a; font-size: 1.8rem; font-weight: 700;
@@ -490,25 +497,7 @@
                 <p class="text-sm text-gray-500 mt-2">Your single-source information hub for the Vellarikundu RTO region.</p>
             </div>
 
-            <!-- Quick Search Box with live suggestions -->
-            <div class="mt-8 max-w-2xl mx-auto relative">
-                <label for="quick-search" class="sr-only">Search for a place or route</label>
-                <div class="search-box flex items-center px-4 py-3 gap-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                    <input id="quick-search" type="search" autocomplete="off" placeholder="സ്ഥലം, ബസ്, ട്രെയിൻ തിരയുക · Search places, buses, trains (English or Malayalam)" class="w-full bg-transparent outline-none text-gray-800 placeholder-gray-400 text-base">
-                    <button id="clear-search" class="hidden text-gray-400 hover:text-gray-600" aria-label="Clear search">✕</button>
-                </div>
-                <!-- Live suggestions dropdown -->
-                <div id="search-suggestions" class="hidden absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-200 z-40 overflow-hidden max-h-[60vh] overflow-y-auto">
-                    <div id="suggestion-list"></div>
-                    <a href="/search.html" id="see-all-results" class="block text-center text-sm font-semibold text-green-700 hover:bg-green-50 py-3 border-t border-gray-100 transition">
-                        See all results · എല്ലാ ഫലങ്ങളും കാണുക →
-                    </a>
-                </div>
-                <p class="text-center text-xs text-gray-500 mt-3">
-                    Type in <span class="font-medium text-gray-700">English</span> or <span class="font-medium text-gray-700">മലയാളം</span>. Press Enter for the full search page.
-                </p>
-            </div>
+            <!-- (Quick-search bar removed — the Route Finder below is the primary tool) -->
         </div>
     </section>
 
@@ -526,12 +515,12 @@
             <form id="rf-form" class="rf-grid" autocomplete="off">
                 <div class="rf-field">
                     <label for="rf-from">From · എവിടെ നിന്ന്</label>
-                    <input id="rf-from" list="rf-stations" placeholder="e.g. Chittarikkal / ചിറ്റാരിക്കാൽ" spellcheck="false">
+                    <input id="rf-from" list="rf-stations" placeholder="e.g. ചിറ്റാരിക്കാൽ / Chittarikkal" spellcheck="false" autocomplete="off">
                 </div>
                 <div class="rf-arrow" aria-hidden="true">→</div>
                 <div class="rf-field">
                     <label for="rf-to">To · എവിടെക്ക്</label>
-                    <input id="rf-to" list="rf-destinations" placeholder="e.g. Kanhangad / കാഞ്ഞങ്ങാട്" spellcheck="false">
+                    <input id="rf-to" list="rf-destinations" placeholder="e.g. കാഞ്ഞങ്ങാട് / Kanhangad" spellcheck="false" autocomplete="off">
                 </div>
                 <button type="submit" class="rf-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -545,7 +534,6 @@
             <div class="rf-quick">
                 <span class="rf-quick-label">Try:</span>
                 <button type="button" class="rf-chip" data-from="Chittarikkal" data-to="Kanhangad">Chittarikkal → Kanhangad</button>
-                <button type="button" class="rf-chip" data-from="Vellarikundu" data-to="Mangalore">Vellarikundu → Mangalore</button>
                 <button type="button" class="rf-chip" data-from="Alakode" data-to="Iritty">Alakode → Iritty</button>
                 <button type="button" class="rf-chip" data-from="Kanhangad" data-to="Bangalore">Kanhangad → Bangalore</button>
             </div>
@@ -793,53 +781,48 @@
 
         function setStatus(html) { statusEl.innerHTML = html; }
 
-        /* Populate the From <datalist> once (all sources) */
-        async function hydrateFromList() {
+        /* Populate the From <datalist> with Malayalam labels in canonical
+           page order (Chittarikkal first). This uses the browser's native
+           dropdown — clicking the input shows the full list, and typing
+           filters it in either script. */
+        function hydrateFromList() {
             try {
-                const { stations } = await window.KL79_BusData.allStations();
-                stationsList.innerHTML = stations
-                    .map(s => `<option value="${esc(s.label)}">`).join('');
+                const sources = window.KL79_BusData.orderedSources();
+                stationsList.innerHTML = sources.map(s => {
+                    const ml = s.ml || s.en;
+                    return `<option value="${esc(ml)}" label="${esc(s.en)}"></option>`;
+                }).join('');
             } catch (e) { /* non-fatal */ }
         }
 
-        /* Refresh the To <datalist> based on the currently-selected From.
-         * Main destination headings from the source page appear first,
-         * followed by sub-destinations and via-points. */
+        /* Refresh the To <datalist> based on the current From.
+           Main category headings come first, then sub-destinations. */
         let toUpdateSeq = 0;
         async function refreshToList() {
             const from = fromInput.value.trim();
             const mySeq = ++toUpdateSeq;
             try {
                 const { main, sub } = await window.KL79_BusData.destinationsFrom(from);
-                // Ignore if a newer update has started (user kept typing)
                 if (mySeq !== toUpdateSeq) return;
 
-                // Main headings first (browser shows datalist in given order).
-                // The `label` attribute gives a hint of "main destination" where
-                // the browser supports it.
                 const mainHtml = main.map(m =>
                     `<option value="${esc(m)}" label="★ Main destination"></option>`
                 ).join('');
-
                 const subHtml = sub.slice(0, 400).map(d =>
                     `<option value="${esc(d)}"></option>`
                 ).join('');
-
                 destList.innerHTML = mainHtml + subHtml;
 
-                // Update the To input's placeholder to nudge the user
                 if (from) {
-                    const hint = main.length
+                    toInput.placeholder = main.length
                         ? `Main: ${main.slice(0, 2).join(' · ')}`
                         : `Destinations from ${from}…`;
-                    toInput.placeholder = hint;
                 } else {
-                    toInput.placeholder = 'e.g. Kanhangad / കാഞ്ഞങ്ങാട്';
+                    toInput.placeholder = 'e.g. കാഞ്ഞങ്ങാട് / Kanhangad';
                 }
             } catch (e) { /* non-fatal */ }
         }
 
-        /* Debounce helper so typing doesn't fire a dozen refreshes */
         function debounce(fn, ms) {
             let t;
             return function (...args) {
@@ -847,12 +830,9 @@
                 t = setTimeout(() => fn.apply(this, args), ms);
             };
         }
-
         const debouncedRefresh = debounce(refreshToList, 200);
         fromInput.addEventListener('input', debouncedRefresh);
         fromInput.addEventListener('change', refreshToList);
-        // Also refresh when user focuses the To field — ensures the list is
-        // current even if they tabbed around
         toInput.addEventListener('focus', refreshToList);
 
         /* Current minutes of day — used to flag soonest bus */
@@ -943,14 +923,14 @@
         document.querySelectorAll('.rf-chip').forEach(chip => {
             chip.addEventListener('click', () => {
                 fromInput.value = chip.dataset.from || '';
-                toInput.value = chip.dataset.to || '';
+                toInput.value   = chip.dataset.to   || '';
                 runSearch(fromInput.value, toInput.value);
             });
         });
 
-        // Kick off background load + hydrate suggestions
+        // Populate From (Malayalam labels, canonical order) and preload To.
         hydrateFromList();
-        refreshToList(); // initial To list (shows all destinations until From is chosen)
+        refreshToList();
     })();
     </script>
     <!-- ============ /ROUTE FINDER WIRING ============ -->
@@ -1060,88 +1040,7 @@
             // Copyright year
             document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-            // ---------- Quick bilingual search with live suggestions ----------
-            const searchInput = document.getElementById('quick-search');
-            const clearBtn = document.getElementById('clear-search');
-            const suggestionsBox = document.getElementById('search-suggestions');
-            const suggestionList = document.getElementById('suggestion-list');
-            const seeAllLink = document.getElementById('see-all-results');
-
-            function catBadge(cat) {
-                const map = {
-                    bus: { label: 'Bus', bg: 'bg-green-100', fg: 'text-green-800' },
-                    train: { label: 'Train', bg: 'bg-red-100', fg: 'text-red-800' },
-                    info: { label: 'Info', bg: 'bg-yellow-100', fg: 'text-yellow-800' },
-                    topic: { label: 'Topic', bg: 'bg-indigo-100', fg: 'text-indigo-800' },
-                    place: { label: 'Place', bg: 'bg-sky-100', fg: 'text-sky-800' }
-                };
-                const m = map[cat] || map.place;
-                return `<span class="text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full ${m.bg} ${m.fg}">${m.label}</span>`;
-            }
-
-            function renderSuggestions(items, query) {
-                if (!items.length) {
-                    suggestionList.innerHTML = `
-                        <div class="p-6 text-center">
-                            <div class="text-3xl mb-2">🔎</div>
-                            <p class="text-sm text-gray-600 mb-1">No matches for "<span class="font-semibold">${query}</span>"</p>
-                            <p class="text-xs text-gray-500">Try a different spelling, or open the full search page below.</p>
-                        </div>`;
-                    return;
-                }
-                suggestionList.innerHTML = items.map(item => {
-                    const isExternal = item.url.startsWith('http');
-                    return `
-                        <a href="${item.url}" ${isExternal ? 'target="_blank" rel="noopener"' : ''}
-                           class="flex items-center gap-3 px-4 py-3 hover:bg-green-50 transition border-b border-gray-50 last:border-b-0">
-                            <div class="text-2xl">${item.icon || '•'}</div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center gap-2">
-                                    <span class="font-semibold text-gray-900 truncate">${item.title_en}</span>
-                                    ${catBadge(item.category)}
-                                </div>
-                                <div class="text-sm text-gray-600 truncate">${item.title_ml}</div>
-                            </div>
-                            <span class="text-gray-300">→</span>
-                        </a>`;
-                }).join('');
-            }
-
-            function runSearch() {
-                const q = searchInput.value.trim();
-                clearBtn.classList.toggle('hidden', q === '');
-                if (!q) {
-                    suggestionsBox.classList.add('hidden');
-                    return;
-                }
-                if (typeof window.KL79_search !== 'function') return;
-                const items = window.KL79_search(q, 6);
-                renderSuggestions(items, q);
-                seeAllLink.setAttribute('href', '/search.html?q=' + encodeURIComponent(q));
-                suggestionsBox.classList.remove('hidden');
-            }
-
-            searchInput.addEventListener('input', runSearch);
-            searchInput.addEventListener('focus', () => { if (searchInput.value.trim()) runSearch(); });
-            searchInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const q = searchInput.value.trim();
-                    window.location.href = q ? ('/search.html?q=' + encodeURIComponent(q)) : '/search.html';
-                }
-                if (e.key === 'Escape') {
-                    searchInput.value = '';
-                    runSearch();
-                }
-            });
-            clearBtn.addEventListener('click', () => { searchInput.value = ''; runSearch(); searchInput.focus(); });
-
-            // Close suggestions when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!suggestionsBox.contains(e.target) && e.target !== searchInput) {
-                    suggestionsBox.classList.add('hidden');
-                }
-            });
+            // (Quick-search wiring removed — Route Finder is the primary search now.)
 
             // Sponsor Slider
             const slider = document.getElementById('sponsor-slider');

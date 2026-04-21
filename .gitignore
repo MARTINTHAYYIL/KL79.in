@@ -1,0 +1,34 @@
+# ==========================================================
+# KL79.in .gitignore — files Git should ignore
+# ==========================================================
+
+# OS scratch files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Editor / IDE files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs / temp
+*.log
+*.tmp
+npm-debug.log*
+
+# Node (if you ever add build tooling)
+node_modules/
+dist/
+build/
+
+# Netlify local cache
+.netlify/
+
+# Environment secrets (never commit these)
+.env
+.env.local
+*.pem
+*.key

@@ -11,7 +11,7 @@
  * a fresh copy on their next visit.
  * ========================================================== */
 
-const CACHE_VERSION = 'kl79-v2';
+const CACHE_VERSION = 'kl79-v6';
 const CORE = [
     '/',
     '/index.html',

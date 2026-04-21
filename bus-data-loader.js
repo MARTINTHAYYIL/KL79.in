@@ -12,19 +12,51 @@
  * ========================================================== */
 
 (function () {
+    /* Canonical display order — matches the site's "From" menu on the
+     * homepage. Chittarikkal first. This order is used everywhere:
+     * Route Finder From dropdown, mobile bus sheet, etc. */
     const BUS_PAGES = [
-        'Alakode.html',
+        'Chittarikkal.html',
         'Bheemanady.html',
         'Cherupuzha.html',
-        'Chittarikkal.html',
-        'Iritty.html',
-        'Kanhangad.html',
-        'Konnakkad.html',
         'Kunnumkai.html',
         'malom.html',
-        'olyambadi.html',
+        'Alakode.html',
+        'Konnakkad.html',
         'Vellarikundu.html',
+        'Kanhangad.html',
+        'Iritty.html',
+        'olyambadi.html',
     ];
+
+    /* Pretty Malayalam labels for each source page.
+     * Falls back to the English page name if not listed here. */
+    const SOURCE_LABELS_ML = {
+        'Chittarikkal.html': 'ചിറ്റാരിക്കാൽ',
+        'Bheemanady.html':   'ഭീമനടി',
+        'Cherupuzha.html':   'ചെറുപുഴ',
+        'Kunnumkai.html':    'കുന്നുംകൈ',
+        'malom.html':        'മാലോം',
+        'Alakode.html':      'ആലക്കോട്',
+        'Konnakkad.html':    'കൊന്നക്കാട്',
+        'Vellarikundu.html': 'വെള്ളരിക്കുണ്ട്',
+        'Kanhangad.html':    'കാഞ്ഞങ്ങാട് / നീലേശ്വരം',
+        'Iritty.html':       'ഇരിട്ടി',
+        'olyambadi.html':    'ഓലയമ്പാടി',
+    };
+    const SOURCE_LABELS_EN = {
+        'Chittarikkal.html': 'Chittarikkal',
+        'Bheemanady.html':   'Bheemanady',
+        'Cherupuzha.html':   'Cherupuzha',
+        'Kunnumkai.html':    'Kunnumkai',
+        'malom.html':        'Malom',
+        'Alakode.html':      'Alakode',
+        'Konnakkad.html':    'Konnakkad',
+        'Vellarikundu.html': 'Vellarikundu',
+        'Kanhangad.html':    'Kanhangad / Nileshwar',
+        'Iritty.html':       'Iritty',
+        'olyambadi.html':    'Olayambadi',
+    };
 
     /* Known station aliases — English <-> Malayalam spelling variants.
      * Used for fuzzy matching in the route finder so the user can
@@ -342,13 +374,26 @@
         return { main, sub, combined: [...main, ...sub] };
     }
 
+    /* Canonical ordered source list for menus / dropdowns.
+     * Synchronous — doesn't require loading any bus pages. */
+    function orderedSources() {
+        return BUS_PAGES.map(page => ({
+            page,
+            en: SOURCE_LABELS_EN[page] || page.replace(/\.html$/, ''),
+            ml: SOURCE_LABELS_ML[page] || '',
+        }));
+    }
+
     window.KL79_BusData = {
         load,
         findRoutes,
         allStations,
         destinationsFrom,
+        orderedSources,
         parseTime,
         matchesStation,
         BUS_PAGES,
+        SOURCE_LABELS_ML,
+        SOURCE_LABELS_EN,
     };
 })();
