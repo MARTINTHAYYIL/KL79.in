@@ -11,7 +11,7 @@
  * a fresh copy on their next visit.
  * ========================================================== */
 
-const CACHE_VERSION = 'kl79-v6';
+const CACHE_VERSION = 'kl79-v15';
 const CORE = [
     '/',
     '/index.html',
@@ -19,6 +19,9 @@ const CORE = [
     '/kl79-theme.css',
     '/search-data.js',
     '/bus-data-loader.js',
+    '/train-stops-data.js',
+    '/train-schedules.js',
+    '/train-data-loader.js',
     '/leaving-soon.js',
     '/manifest.json',
     '/icon.svg',

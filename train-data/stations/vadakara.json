@@ -1,0 +1,1892 @@
+{
+  "station": "Vadakara",
+  "station_ml": "വടകര",
+  "code": "BDJ",
+  "train_count": 40,
+  "trains": [
+    {
+      "number": "12618",
+      "name_en": "Mangala Lakshadweep SF Express",
+      "name_ml": "മംഗള ലക്ഷദ്വീപ് എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Hazrat Nizamuddin (NZM)",
+      "dest": "Ernakulam Junction (ERS)",
+      "route": "via Konkan",
+      "time_here": "01:20",
+      "direction": "passes_through",
+      "arrives_at_destination": "05:50",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "02:00"
+        },
+        {
+          "station": "Tirur",
+          "time": "02:40"
+        },
+        {
+          "station": "Shoranur",
+          "time": "03:30"
+        },
+        {
+          "station": "Thrissur",
+          "time": "04:20"
+        },
+        {
+          "station": "Aluva",
+          "time": "05:15"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "05:35"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "05:50"
+        }
+      ]
+    },
+    {
+      "number": "22637",
+      "name_en": "West Coast Express",
+      "name_ml": "വെസ്റ്റ് കോസ്റ്റ് എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "MGR Chennai Central (MAS)",
+      "dest": "Mangaluru Central (MAQ)",
+      "route": "via Palakkad, Shoranur, Kozhikode",
+      "time_here": "02:25",
+      "direction": "passes_through",
+      "arrives_at_destination": "05:30",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "02:33"
+        },
+        {
+          "station": "Thalassery",
+          "time": "02:45"
+        },
+        {
+          "station": "Kannur",
+          "time": "03:05"
+        },
+        {
+          "station": "Kannapuram",
+          "time": "03:18"
+        },
+        {
+          "station": "Payyannur",
+          "time": "03:30"
+        },
+        {
+          "station": "Cheruvathur",
+          "time": "03:42"
+        },
+        {
+          "station": "Nileshwar",
+          "time": "03:55"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "04:12"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "04:35"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "05:15"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "05:30"
+        }
+      ]
+    },
+    {
+      "number": "12978",
+      "name_en": "Ajmer-Ernakulam Maru Sagar",
+      "name_ml": "അജ്മീർ-എറണാകുളം മരുസാഗർ",
+      "freq": "Weekly",
+      "origin": "Ajmer (AII)",
+      "dest": "Ernakulam Junction (ERS)",
+      "route": "via Konkan",
+      "time_here": "02:25",
+      "direction": "passes_through",
+      "arrives_at_destination": "06:45",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "03:05"
+        },
+        {
+          "station": "Tirur",
+          "time": "03:50"
+        },
+        {
+          "station": "Shoranur",
+          "time": "04:35"
+        },
+        {
+          "station": "Thrissur",
+          "time": "05:30"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "06:45"
+        }
+      ]
+    },
+    {
+      "number": "22638",
+      "name_en": "West Coast Express",
+      "name_ml": "വെസ്റ്റ് കോസ്റ്റ് എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Mangaluru Central (MAQ)",
+      "dest": "MGR Chennai Central (MAS)",
+      "route": "via Kozhikode, Shoranur, Palakkad",
+      "time_here": "02:35",
+      "direction": "passes_through",
+      "arrives_at_destination": "04:45",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "03:20"
+        },
+        {
+          "station": "Tirur",
+          "time": "04:00"
+        },
+        {
+          "station": "Shoranur",
+          "time": "04:45"
+        }
+      ]
+    },
+    {
+      "number": "16629",
+      "name_en": "Malabar Express",
+      "name_ml": "മലബാർ എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Thiruvananthapuram Central (TVC)",
+      "dest": "Mangaluru Central (MAQ)",
+      "route": "via Kottayam",
+      "time_here": "03:55",
+      "direction": "passes_through",
+      "arrives_at_destination": "10:15",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "04:03"
+        },
+        {
+          "station": "Thalassery",
+          "time": "04:15"
+        },
+        {
+          "station": "Kannur",
+          "time": "04:35"
+        },
+        {
+          "station": "Kannapuram",
+          "time": "04:48"
+        },
+        {
+          "station": "Payyannur",
+          "time": "05:05"
+        },
+        {
+          "station": "Cheruvathur",
+          "time": "05:20"
+        },
+        {
+          "station": "Nileshwar",
+          "time": "05:35"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "05:52"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "06:15"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "09:00"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "10:15"
+        }
+      ]
+    },
+    {
+      "number": "16604",
+      "name_en": "Maveli Express",
+      "name_ml": "മാവേലി എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Thiruvananthapuram Central (TVC)",
+      "dest": "Mangaluru Central (MAQ)",
+      "route": "via Alappuzha",
+      "time_here": "04:15",
+      "direction": "passes_through",
+      "arrives_at_destination": "07:50",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "04:25"
+        },
+        {
+          "station": "Thalassery",
+          "time": "04:40"
+        },
+        {
+          "station": "Kannur",
+          "time": "05:00"
+        },
+        {
+          "station": "Kannapuram",
+          "time": "05:15"
+        },
+        {
+          "station": "Payyannur",
+          "time": "05:32"
+        },
+        {
+          "station": "Cheruvathur",
+          "time": "05:45"
+        },
+        {
+          "station": "Nileshwar",
+          "time": "06:05"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "06:20"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "06:38"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "07:15"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "07:50"
+        }
+      ]
+    },
+    {
+      "number": "12484",
+      "name_en": "Amritsar-Kochuveli SF Express",
+      "name_ml": "അമൃത്സർ-കൊച്ചുവേളി",
+      "freq": "Weekly",
+      "origin": "Amritsar (ASR)",
+      "dest": "Kochuveli (KCVL)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "04:30",
+      "direction": "passes_through",
+      "arrives_at_destination": "12:30",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "05:05"
+        },
+        {
+          "station": "Tirur",
+          "time": "05:50"
+        },
+        {
+          "station": "Shoranur",
+          "time": "06:40"
+        },
+        {
+          "station": "Thrissur",
+          "time": "07:30"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "08:35"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "09:45"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "11:10"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "12:30"
+        }
+      ]
+    },
+    {
+      "number": "22660",
+      "name_en": "Rishikesh-Kochuveli Express",
+      "name_ml": "യോഗനഗരി-കൊച്ചുവേളി",
+      "freq": "Weekly",
+      "origin": "Yog Nagari Rishikesh (YNRK)",
+      "dest": "Kochuveli (KCVL)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "04:30",
+      "direction": "passes_through",
+      "arrives_at_destination": "12:30",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "05:10"
+        },
+        {
+          "station": "Tirur",
+          "time": "05:55"
+        },
+        {
+          "station": "Shoranur",
+          "time": "06:40"
+        },
+        {
+          "station": "Thrissur",
+          "time": "07:30"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "08:40"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "09:50"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "11:10"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "12:30"
+        }
+      ]
+    },
+    {
+      "number": "12081",
+      "name_en": "Kannur-TVC Jan Shatabdi",
+      "name_ml": "ജനശതാബ്ദി എക്സ്പ്രസ്",
+      "freq": "Mon/Tue/Thu/Fri/Sat",
+      "origin": "Kannur (CAN)",
+      "dest": "Thiruvananthapuram Central (TVC)",
+      "route": "via Alappuzha",
+      "time_here": "05:32",
+      "direction": "passes_through",
+      "arrives_at_destination": "14:10",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "06:10"
+        },
+        {
+          "station": "Tirur",
+          "time": "06:55"
+        },
+        {
+          "station": "Shoranur",
+          "time": "07:40"
+        },
+        {
+          "station": "Thrissur",
+          "time": "08:30"
+        },
+        {
+          "station": "Aluva",
+          "time": "09:18"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "09:40"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "10:45"
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "time": "11:25"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "11:55"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "14:10"
+        }
+      ]
+    },
+    {
+      "number": "16512",
+      "name_en": "KSR Bengaluru-Kannur Express",
+      "name_ml": "ബംഗളൂരു-കണ്ണൂർ",
+      "freq": "Daily",
+      "origin": "KSR Bengaluru (SBC)",
+      "dest": "Kannur (CAN)",
+      "route": "via Palakkad, Kozhikode",
+      "time_here": "05:45",
+      "direction": "passes_through",
+      "arrives_at_destination": "06:25",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "05:53"
+        },
+        {
+          "station": "Thalassery",
+          "time": "06:05"
+        },
+        {
+          "station": "Kannur",
+          "time": "06:25"
+        }
+      ]
+    },
+    {
+      "number": "16305",
+      "name_en": "Kannur-Ernakulam Intercity",
+      "name_ml": "കണ്ണൂർ-എറണാകുളം ഇന്റർസിറ്റി",
+      "freq": "Daily",
+      "origin": "Kannur (CAN)",
+      "dest": "Ernakulam Junction (ERS)",
+      "route": "via Kozhikode, Shoranur",
+      "time_here": "06:32",
+      "direction": "passes_through",
+      "arrives_at_destination": "10:50",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "07:10"
+        },
+        {
+          "station": "Tirur",
+          "time": "07:55"
+        },
+        {
+          "station": "Shoranur",
+          "time": "08:40"
+        },
+        {
+          "station": "Thrissur",
+          "time": "09:25"
+        },
+        {
+          "station": "Aluva",
+          "time": "10:15"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "10:35"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "10:50"
+        }
+      ]
+    },
+    {
+      "number": "16345",
+      "name_en": "Netravati Express",
+      "name_ml": "നേത്രാവതി എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Lokmanya Tilak Terminus (LTT)",
+      "dest": "Thiruvananthapuram Central (TVC)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "07:15",
+      "direction": "passes_through",
+      "arrives_at_destination": "14:55",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "07:55"
+        },
+        {
+          "station": "Tirur",
+          "time": "08:35"
+        },
+        {
+          "station": "Shoranur",
+          "time": "09:20"
+        },
+        {
+          "station": "Thrissur",
+          "time": "10:00"
+        },
+        {
+          "station": "Aluva",
+          "time": "10:55"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "11:15"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "11:30"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "12:25"
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "time": "13:00"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "13:25"
+        },
+        {
+          "station": "Varkala",
+          "time": "14:00"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "14:55"
+        }
+      ]
+    },
+    {
+      "number": "20909",
+      "name_en": "Porbandar-Kochuveli Weekly Express",
+      "name_ml": "പോർബന്ദർ-കൊച്ചുവേളി",
+      "freq": "Weekly",
+      "origin": "Porbandar (PBR)",
+      "dest": "Kochuveli (KCVL)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "07:15",
+      "direction": "passes_through",
+      "arrives_at_destination": "15:15",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "07:55"
+        },
+        {
+          "station": "Tirur",
+          "time": "08:40"
+        },
+        {
+          "station": "Shoranur",
+          "time": "09:25"
+        },
+        {
+          "station": "Thrissur",
+          "time": "10:15"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "11:20"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "12:30"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "13:50"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "15:15"
+        }
+      ]
+    },
+    {
+      "number": "16347",
+      "name_en": "Mangalore Express",
+      "name_ml": "മംഗലാപുരം എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Thiruvananthapuram Central (TVC)",
+      "dest": "Mangaluru Central (MAQ)",
+      "route": "via Kottayam",
+      "time_here": "07:22",
+      "direction": "passes_through",
+      "arrives_at_destination": "11:00",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "07:32"
+        },
+        {
+          "station": "Thalassery",
+          "time": "07:48"
+        },
+        {
+          "station": "Kannur",
+          "time": "08:15"
+        },
+        {
+          "station": "Kannapuram",
+          "time": "08:28"
+        },
+        {
+          "station": "Payyannur",
+          "time": "08:37"
+        },
+        {
+          "station": "Cheruvathur",
+          "time": "08:50"
+        },
+        {
+          "station": "Nileshwar",
+          "time": "09:12"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "09:30"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "09:55"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "10:45"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "11:00"
+        }
+      ]
+    },
+    {
+      "number": "20931",
+      "name_en": "Indore-Kochuveli Weekly Express",
+      "name_ml": "ഇൻഡോർ-കൊച്ചുവേളി",
+      "freq": "Weekly",
+      "origin": "Indore (INDB)",
+      "dest": "Kochuveli (KCVL)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "07:32",
+      "direction": "passes_through",
+      "arrives_at_destination": "15:30",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "08:10"
+        },
+        {
+          "station": "Tirur",
+          "time": "08:55"
+        },
+        {
+          "station": "Shoranur",
+          "time": "09:40"
+        },
+        {
+          "station": "Thrissur",
+          "time": "10:30"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "11:35"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "12:45"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "14:10"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "15:30"
+        }
+      ]
+    },
+    {
+      "number": "16649",
+      "name_en": "Parasuram Express",
+      "name_ml": "പരശുറാം എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Mangaluru Central (MAQ)",
+      "dest": "Nagercoil Junction (NCJ)",
+      "route": "via Kottayam",
+      "time_here": "07:52",
+      "direction": "passes_through",
+      "arrives_at_destination": "21:00",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "08:35"
+        },
+        {
+          "station": "Tirur",
+          "time": "09:20"
+        },
+        {
+          "station": "Shoranur",
+          "time": "10:10"
+        },
+        {
+          "station": "Thrissur",
+          "time": "10:55"
+        },
+        {
+          "station": "Aluva",
+          "time": "11:52"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "12:10"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "13:15"
+        },
+        {
+          "station": "Kottayam",
+          "time": "15:25"
+        },
+        {
+          "station": "Changanassery",
+          "time": "15:38"
+        },
+        {
+          "station": "Tiruvalla",
+          "time": "15:52"
+        },
+        {
+          "station": "Chengannur",
+          "time": "16:08"
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "time": "16:35"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "17:05"
+        },
+        {
+          "station": "Varkala",
+          "time": "17:45"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "18:45"
+        },
+        {
+          "station": "Nagercoil Junction",
+          "time": "21:00"
+        }
+      ]
+    },
+    {
+      "number": "16160",
+      "name_en": "Chennai Egmore-Mangalore Express",
+      "name_ml": "ചെന്നൈ-മംഗലാപുരം എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Chennai Egmore (MS)",
+      "dest": "Mangaluru Central (MAQ)",
+      "route": "via Palakkad, Shoranur, Kozhikode",
+      "time_here": "09:55",
+      "direction": "passes_through",
+      "arrives_at_destination": "13:00",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "10:03"
+        },
+        {
+          "station": "Thalassery",
+          "time": "10:15"
+        },
+        {
+          "station": "Kannur",
+          "time": "10:35"
+        },
+        {
+          "station": "Payyannur",
+          "time": "11:00"
+        },
+        {
+          "station": "Nileshwar",
+          "time": "11:20"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "11:35"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "11:55"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "12:45"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "13:00"
+        }
+      ]
+    },
+    {
+      "number": "22113",
+      "name_en": "LTT-Kochuveli SF Express",
+      "name_ml": "LTT-കൊച്ചുവേളി",
+      "freq": "Bi-weekly",
+      "origin": "Lokmanya Tilak Terminus (LTT)",
+      "dest": "Kochuveli (KCVL)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "10:15",
+      "direction": "passes_through",
+      "arrives_at_destination": "18:00",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "10:50"
+        },
+        {
+          "station": "Tirur",
+          "time": "11:30"
+        },
+        {
+          "station": "Shoranur",
+          "time": "12:20"
+        },
+        {
+          "station": "Thrissur",
+          "time": "13:10"
+        },
+        {
+          "station": "Aluva",
+          "time": "14:00"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "14:15"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "15:20"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "16:50"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "18:00"
+        }
+      ]
+    },
+    {
+      "number": "22610",
+      "name_en": "Coimbatore-Mangaluru Intercity SF",
+      "name_ml": "കോയമ്പത്തൂർ-മംഗലാപുരം",
+      "freq": "Daily",
+      "origin": "Coimbatore (CBE)",
+      "dest": "Mangaluru Central (MAQ)",
+      "route": "via Palakkad, Shoranur, Kozhikode",
+      "time_here": "10:15",
+      "direction": "passes_through",
+      "arrives_at_destination": "12:55",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "10:23"
+        },
+        {
+          "station": "Thalassery",
+          "time": "10:35"
+        },
+        {
+          "station": "Kannur",
+          "time": "10:55"
+        },
+        {
+          "station": "Payyannur",
+          "time": "11:20"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "11:40"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "11:58"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "12:40"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "12:55"
+        }
+      ]
+    },
+    {
+      "number": "16311",
+      "name_en": "Shri Ganganagar-Kochuveli Express",
+      "name_ml": "ശ്രീഗംഗാനഗർ-കൊച്ചുവേളി",
+      "freq": "Weekly",
+      "origin": "Shri Ganganagar (SGNR)",
+      "dest": "Kochuveli (KCVL)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "10:55",
+      "direction": "passes_through",
+      "arrives_at_destination": "18:45",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "11:30"
+        },
+        {
+          "station": "Tirur",
+          "time": "12:15"
+        },
+        {
+          "station": "Shoranur",
+          "time": "13:00"
+        },
+        {
+          "station": "Thrissur",
+          "time": "13:50"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "14:55"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "16:10"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "17:25"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "18:45"
+        }
+      ]
+    },
+    {
+      "number": "16605",
+      "name_en": "Ernad Express",
+      "name_ml": "ഏറനാട് എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Mangaluru Central (MAQ)",
+      "dest": "Nagercoil Junction (NCJ)",
+      "route": "via Alappuzha",
+      "time_here": "11:08",
+      "direction": "passes_through",
+      "arrives_at_destination": "23:30",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "11:50"
+        },
+        {
+          "station": "Tirur",
+          "time": "12:35"
+        },
+        {
+          "station": "Shoranur",
+          "time": "13:25"
+        },
+        {
+          "station": "Thrissur",
+          "time": "14:10"
+        },
+        {
+          "station": "Aluva",
+          "time": "15:05"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "15:25"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "15:45"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "17:53"
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "time": "18:45"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "19:20"
+        },
+        {
+          "station": "Varkala",
+          "time": "19:55"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "21:15"
+        },
+        {
+          "station": "Nagercoil Junction",
+          "time": "23:30"
+        }
+      ]
+    },
+    {
+      "number": "22475",
+      "name_en": "Hisar-Coimbatore AC Express",
+      "name_ml": "ഹിസാർ-കോയമ്പത്തൂർ",
+      "freq": "Weekly",
+      "origin": "Hisar (HSR)",
+      "dest": "Coimbatore (CBE)",
+      "route": "via Konkan, Palakkad",
+      "time_here": "11:15",
+      "direction": "passes_through",
+      "arrives_at_destination": "14:10",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "11:50"
+        },
+        {
+          "station": "Tirur",
+          "time": "12:35"
+        },
+        {
+          "station": "Shoranur",
+          "time": "13:20"
+        },
+        {
+          "station": "Palakkad Junction",
+          "time": "14:10"
+        }
+      ]
+    },
+    {
+      "number": "16606",
+      "name_en": "Ernad Express",
+      "name_ml": "ഏറനാട് എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Nagercoil Junction (NCJ)",
+      "dest": "Mangaluru Central (MAQ)",
+      "route": "via Alappuzha",
+      "time_here": "15:20",
+      "direction": "passes_through",
+      "arrives_at_destination": "19:00",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "15:30"
+        },
+        {
+          "station": "Thalassery",
+          "time": "15:45"
+        },
+        {
+          "station": "Kannur",
+          "time": "16:10"
+        },
+        {
+          "station": "Kannapuram",
+          "time": "16:25"
+        },
+        {
+          "station": "Payyannur",
+          "time": "16:42"
+        },
+        {
+          "station": "Cheruvathur",
+          "time": "16:55"
+        },
+        {
+          "station": "Nileshwar",
+          "time": "17:10"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "17:30"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "17:55"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "18:45"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "19:00"
+        }
+      ]
+    },
+    {
+      "number": "22609",
+      "name_en": "Mangaluru-Coimbatore Intercity SF",
+      "name_ml": "മംഗലാപുരം-കോയമ്പത്തൂർ",
+      "freq": "Daily",
+      "origin": "Mangaluru Central (MAQ)",
+      "dest": "Coimbatore (CBE)",
+      "route": "via Kozhikode, Shoranur, Palakkad",
+      "time_here": "15:45",
+      "direction": "passes_through",
+      "arrives_at_destination": "18:40",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "16:20"
+        },
+        {
+          "station": "Tirur",
+          "time": "17:00"
+        },
+        {
+          "station": "Shoranur",
+          "time": "17:50"
+        },
+        {
+          "station": "Palakkad Junction",
+          "time": "18:40"
+        }
+      ]
+    },
+    {
+      "number": "12617",
+      "name_en": "Mangala Lakshadweep SF Express",
+      "name_ml": "മംഗള ലക്ഷദ്വീപ് എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Ernakulam Junction (ERS)",
+      "dest": "Hazrat Nizamuddin (NZM)",
+      "route": "via Konkan",
+      "time_here": "15:50",
+      "direction": "passes_through",
+      "arrives_at_destination": "19:15",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "16:00"
+        },
+        {
+          "station": "Thalassery",
+          "time": "16:12"
+        },
+        {
+          "station": "Kannur",
+          "time": "16:35"
+        },
+        {
+          "station": "Kannapuram",
+          "time": "16:48"
+        },
+        {
+          "station": "Payyannur",
+          "time": "17:00"
+        },
+        {
+          "station": "Cheruvathur",
+          "time": "17:12"
+        },
+        {
+          "station": "Nileshwar",
+          "time": "17:25"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "17:45"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "18:15"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "19:00"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "19:15"
+        }
+      ]
+    },
+    {
+      "number": "16333",
+      "name_en": "Veraval-TVC Express",
+      "name_ml": "വെരാവൽ-തിരുവനന്തപുരം",
+      "freq": "Weekly",
+      "origin": "Veraval (VRL)",
+      "dest": "Thiruvananthapuram Central (TVC)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "16:20",
+      "direction": "passes_through",
+      "arrives_at_destination": "00:15",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "17:00"
+        },
+        {
+          "station": "Tirur",
+          "time": "17:42"
+        },
+        {
+          "station": "Shoranur",
+          "time": "18:30"
+        },
+        {
+          "station": "Thrissur",
+          "time": "19:20"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "20:30"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "21:35"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "22:55"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "00:15"
+        }
+      ]
+    },
+    {
+      "number": "16348",
+      "name_en": "Thiruvananthapuram Express",
+      "name_ml": "തിരുവനന്തപുരം എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Mangaluru Central (MAQ)",
+      "dest": "Thiruvananthapuram Central (TVC)",
+      "route": "via Kottayam",
+      "time_here": "17:30",
+      "direction": "passes_through",
+      "arrives_at_destination": "03:50",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "18:10"
+        },
+        {
+          "station": "Tirur",
+          "time": "18:52"
+        },
+        {
+          "station": "Shoranur",
+          "time": "19:35"
+        },
+        {
+          "station": "Thrissur",
+          "time": "20:20"
+        },
+        {
+          "station": "Aluva",
+          "time": "21:18"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "21:35"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "22:05"
+        },
+        {
+          "station": "Kottayam",
+          "time": "00:25"
+        },
+        {
+          "station": "Changanassery",
+          "time": "00:40"
+        },
+        {
+          "station": "Tiruvalla",
+          "time": "00:54"
+        },
+        {
+          "station": "Chengannur",
+          "time": "01:10"
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "time": "01:35"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "02:10"
+        },
+        {
+          "station": "Varkala",
+          "time": "02:45"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "03:50"
+        }
+      ]
+    },
+    {
+      "number": "16159",
+      "name_en": "Mangalore-Chennai Egmore Express",
+      "name_ml": "മംഗലാപുരം-ചെന്നൈ എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Mangaluru Central (MAQ)",
+      "dest": "Chennai Egmore (MS)",
+      "route": "via Kozhikode, Shoranur, Palakkad",
+      "time_here": "18:00",
+      "direction": "passes_through",
+      "arrives_at_destination": "21:30",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "18:45"
+        },
+        {
+          "station": "Tirur",
+          "time": "19:25"
+        },
+        {
+          "station": "Shoranur",
+          "time": "20:15"
+        },
+        {
+          "station": "Palakkad Junction",
+          "time": "21:30"
+        }
+      ]
+    },
+    {
+      "number": "16511",
+      "name_en": "Kannur-KSR Bengaluru Express",
+      "name_ml": "കണ്ണൂർ-ബംഗളൂരു",
+      "freq": "Daily",
+      "origin": "Kannur (CAN)",
+      "dest": "KSR Bengaluru (SBC)",
+      "route": "via Kozhikode, Palakkad",
+      "time_here": "18:20",
+      "direction": "passes_through",
+      "arrives_at_destination": "21:00",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "18:55"
+        },
+        {
+          "station": "Shoranur",
+          "time": "20:15"
+        },
+        {
+          "station": "Palakkad Junction",
+          "time": "21:00"
+        }
+      ]
+    },
+    {
+      "number": "16346",
+      "name_en": "Netravati Express",
+      "name_ml": "നേത്രാവതി എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Thiruvananthapuram Central (TVC)",
+      "dest": "Lokmanya Tilak Terminus (LTT)",
+      "route": "via Alappuzha, Konkan",
+      "time_here": "18:25",
+      "direction": "passes_through",
+      "arrives_at_destination": "22:00",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "18:33"
+        },
+        {
+          "station": "Thalassery",
+          "time": "18:45"
+        },
+        {
+          "station": "Kannur",
+          "time": "19:05"
+        },
+        {
+          "station": "Kannapuram",
+          "time": "19:20"
+        },
+        {
+          "station": "Payyannur",
+          "time": "20:05"
+        },
+        {
+          "station": "Cheruvathur",
+          "time": "20:20"
+        },
+        {
+          "station": "Nileshwar",
+          "time": "20:33"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "20:52"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "21:15"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "21:50"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "22:00"
+        }
+      ]
+    },
+    {
+      "number": "16650",
+      "name_en": "Parasuram Express",
+      "name_ml": "പരശുറാം എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Nagercoil Junction (NCJ)",
+      "dest": "Mangaluru Central (MAQ)",
+      "route": "via Kottayam",
+      "time_here": "18:40",
+      "direction": "passes_through",
+      "arrives_at_destination": "21:50",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "18:48"
+        },
+        {
+          "station": "Thalassery",
+          "time": "19:00"
+        },
+        {
+          "station": "Kannur",
+          "time": "19:20"
+        },
+        {
+          "station": "Kannapuram",
+          "time": "19:35"
+        },
+        {
+          "station": "Payyannur",
+          "time": "19:50"
+        },
+        {
+          "station": "Cheruvathur",
+          "time": "20:02"
+        },
+        {
+          "station": "Nileshwar",
+          "time": "20:15"
+        },
+        {
+          "station": "Kanhangad",
+          "time": "20:32"
+        },
+        {
+          "station": "Kasaragod",
+          "time": "20:55"
+        },
+        {
+          "station": "Mangaluru Junction",
+          "time": "21:35"
+        },
+        {
+          "station": "Mangaluru Central",
+          "time": "21:50"
+        }
+      ]
+    },
+    {
+      "number": "12602",
+      "name_en": "Mangaluru-Chennai Mail",
+      "name_ml": "മംഗലാപുരം-ചെന്നൈ മെയിൽ",
+      "freq": "Daily",
+      "origin": "Mangaluru Central (MAQ)",
+      "dest": "MGR Chennai Central (MAS)",
+      "route": "via Kozhikode, Shoranur, Palakkad",
+      "time_here": "18:40",
+      "direction": "passes_through",
+      "arrives_at_destination": "21:35",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "19:15"
+        },
+        {
+          "station": "Tirur",
+          "time": "19:55"
+        },
+        {
+          "station": "Shoranur",
+          "time": "20:45"
+        },
+        {
+          "station": "Palakkad Junction",
+          "time": "21:35"
+        }
+      ]
+    },
+    {
+      "number": "19260",
+      "name_en": "Bhavnagar-Kochuveli Express",
+      "name_ml": "ഭാവ്‌നഗർ-കൊച്ചുവേളി",
+      "freq": "Weekly",
+      "origin": "Bhavnagar Terminus (BVC)",
+      "dest": "Kochuveli (KCVL)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "19:50",
+      "direction": "passes_through",
+      "arrives_at_destination": "04:00",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "20:30"
+        },
+        {
+          "station": "Tirur",
+          "time": "21:15"
+        },
+        {
+          "station": "Shoranur",
+          "time": "22:00"
+        },
+        {
+          "station": "Thrissur",
+          "time": "22:50"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "00:00"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "01:10"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "02:40"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "04:00"
+        }
+      ]
+    },
+    {
+      "number": "16335",
+      "name_en": "Gandhidham-Nagercoil Express",
+      "name_ml": "ഗാന്ധിധാം-നാഗർകോവിൽ",
+      "freq": "Weekly",
+      "origin": "Gandhidham (GIMB)",
+      "dest": "Nagercoil Junction (NCJ)",
+      "route": "via Konkan, Alappuzha",
+      "time_here": "19:55",
+      "direction": "passes_through",
+      "arrives_at_destination": "06:00",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "20:30"
+        },
+        {
+          "station": "Tirur",
+          "time": "21:15"
+        },
+        {
+          "station": "Shoranur",
+          "time": "22:00"
+        },
+        {
+          "station": "Thrissur",
+          "time": "22:50"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "00:05"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "01:15"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "02:40"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "04:00"
+        },
+        {
+          "station": "Nagercoil Junction",
+          "time": "06:00"
+        }
+      ]
+    },
+    {
+      "number": "16337",
+      "name_en": "Okha-Ernakulam SF Express",
+      "name_ml": "ഓഖാ-എറണാകുളം",
+      "freq": "Weekly",
+      "origin": "Okha (OKHA)",
+      "dest": "Ernakulam Junction (ERS)",
+      "route": "via Konkan",
+      "time_here": "19:55",
+      "direction": "passes_through",
+      "arrives_at_destination": "00:10",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "20:30"
+        },
+        {
+          "station": "Tirur",
+          "time": "21:15"
+        },
+        {
+          "station": "Shoranur",
+          "time": "22:00"
+        },
+        {
+          "station": "Thrissur",
+          "time": "22:50"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "00:10"
+        }
+      ]
+    },
+    {
+      "number": "16603",
+      "name_en": "Maveli Express",
+      "name_ml": "മാവേലി എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Mangaluru Central (MAQ)",
+      "dest": "Thiruvananthapuram Central (TVC)",
+      "route": "via Alappuzha",
+      "time_here": "20:35",
+      "direction": "passes_through",
+      "arrives_at_destination": "03:55",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "21:05"
+        },
+        {
+          "station": "Tirur",
+          "time": "21:50"
+        },
+        {
+          "station": "Shoranur",
+          "time": "22:30"
+        },
+        {
+          "station": "Thrissur",
+          "time": "23:10"
+        },
+        {
+          "station": "Aluva",
+          "time": "00:10"
+        },
+        {
+          "station": "Ernakulam Town",
+          "time": "00:25"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "00:40"
+        },
+        {
+          "station": "Alappuzha",
+          "time": "01:30"
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "time": "02:05"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "02:35"
+        },
+        {
+          "station": "Varkala",
+          "time": "03:10"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "03:55"
+        }
+      ]
+    },
+    {
+      "number": "16306",
+      "name_en": "Ernakulam-Kannur Intercity",
+      "name_ml": "എറണാകുളം-കണ്ണൂർ ഇന്റർസിറ്റി",
+      "freq": "Daily",
+      "origin": "Ernakulam Junction (ERS)",
+      "dest": "Kannur (CAN)",
+      "route": "via Shoranur, Kozhikode",
+      "time_here": "21:32",
+      "direction": "passes_through",
+      "arrives_at_destination": "22:15",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "21:40"
+        },
+        {
+          "station": "Thalassery",
+          "time": "21:55"
+        },
+        {
+          "station": "Kannur",
+          "time": "22:15"
+        }
+      ]
+    },
+    {
+      "number": "11097",
+      "name_en": "Poorna Express",
+      "name_ml": "പൂർണ എക്സ്പ്രസ്",
+      "freq": "Bi-weekly",
+      "origin": "Pune Junction (PUNE)",
+      "dest": "Ernakulam Junction (ERS)",
+      "route": "via Konkan",
+      "time_here": "21:40",
+      "direction": "passes_through",
+      "arrives_at_destination": "02:00",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "22:15"
+        },
+        {
+          "station": "Tirur",
+          "time": "23:00"
+        },
+        {
+          "station": "Shoranur",
+          "time": "23:55"
+        },
+        {
+          "station": "Thrissur",
+          "time": "00:45"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "02:00"
+        }
+      ]
+    },
+    {
+      "number": "16630",
+      "name_en": "Malabar Express",
+      "name_ml": "മലബാർ എക്സ്പ്രസ്",
+      "freq": "Daily",
+      "origin": "Mangaluru Central (MAQ)",
+      "dest": "Thiruvananthapuram Central (TVC)",
+      "route": "via Kottayam",
+      "time_here": "21:45",
+      "direction": "passes_through",
+      "arrives_at_destination": "08:30",
+      "upcoming_stops": [
+        {
+          "station": "Kozhikode",
+          "time": "22:25"
+        },
+        {
+          "station": "Tirur",
+          "time": "23:05"
+        },
+        {
+          "station": "Shoranur",
+          "time": "23:55"
+        },
+        {
+          "station": "Thrissur",
+          "time": "00:45"
+        },
+        {
+          "station": "Aluva",
+          "time": "01:40"
+        },
+        {
+          "station": "Ernakulam Junction",
+          "time": "02:20"
+        },
+        {
+          "station": "Kottayam",
+          "time": "04:10"
+        },
+        {
+          "station": "Changanassery",
+          "time": "04:25"
+        },
+        {
+          "station": "Tiruvalla",
+          "time": "04:38"
+        },
+        {
+          "station": "Chengannur",
+          "time": "04:52"
+        },
+        {
+          "station": "Kayamkulam Junction",
+          "time": "05:18"
+        },
+        {
+          "station": "Kollam Junction",
+          "time": "05:55"
+        },
+        {
+          "station": "Varkala",
+          "time": "06:40"
+        },
+        {
+          "station": "Thiruvananthapuram Central",
+          "time": "08:30"
+        }
+      ]
+    },
+    {
+      "number": "12082",
+      "name_en": "TVC-Kannur Jan Shatabdi",
+      "name_ml": "ജനശതാബ്ദി എക്സ്പ്രസ്",
+      "freq": "Mon/Tue/Thu/Fri/Sat",
+      "origin": "Thiruvananthapuram Central (TVC)",
+      "dest": "Kannur (CAN)",
+      "route": "via Alappuzha",
+      "time_here": "22:30",
+      "direction": "passes_through",
+      "arrives_at_destination": "23:30",
+      "upcoming_stops": [
+        {
+          "station": "Mahe",
+          "time": "22:38"
+        },
+        {
+          "station": "Thalassery",
+          "time": "22:50"
+        },
+        {
+          "station": "Kannur",
+          "time": "23:30"
+        }
+      ]
+    }
+  ]
+}

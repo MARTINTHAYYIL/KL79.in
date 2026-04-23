@@ -250,6 +250,38 @@
             font-size: 0.75em;
         }
         .rf-sub { color: #5b5342; font-size: 0.9rem; margin-top: 0.25rem; }
+
+        /* Bus / Train segmented toggle */
+        .rf-mode {
+            display: inline-flex;
+            gap: 4px;
+            background: rgba(45, 74, 62, 0.08);
+            border: 1px solid #d6c7a3;
+            border-radius: 999px;
+            padding: 4px;
+            margin-bottom: 1rem;
+        }
+        .rf-mode-btn {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.55rem 1.1rem;
+            border: 0; background: transparent;
+            font-family: 'Noto Sans Malayalam', 'Inter', sans-serif;
+            font-size: 0.9rem; font-weight: 700;
+            color: #5b5342;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        .rf-mode-btn svg { width: 18px; height: 18px; }
+        .rf-mode-btn:hover { color: #2d4a3e; }
+        .rf-mode-btn.active {
+            background: #2d4a3e; color: #fffdf6;
+            box-shadow: 0 4px 12px -4px rgba(45,74,62,0.3);
+        }
+        .rf-quick-chips {
+            display: inline-flex; flex-wrap: wrap; gap: 0.5rem;
+        }
+
         .rf-badge {
             background: #c89a4a; color: #1a1410; font-size: 0.65rem; font-weight: 800;
             padding: 0.25rem 0.55rem; border-radius: 999px; letter-spacing: 0.08em;
@@ -507,9 +539,21 @@
             <div class="rf-header">
                 <div>
                     <h2 class="rf-title">Route Finder <span class="rf-title-ml">റൂട്ട് ഫൈൻഡർ</span></h2>
-                    <p class="rf-sub">Pick a starting point and destination — we'll show every bus we have on record.</p>
+                    <p class="rf-sub" id="rf-sub">Pick a starting point and destination — we'll show every bus we have on record.</p>
                 </div>
                 <span class="rf-badge">NEW</span>
+            </div>
+
+            <!-- Bus / Train mode toggle -->
+            <div class="rf-mode" role="tablist" aria-label="Search mode">
+                <button type="button" class="rf-mode-btn active" id="rf-mode-bus" role="tab" aria-selected="true" data-mode="bus">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></svg>
+                    <span>Bus · ബസ്</span>
+                </button>
+                <button type="button" class="rf-mode-btn" id="rf-mode-train" role="tab" aria-selected="false" data-mode="train">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="0.5"/><circle cx="16" cy="15" r="0.5"/></svg>
+                    <span>Train · ട്രെയിൻ</span>
+                </button>
             </div>
 
             <form id="rf-form" class="rf-grid" autocomplete="off">
@@ -522,20 +566,18 @@
                     <label for="rf-to">To · എവിടെക്ക്</label>
                     <input id="rf-to" list="rf-destinations" placeholder="e.g. കാഞ്ഞങ്ങാട് / Kanhangad" spellcheck="false" autocomplete="off">
                 </div>
-                <button type="submit" class="rf-btn">
+                <button type="submit" class="rf-btn" id="rf-submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                    Find buses
+                    <span id="rf-submit-label">Find buses</span>
                 </button>
             </form>
 
             <datalist id="rf-stations"></datalist>
             <datalist id="rf-destinations"></datalist>
 
-            <div class="rf-quick">
+            <div class="rf-quick" id="rf-quick">
                 <span class="rf-quick-label">Try:</span>
-                <button type="button" class="rf-chip" data-from="Chittarikkal" data-to="Kanhangad">Chittarikkal → Kanhangad</button>
-                <button type="button" class="rf-chip" data-from="Alakode" data-to="Iritty">Alakode → Iritty</button>
-                <button type="button" class="rf-chip" data-from="Kanhangad" data-to="Bangalore">Kanhangad → Bangalore</button>
+                <div class="rf-quick-chips" id="rf-quick-chips"></div>
             </div>
 
             <div id="rf-status" class="rf-status" aria-live="polite"></div>
@@ -757,8 +799,11 @@
 
     <!-- Shared bilingual search data (English + Malayalam) -->
     <script src="/search-data.js"></script>
-    <!-- Route Finder data loader -->
+    <!-- Route Finder data loaders -->
     <script src="/bus-data-loader.js"></script>
+    <script src="/train-stops-data.js"></script>
+    <script src="/train-schedules.js"></script>
+    <script src="/train-data-loader.js"></script>
 
     <!-- ============ ROUTE FINDER WIRING ============ -->
     <script>
@@ -766,12 +811,51 @@
         const form = document.getElementById('rf-form');
         if (!form || !window.KL79_BusData) return;
 
-        const fromInput = document.getElementById('rf-from');
-        const toInput = document.getElementById('rf-to');
-        const statusEl = document.getElementById('rf-status');
-        const resultsEl = document.getElementById('rf-results');
+        const fromInput    = document.getElementById('rf-from');
+        const toInput      = document.getElementById('rf-to');
+        const statusEl     = document.getElementById('rf-status');
+        const resultsEl    = document.getElementById('rf-results');
         const stationsList = document.getElementById('rf-stations');
-        const destList = document.getElementById('rf-destinations');
+        const destList     = document.getElementById('rf-destinations');
+        const subEl        = document.getElementById('rf-sub');
+        const submitLabel  = document.getElementById('rf-submit-label');
+        const chipsBox     = document.getElementById('rf-quick-chips');
+        const modeBtns     = document.querySelectorAll('.rf-mode-btn');
+
+        /* ----- Mode state ----- */
+        let currentMode = 'bus'; // 'bus' | 'train'
+
+        function activeData() {
+            return currentMode === 'train' ? window.KL79_TrainData : window.KL79_BusData;
+        }
+
+        /* Per-mode UI copy and quick-pick chips. */
+        const MODE_CONFIG = {
+            bus: {
+                subText:    "Pick a starting point and destination — we'll show every bus we have on record.",
+                submitText: 'Find buses',
+                fromPH:     'e.g. ചിറ്റാരിക്കാൽ / Chittarikkal',
+                toPH:       'e.g. കാഞ്ഞങ്ങാട് / Kanhangad',
+                chips: [
+                    { from: 'ചിറ്റാരിക്കാൽ', to: 'കാഞ്ഞങ്ങാട്',   label: 'Chittarikkal → Kanhangad' },
+                    { from: 'കൊന്നക്കാട്',   to: 'കാസർഗോഡ്',     label: 'Konnakkad → Kasaragod' },
+                    { from: 'ആലക്കോട്',      to: 'കണ്ണൂർ',        label: 'Alakode → Kannur' },
+                    { from: 'ചെറുപുഴ',       to: 'പയ്യന്നൂർ',     label: 'Cherupuzha → Payyannur' },
+                ],
+            },
+            train: {
+                subText:    "Pick a starting point and destination — we'll show every train we have on record.",
+                submitText: 'Find trains',
+                fromPH:     'e.g. പയ്യന്നൂർ / Payyannur',
+                toPH:       'e.g. എറണാകുളം / Ernakulam',
+                chips: [
+                    { from: 'പയ്യന്നൂർ', to: 'എറണാകുളം',         label: 'Payyannur → Ernakulam' },
+                    { from: 'കണ്ണൂർ',    to: 'തിരുവനന്തപുരം',     label: 'Kannur → Thiruvananthapuram' },
+                    { from: 'നീലേശ്വരം', to: 'മംഗലാപുരം',         label: 'Nileshwar → Mangaluru' },
+                    { from: 'പയ്യന്നൂർ', to: 'ബംഗളൂരു',           label: 'Payyannur → Bangalore' },
+                ],
+            },
+        };
 
         function esc(s) {
             return String(s || '')
@@ -782,12 +866,13 @@
         function setStatus(html) { statusEl.innerHTML = html; }
 
         /* Populate the From <datalist> with Malayalam labels in canonical
-           page order (Chittarikkal first). This uses the browser's native
-           dropdown — clicking the input shows the full list, and typing
-           filters it in either script. */
+           page order. Uses the browser's native datalist — clicking the
+           input shows the full list, typing filters in either script. */
         function hydrateFromList() {
             try {
-                const sources = window.KL79_BusData.orderedSources();
+                const data = activeData();
+                if (!data) { stationsList.innerHTML = ''; return; }
+                const sources = data.orderedSources();
                 stationsList.innerHTML = sources.map(s => {
                     const ml = s.ml || s.en;
                     return `<option value="${esc(ml)}" label="${esc(s.en)}"></option>`;
@@ -802,23 +887,32 @@
             const from = fromInput.value.trim();
             const mySeq = ++toUpdateSeq;
             try {
-                const { main, sub } = await window.KL79_BusData.destinationsFrom(from);
+                const data = activeData();
+                if (!data) { destList.innerHTML = ''; return; }
+                const result = await data.destinationsFrom(from);
                 if (mySeq !== toUpdateSeq) return;
+                const { main, sub } = result;
+                const stops = result.stops || [];
 
+                const starLabel = currentMode === 'train' ? '★ Main direction' : '★ Main destination';
                 const mainHtml = main.map(m =>
-                    `<option value="${esc(m)}" label="★ Main destination"></option>`
+                    `<option value="${esc(m)}" label="${starLabel}"></option>`
                 ).join('');
                 const subHtml = sub.slice(0, 400).map(d =>
                     `<option value="${esc(d)}"></option>`
                 ).join('');
-                destList.innerHTML = mainHtml + subHtml;
+                // Train-only: include en-route stops, labelled so users see what they are.
+                const stopsHtml = stops.slice(0, 400).map(d =>
+                    `<option value="${esc(d)}" label="En-route stop"></option>`
+                ).join('');
+                destList.innerHTML = mainHtml + subHtml + stopsHtml;
 
                 if (from) {
                     toInput.placeholder = main.length
                         ? `Main: ${main.slice(0, 2).join(' · ')}`
                         : `Destinations from ${from}…`;
                 } else {
-                    toInput.placeholder = 'e.g. കാഞ്ഞങ്ങാട് / Kanhangad';
+                    toInput.placeholder = MODE_CONFIG[currentMode].toPH;
                 }
             } catch (e) { /* non-fatal */ }
         }
@@ -835,7 +929,7 @@
         fromInput.addEventListener('change', refreshToList);
         toInput.addEventListener('focus', refreshToList);
 
-        /* Current minutes of day — used to flag soonest bus */
+        /* Current minutes of day — used to flag soonest departure */
         function nowMinutes() {
             const d = new Date();
             return d.getHours() * 60 + d.getMinutes();
@@ -857,54 +951,154 @@
             return html;
         }
 
+        /* Render quick-pick chips for the active mode. */
+        function renderChips() {
+            const chips = MODE_CONFIG[currentMode].chips || [];
+            chipsBox.innerHTML = chips.map(c =>
+                `<button type="button" class="rf-chip" data-from="${esc(c.from)}" data-to="${esc(c.to)}">${esc(c.label)}</button>`
+            ).join('');
+            chipsBox.querySelectorAll('.rf-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    fromInput.value = chip.dataset.from || '';
+                    toInput.value   = chip.dataset.to   || '';
+                    runSearch(fromInput.value, toInput.value);
+                });
+            });
+        }
+
+        /* Render a single bus result row. */
+        function renderBusRow(m, soon) {
+            const srcName = (m.fromEn || '').replace(/^From\s+/i, '');
+            return `
+                <div class="rf-result${soon ? ' soon' : ''}">
+                    <div class="rf-result-time">${esc(m.time)}${soon ? ' <span style="color:#b8472a; font-weight:700; font-size:0.7em;">NEXT</span>' : ''}</div>
+                    <div>
+                        <div class="rf-result-op">${esc(m.busName || 'Bus')}</div>
+                        <div class="rf-result-dest">${esc(m.destination || '—')}</div>
+                        ${m.route ? `<div class="rf-result-route">via ${esc(m.route)}</div>` : ''}
+                    </div>
+                    <div class="rf-result-src">
+                        <a href="/${esc(m.fromPage)}">From ${esc(srcName)} →</a>
+                    </div>
+                </div>`;
+        }
+
+        /* Render a single train result row. */
+        function renderTrainRow(m, soon, toQuery) {
+            const srcName = (m.fromEn || '').replace(/^From\s+/i, '');
+            const title   = m.nameEn || m.nameMl || 'Train';
+            const subtitle = (m.nameEn && m.nameMl && m.nameEn !== m.nameMl) ? m.nameMl : '';
+            const numberBadge = m.number
+                ? `<span style="display:inline-block; background:#eaf2ec; color:#2d4a3e; font-weight:700; font-size:0.72em; padding:2px 8px; border-radius:999px; margin-right:6px; letter-spacing:0.03em;">${esc(m.number)}</span>`
+                : '';
+            const freq = m.frequency
+                ? `<div class="rf-result-route">${esc(m.frequency)}</div>`
+                : '';
+
+            // "Via" preview — first few downstream stops before the
+            // final destination, plus an indicator if the user's
+            // "to" query matches an intermediate stop.
+            let viaHtml = '';
+            let arrivalHtml = '';
+            const matches = (window.KL79_TrainData && window.KL79_TrainData.matchesStation)
+                          ? window.KL79_TrainData.matchesStation : null;
+
+            if (Array.isArray(m.stops) && m.stops.length) {
+                const toEnrouteIdx = (toQuery && matches)
+                    ? m.stops.findIndex(s => matches(s, toQuery))
+                    : -1;
+
+                if (toEnrouteIdx >= 0) {
+                    const stopName = m.stops[toEnrouteIdx];
+                    const stopPair = Array.isArray(m.stopsWithTimes)
+                                   ? m.stopsWithTimes[toEnrouteIdx] : null;
+                    const stopTime = stopPair && stopPair[1] ? stopPair[1] : '';
+
+                    viaHtml = `<div class="rf-result-route" style="color:#2d4a3e; font-weight:600;">
+                        ✓ Stops at <strong>${esc(stopName)}</strong>${stopTime ? ` <span style="color:#5a7a68; font-weight:700;">· arr ${esc(stopTime)}</span>` : ''}
+                        ${toEnrouteIdx > 0 ? `<span style="color:#8a7f6a; font-weight:400;"> · via ${esc(m.stops.slice(0, toEnrouteIdx).slice(-3).join(' · '))}</span>` : ''}
+                    </div>`;
+                } else {
+                    const preview = m.stops.slice(0, 4).join(' · ');
+                    if (preview) viaHtml = `<div class="rf-result-route">via ${esc(preview)}${m.stops.length > 4 ? ' …' : ''}</div>`;
+                }
+            }
+
+            // Arrival at final destination (from central schedules, when known).
+            // Only shown when user did NOT search by an en-route stop — in that
+            // case the arrival time at the stop is already displayed above.
+            if (m.destinationTime && !viaHtml.includes('arr ')) {
+                arrivalHtml = `<div class="rf-result-route" style="color:#5a7a68;">
+                    Arrives ${esc(m.destinationTime)}
+                </div>`;
+            }
+
+            const fromLink = m.fromPage
+                ? `<a href="/${esc(m.fromPage)}">From ${esc(srcName)} →</a>`
+                : `<span style="color:#8a7f6a;">From ${esc(srcName)}</span>`;
+
+            return `
+                <div class="rf-result${soon ? ' soon' : ''}">
+                    <div class="rf-result-time">${esc(m.time)}${soon ? ' <span style="color:#b8472a; font-weight:700; font-size:0.7em;">NEXT</span>' : ''}</div>
+                    <div>
+                        <div class="rf-result-op">${numberBadge}${esc(title)}</div>
+                        ${subtitle ? `<div class="rf-result-dest" style="font-style:italic;">${esc(subtitle)}</div>` : ''}
+                        <div class="rf-result-dest">${esc(m.destination || '—')}</div>
+                        ${viaHtml}
+                        ${arrivalHtml}
+                        ${freq}
+                    </div>
+                    <div class="rf-result-src">
+                        ${fromLink}
+                    </div>
+                </div>`;
+        }
+
         async function runSearch(from, to) {
+            const data = activeData();
+            if (!data) {
+                setStatus('<span style="color:#b8472a;">Data still loading — please try again in a moment.</span>');
+                return;
+            }
+            const noun       = currentMode === 'train' ? 'train' : 'bus';
+            const nounPlural = currentMode === 'train' ? 'trains' : 'buses';
+
             setStatus(`<span class="rf-spinner"></span> Searching…`);
-            // Shimmer skeletons while we fetch
             resultsEl.innerHTML = skeletonRows(4);
 
             try {
-                const matches = await window.KL79_BusData.findRoutes(from, to);
+                const matches = await data.findRoutes(from, to);
                 if (!matches.length) {
                     setStatus('');
                     resultsEl.innerHTML = `
                         <div class="rf-empty">
-                            No buses found for <strong>${esc(from || 'anywhere')} → ${esc(to || 'anywhere')}</strong>.<br>
-                            <small>Try a different spelling, or leave one field blank to see all buses from/to a place.</small>
+                            No ${nounPlural} found for <strong>${esc(from || 'anywhere')} → ${esc(to || 'anywhere')}</strong>.<br>
+                            <small>Try a different spelling, or leave one field blank to see all ${nounPlural} from/to a place.</small>
                         </div>`;
                     return;
                 }
 
-                // Find "next departure" — first bus whose time >= now
+                // Find "next departure" — first whose time >= now
                 const nowM = nowMinutes();
                 let nextIdx = -1;
                 for (let i = 0; i < matches.length; i++) {
-                    const tm = window.KL79_BusData.parseTime(matches[i].time);
+                    const tm = data.parseTime(matches[i].time);
                     if (tm != null && tm >= nowM) { nextIdx = i; break; }
                 }
 
                 const limit = 50;
                 const shown = matches.slice(0, limit);
-                setStatus(`Found <strong>${matches.length}</strong> bus${matches.length === 1 ? '' : 'es'}${matches.length > limit ? ` (showing first ${limit})` : ''}.`);
+                setStatus(`Found <strong>${matches.length}</strong> ${matches.length === 1 ? noun : nounPlural}${matches.length > limit ? ` (showing first ${limit})` : ''}.`);
 
                 resultsEl.innerHTML = shown.map((m, i) => {
                     const soon = (i === nextIdx);
-                    const srcName = m.fromEn.replace(/^From\s+/i, '');
-                    return `
-                        <div class="rf-result${soon ? ' soon' : ''}">
-                            <div class="rf-result-time">${esc(m.time)}${soon ? ' <span style="color:#b8472a; font-weight:700; font-size:0.7em;">NEXT</span>' : ''}</div>
-                            <div>
-                                <div class="rf-result-op">${esc(m.busName || 'Bus')}</div>
-                                <div class="rf-result-dest">${esc(m.destination || '—')}</div>
-                                ${m.route ? `<div class="rf-result-route">via ${esc(m.route)}</div>` : ''}
-                            </div>
-                            <div class="rf-result-src">
-                                <a href="/${esc(m.fromPage)}">From ${esc(srcName)} →</a>
-                            </div>
-                        </div>`;
+                    return currentMode === 'train'
+                        ? renderTrainRow(m, soon, to)
+                        : renderBusRow(m, soon);
                 }).join('');
             } catch (e) {
                 console.error(e);
-                setStatus('<span style="color:#b8472a;">Couldn\'t load bus data. Please refresh.</span>');
+                setStatus(`<span style="color:#b8472a;">Couldn't load ${noun} data. Please refresh.</span>`);
             }
         }
 
@@ -919,18 +1113,41 @@
             runSearch(from, to);
         });
 
-        // Quick-pick chips
-        document.querySelectorAll('.rf-chip').forEach(chip => {
-            chip.addEventListener('click', () => {
-                fromInput.value = chip.dataset.from || '';
-                toInput.value   = chip.dataset.to   || '';
-                runSearch(fromInput.value, toInput.value);
+        /* Mode switcher. */
+        function setMode(mode) {
+            if (mode !== 'bus' && mode !== 'train') return;
+            if (mode === currentMode) return;
+            currentMode = mode;
+
+            modeBtns.forEach(btn => {
+                const isActive = btn.dataset.mode === mode;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
             });
+
+            const cfg = MODE_CONFIG[mode];
+            if (subEl)       subEl.textContent = cfg.subText;
+            if (submitLabel) submitLabel.textContent = cfg.submitText;
+            fromInput.placeholder = cfg.fromPH;
+            toInput.placeholder   = cfg.toPH;
+            fromInput.value = '';
+            toInput.value   = '';
+            resultsEl.innerHTML = '';
+            setStatus('');
+
+            hydrateFromList();
+            refreshToList();
+            renderChips();
+        }
+
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', () => setMode(btn.dataset.mode));
         });
 
-        // Populate From (Malayalam labels, canonical order) and preload To.
+        // Initial render — bus mode
         hydrateFromList();
         refreshToList();
+        renderChips();
     })();
     </script>
     <!-- ============ /ROUTE FINDER WIRING ============ -->

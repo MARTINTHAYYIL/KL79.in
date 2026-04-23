@@ -1,0 +1,691 @@
+/* ============================================================
+ * KL79.in  -  Train Schedules (Central Database)
+ * ------------------------------------------------------------
+ * One source of truth for daily trains running along the
+ * Mangaluru–Thiruvananthapuram corridor. Each record lists the
+ * train's ordered stops with approximate times.
+ *
+ * Why this file exists:
+ *   The per-station HTML pages (Payyannur.html, Nileshwar.html,
+ *   Kannur.html) only know about three stations. This DB adds
+ *   every commonly-used station in between so users can search
+ *   "Cheruvathur → Ernakulam", "Thalassery → Thrissur", etc.
+ *
+ * Maintenance:
+ *   - Times are APPROXIMATE, based on IR published timetables.
+ *     Update when IR changes the timetable (roughly twice/year).
+ *   - If a value disagrees with a station HTML page, the HTML
+ *     page wins (the loader gives page data priority).
+ *   - Add new trains by appending to the array. Direction is
+ *     implicit from the order of stops.
+ *
+ * Format:
+ *   stops: [ [station_en, time_HHmm], ... ]
+ *     times are 24-hour clock, as printed on the station board
+ *     (typically "departure" time; for terminal stops it's the
+ *     arrival time for the destination / departure for origin).
+ * ========================================================== */
+
+(function () {
+
+/* ---- Bilingual station labels used across the schedules ----
+ * Keep keys identical to the labels used inside `stops` arrays.
+ * The loader will read these for the "From" dropdown. */
+const STATION_LABELS = {
+    'Mangaluru Central':         { ml: 'മംഗലാപുരം സെൻട്രൽ',   code: 'MAQ' },
+    'Mangaluru Junction':        { ml: 'മംഗലാപുരം ജംഗ്ഷൻ',   code: 'MAJN' },
+    'Kasaragod':                 { ml: 'കാസർഗോഡ്',          code: 'KGQ' },
+    'Kanhangad':                 { ml: 'കാഞ്ഞങ്ങാട്',       code: 'KZE' },
+    'Nileshwar':                 { ml: 'നീലേശ്വരം',          code: 'NLE' },
+    'Cheruvathur':               { ml: 'ചെറുവത്തൂർ',         code: 'CHV' },
+    'Payyannur':                 { ml: 'പയ്യന്നൂർ',          code: 'PAY' },
+    'Kannapuram':                { ml: 'കണ്ണപുരം',           code: 'KPQ' },
+    'Kannur':                    { ml: 'കണ്ണൂർ',             code: 'CAN' },
+    'Thalassery':                { ml: 'തലശ്ശേരി',           code: 'TLY' },
+    'Mahe':                      { ml: 'മാഹി',               code: 'MAHE' },
+    'Vadakara':                  { ml: 'വടകര',               code: 'BDJ' },
+    'Quilandy':                  { ml: 'കൊയിലാണ്ടി',         code: 'QLD' },
+    'Kozhikode':                 { ml: 'കോഴിക്കോട്',         code: 'CLT' },
+    'Tirur':                     { ml: 'തിരൂർ',              code: 'TIR' },
+    'Shoranur':                  { ml: 'ഷൊർണൂർ',            code: 'SRR' },
+    'Thrissur':                  { ml: 'തൃശ്ശൂർ',            code: 'TCR' },
+    'Aluva':                     { ml: 'ആലുവ',               code: 'AWY' },
+    'Ernakulam Town':            { ml: 'എറണാകുളം ടൗൺ',      code: 'ERN' },
+    'Ernakulam Junction':        { ml: 'എറണാകുളം ജംഗ്ഷൻ',   code: 'ERS' },
+    'Kottayam':                  { ml: 'കോട്ടയം',            code: 'KTYM' },
+    'Alappuzha':                 { ml: 'ആലപ്പുഴ',            code: 'ALLP' },
+    'Kayamkulam Junction':       { ml: 'കായംകുളം',           code: 'KYJ' },
+    'Kollam Junction':           { ml: 'കൊല്ലം',             code: 'QLN' },
+    'Varkala':                   { ml: 'വർക്കല',             code: 'VAK' },
+    'Thiruvananthapuram Central':{ ml: 'തിരുവനന്തപുരം സെൻട്രൽ', code: 'TVC' },
+    'Nagercoil Junction':        { ml: 'നാഗർകോവിൽ',          code: 'NCJ' },
+};
+
+/* ---- Schedule data ----
+ *
+ * Each record:
+ *   number:      Train number (string)
+ *   name_en:     English name
+ *   name_ml:     Malayalam name
+ *   frequency:   'Daily' | 'Weekly(...)' | etc.
+ *   dest_label:  Destination as shown on station pages (ML text + code)
+ *   direction:   'south' (running to TVC side) | 'north' (to MAQ side)
+ *   stops:       Ordered list of [station_en, time_HHmm]
+ */
+const SCHEDULES = [
+
+    /* ==============================================================
+     * 16345 — Netravati Express (LTT → TVC, daily)
+     * ============================================================== */
+    {
+        number: '16345',
+        name_en: 'Netravati Express',
+        name_ml: 'നേത്രാവതി എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)',
+        direction: 'south',
+        stops: [
+            ['Mangaluru Central',        '03:50'],
+            ['Mangaluru Junction',       '04:05'],
+            ['Kasaragod',                '05:05'],
+            ['Kanhangad',                '05:24'],
+            ['Nileshwar',                '05:36'],
+            ['Cheruvathur',              '05:45'],
+            ['Payyannur',                '05:55'],
+            ['Kannapuram',               '06:08'],
+            ['Kannur',                   '06:25'],
+            ['Thalassery',               '06:45'],
+            ['Mahe',                     '06:55'],
+            ['Vadakara',                 '07:15'],
+            ['Kozhikode',                '07:55'],
+            ['Tirur',                    '08:35'],
+            ['Shoranur',                 '09:20'],
+            ['Thrissur',                 '10:00'],
+            ['Aluva',                    '10:55'],
+            ['Ernakulam Town',           '11:15'],
+            ['Ernakulam Junction',       '11:30'],
+            ['Alappuzha',                '12:25'],
+            ['Kayamkulam Junction',      '13:00'],
+            ['Kollam Junction',          '13:25'],
+            ['Varkala',                  '14:00'],
+            ['Thiruvananthapuram Central','14:55'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16346 — Netravati Express (TVC → LTT, daily)
+     * ============================================================== */
+    {
+        number: '16346',
+        name_en: 'Netravati Express',
+        name_ml: 'നേത്രാവതി എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'ലോക്മാന്യ തിലക് ടെർമിനസ് (LTT)',
+        direction: 'north',
+        stops: [
+            ['Thiruvananthapuram Central','09:45'],
+            ['Varkala',                  '10:25'],
+            ['Kollam Junction',          '11:15'],
+            ['Kayamkulam Junction',      '11:40'],
+            ['Alappuzha',                '12:35'],
+            ['Ernakulam Junction',       '14:05'],
+            ['Ernakulam Town',           '14:15'],
+            ['Aluva',                    '14:35'],
+            ['Thrissur',                 '15:30'],
+            ['Shoranur',                 '16:15'],
+            ['Tirur',                    '17:00'],
+            ['Kozhikode',                '17:55'],
+            ['Vadakara',                 '18:25'],
+            ['Mahe',                     '18:33'],
+            ['Thalassery',               '18:45'],
+            ['Kannur',                   '19:05'],
+            ['Kannapuram',               '19:20'],
+            ['Payyannur',                '20:05'],
+            ['Cheruvathur',              '20:20'],
+            ['Nileshwar',                '20:33'],
+            ['Kanhangad',                '20:52'],
+            ['Kasaragod',                '21:15'],
+            ['Mangaluru Junction',       '21:50'],
+            ['Mangaluru Central',        '22:00'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16603 — Maveli Express (MAQ → TVC, daily, via Alappuzha)
+     * ============================================================== */
+    {
+        number: '16603',
+        name_en: 'Maveli Express',
+        name_ml: 'മാവേലി എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)',
+        direction: 'south',
+        stops: [
+            ['Mangaluru Central',        '17:30'],
+            ['Mangaluru Junction',       '17:45'],
+            ['Kasaragod',                '18:22'],
+            ['Kanhangad',                '18:38'],
+            ['Nileshwar',                '18:54'],
+            ['Cheruvathur',              '19:04'],
+            ['Payyannur',                '19:13'],
+            ['Kannapuram',               '19:26'],
+            ['Kannur',                   '19:45'],
+            ['Thalassery',               '20:08'],
+            ['Mahe',                     '20:18'],
+            ['Vadakara',                 '20:35'],
+            ['Kozhikode',                '21:05'],
+            ['Tirur',                    '21:50'],
+            ['Shoranur',                 '22:30'],
+            ['Thrissur',                 '23:10'],
+            ['Aluva',                    '00:10'],
+            ['Ernakulam Town',           '00:25'],
+            ['Ernakulam Junction',       '00:40'],
+            ['Alappuzha',                '01:30'],
+            ['Kayamkulam Junction',      '02:05'],
+            ['Kollam Junction',          '02:35'],
+            ['Varkala',                  '03:10'],
+            ['Thiruvananthapuram Central','03:55'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16604 — Maveli Express (TVC → MAQ, daily)
+     * ============================================================== */
+    {
+        number: '16604',
+        name_en: 'Maveli Express',
+        name_ml: 'മാവേലി എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'മംഗലാപുരം സെൻട്രൽ (MAQ)',
+        direction: 'north',
+        stops: [
+            ['Thiruvananthapuram Central','19:35'],
+            ['Varkala',                  '20:15'],
+            ['Kollam Junction',          '20:55'],
+            ['Kayamkulam Junction',      '21:25'],
+            ['Alappuzha',                '22:20'],
+            ['Ernakulam Junction',       '23:50'],
+            ['Ernakulam Town',           '00:05'],
+            ['Aluva',                    '00:25'],
+            ['Thrissur',                 '01:15'],
+            ['Shoranur',                 '02:10'],
+            ['Tirur',                    '02:50'],
+            ['Kozhikode',                '03:40'],
+            ['Vadakara',                 '04:15'],
+            ['Mahe',                     '04:25'],
+            ['Thalassery',               '04:40'],
+            ['Kannur',                   '05:00'],
+            ['Kannapuram',               '05:15'],
+            ['Payyannur',                '05:32'],
+            ['Cheruvathur',              '05:45'],
+            ['Nileshwar',                '06:05'],
+            ['Kanhangad',                '06:20'],
+            ['Kasaragod',                '06:38'],
+            ['Mangaluru Junction',       '07:15'],
+            ['Mangaluru Central',        '07:50'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16629 — Malabar Express (TVC → MAQ, daily, via Kottayam)
+     * ============================================================== */
+    {
+        number: '16629',
+        name_en: 'Malabar Express',
+        name_ml: 'മലബാർ എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'മംഗലാപുരം സെൻട്രൽ (MAQ)',
+        direction: 'north',
+        stops: [
+            ['Thiruvananthapuram Central','17:25'],
+            ['Varkala',                  '18:05'],
+            ['Kollam Junction',          '18:45'],
+            ['Kayamkulam Junction',      '19:15'],
+            ['Kottayam',                 '20:40'],
+            ['Ernakulam Junction',       '22:15'],
+            ['Aluva',                    '22:40'],
+            ['Thrissur',                 '23:30'],
+            ['Shoranur',                 '00:25'],
+            ['Tirur',                    '01:10'],
+            ['Kozhikode',                '02:05'],
+            ['Vadakara',                 '02:35'],
+            ['Mahe',                     '02:48'],
+            ['Thalassery',               '03:00'],
+            ['Kannur',                   '03:20'],
+            ['Kannapuram',               '03:35'],
+            ['Payyannur',                '04:15'],
+            ['Cheruvathur',              '04:30'],
+            ['Nileshwar',                '04:45'],
+            ['Kanhangad',                '05:00'],
+            ['Kasaragod',                '05:20'],
+            ['Mangaluru Junction',       '06:30'],
+            ['Mangaluru Central',        '07:20'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16630 — Malabar Express (MAQ → TVC, daily, via Kottayam)
+     * ============================================================== */
+    {
+        number: '16630',
+        name_en: 'Malabar Express',
+        name_ml: 'മലബാർ എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)',
+        direction: 'south',
+        stops: [
+            ['Mangaluru Central',        '18:00'],
+            ['Mangaluru Junction',       '18:20'],
+            ['Kasaragod',                '19:08'],
+            ['Kanhangad',                '19:30'],
+            ['Nileshwar',                '19:45'],
+            ['Cheruvathur',              '19:57'],
+            ['Payyannur',                '20:10'],
+            ['Kannapuram',               '20:22'],
+            ['Kannur',                   '20:40'],
+            ['Thalassery',               '20:58'],
+            ['Mahe',                     '21:08'],
+            ['Vadakara',                 '21:20'],
+            ['Kozhikode',                '21:55'],
+            ['Tirur',                    '22:35'],
+            ['Shoranur',                 '23:20'],
+            ['Thrissur',                 '23:55'],
+            ['Aluva',                    '00:45'],
+            ['Ernakulam Junction',       '01:10'],
+            ['Kottayam',                 '02:15'],
+            ['Kayamkulam Junction',      '03:10'],
+            ['Kollam Junction',          '03:40'],
+            ['Varkala',                  '04:15'],
+            ['Thiruvananthapuram Central','05:00'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16649 — Parasuram Express (MAQ → NCJ, daily)
+     * ============================================================== */
+    {
+        number: '16649',
+        name_en: 'Parasuram Express',
+        name_ml: 'പരശുറാം എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'നാഗർകോവിൽ (NCJ)',
+        direction: 'south',
+        stops: [
+            ['Mangaluru Central',        '04:10'],
+            ['Mangaluru Junction',       '04:25'],
+            ['Kasaragod',                '05:22'],
+            ['Kanhangad',                '05:42'],
+            ['Nileshwar',                '06:10'],
+            ['Cheruvathur',              '06:20'],
+            ['Payyannur',                '06:31'],
+            ['Kannapuram',               '06:45'],
+            ['Kannur',                   '07:00'],
+            ['Thalassery',               '07:22'],
+            ['Mahe',                     '07:32'],
+            ['Vadakara',                 '07:52'],
+            ['Kozhikode',                '08:35'],
+            ['Tirur',                    '09:20'],
+            ['Shoranur',                 '10:10'],
+            ['Thrissur',                 '10:55'],
+            ['Aluva',                    '11:52'],
+            ['Ernakulam Town',           '12:10'],
+            ['Ernakulam Junction',       '12:25'],
+            ['Alappuzha',                '13:25'],
+            ['Kayamkulam Junction',      '14:00'],
+            ['Kollam Junction',          '14:30'],
+            ['Varkala',                  '15:05'],
+            ['Thiruvananthapuram Central','16:00'],
+            ['Nagercoil Junction',       '18:20'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16650 — Parasuram Express (NCJ → MAQ, daily)
+     * ============================================================== */
+    {
+        number: '16650',
+        name_en: 'Parasuram Express',
+        name_ml: 'പരശുറാം എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'മംഗലാപുരം സെൻട്രൽ (MAQ)',
+        direction: 'north',
+        stops: [
+            ['Nagercoil Junction',       '07:15'],
+            ['Thiruvananthapuram Central','09:40'],
+            ['Varkala',                  '10:15'],
+            ['Kollam Junction',          '11:00'],
+            ['Kayamkulam Junction',      '11:30'],
+            ['Alappuzha',                '12:25'],
+            ['Ernakulam Junction',       '13:55'],
+            ['Ernakulam Town',           '14:10'],
+            ['Aluva',                    '14:28'],
+            ['Thrissur',                 '15:20'],
+            ['Shoranur',                 '16:10'],
+            ['Tirur',                    '16:55'],
+            ['Kozhikode',                '17:45'],
+            ['Vadakara',                 '18:15'],
+            ['Mahe',                     '18:25'],
+            ['Thalassery',               '18:40'],
+            ['Kannur',                   '19:00'],
+            ['Kannapuram',               '19:13'],
+            ['Payyannur',                '19:25'],
+            ['Cheruvathur',              '19:37'],
+            ['Nileshwar',                '19:50'],
+            ['Kanhangad',                '20:08'],
+            ['Kasaragod',                '20:35'],
+            ['Mangaluru Junction',       '21:15'],
+            ['Mangaluru Central',        '21:30'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16605 — Ernad Express (MAQ → NCJ, daily, via Palakkad)
+     * ============================================================== */
+    {
+        number: '16605',
+        name_en: 'Ernad Express',
+        name_ml: 'ഏറനാട് എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'നാഗർകോവിൽ (NCJ)',
+        direction: 'south',
+        stops: [
+            ['Mangaluru Central',        '06:35'],
+            ['Mangaluru Junction',       '06:55'],
+            ['Kasaragod',                '07:50'],
+            ['Kanhangad',                '08:12'],
+            ['Nileshwar',                '08:35'],
+            ['Cheruvathur',              '08:48'],
+            ['Payyannur',                '09:00'],
+            ['Kannapuram',               '09:15'],
+            ['Kannur',                   '09:30'],
+            ['Thalassery',               '09:50'],
+            ['Mahe',                     '10:00'],
+            ['Vadakara',                 '10:18'],
+            ['Kozhikode',                '11:00'],
+            ['Tirur',                    '11:42'],
+            ['Shoranur',                 '12:25'],
+            ['Thrissur',                 '13:15'],
+            ['Aluva',                    '14:10'],
+            ['Ernakulam Town',           '14:30'],
+            ['Ernakulam Junction',       '14:45'],
+            ['Kottayam',                 '15:45'],
+            ['Kayamkulam Junction',      '16:45'],
+            ['Kollam Junction',          '17:15'],
+            ['Varkala',                  '17:50'],
+            ['Thiruvananthapuram Central','18:45'],
+            ['Nagercoil Junction',       '20:50'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16606 — Ernad Express (NCJ → MAQ, daily)
+     * ============================================================== */
+    {
+        number: '16606',
+        name_en: 'Ernad Express',
+        name_ml: 'ഏറനാട് എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'മംഗലാപുരം സെൻട്രൽ (MAQ)',
+        direction: 'north',
+        stops: [
+            ['Nagercoil Junction',       '05:15'],
+            ['Thiruvananthapuram Central','07:40'],
+            ['Varkala',                  '08:15'],
+            ['Kollam Junction',          '09:00'],
+            ['Kayamkulam Junction',      '09:30'],
+            ['Kottayam',                 '10:30'],
+            ['Ernakulam Junction',       '11:45'],
+            ['Aluva',                    '12:10'],
+            ['Thrissur',                 '13:05'],
+            ['Shoranur',                 '13:55'],
+            ['Tirur',                    '14:35'],
+            ['Kozhikode',                '15:25'],
+            ['Vadakara',                 '15:55'],
+            ['Mahe',                     '16:05'],
+            ['Thalassery',               '16:18'],
+            ['Kannur',                   '16:40'],
+            ['Kannapuram',               '16:53'],
+            ['Payyannur',                '17:05'],
+            ['Cheruvathur',              '17:17'],
+            ['Nileshwar',                '17:30'],
+            ['Kanhangad',                '17:48'],
+            ['Kasaragod',                '18:15'],
+            ['Mangaluru Junction',       '19:05'],
+            ['Mangaluru Central',        '19:20'],
+        ],
+    },
+
+    /* ==============================================================
+     * 12617 — Mangala Lakshadweep SF Express (ERS → NZM, daily)
+     * ============================================================== */
+    {
+        number: '12617',
+        name_en: 'Mangala Lakshadweep SF Express',
+        name_ml: 'മംഗള ലക്ഷദ്വീപ് എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'ഹസ്രത്ത് നിസാമുദ്ദീൻ (NZM)',
+        direction: 'north',
+        stops: [
+            ['Ernakulam Junction',       '11:30'],
+            ['Ernakulam Town',           '11:42'],
+            ['Aluva',                    '12:00'],
+            ['Thrissur',                 '12:55'],
+            ['Shoranur',                 '13:45'],
+            ['Tirur',                    '14:30'],
+            ['Kozhikode',                '15:20'],
+            ['Vadakara',                 '15:50'],
+            ['Mahe',                     '16:00'],
+            ['Thalassery',               '16:12'],
+            ['Kannur',                   '16:35'],
+            ['Kannapuram',               '16:48'],
+            ['Payyannur',                '17:00'],
+            ['Cheruvathur',              '17:12'],
+            ['Nileshwar',                '17:25'],
+            ['Kanhangad',                '17:45'],
+            ['Kasaragod',                '18:15'],
+            ['Mangaluru Junction',       '19:00'],
+            ['Mangaluru Central',        '19:15'],
+        ],
+    },
+
+    /* ==============================================================
+     * 12618 — Mangala Lakshadweep SF Express (NZM → ERS, daily)
+     * ============================================================== */
+    {
+        number: '12618',
+        name_en: 'Mangala Lakshadweep SF Express',
+        name_ml: 'മംഗള ലക്ഷദ്വീപ് എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'എറണാകുളം Jn (ERS)',
+        direction: 'south',
+        stops: [
+            ['Mangaluru Central',        '22:45'],
+            ['Mangaluru Junction',       '22:55'],
+            ['Kasaragod',                '23:15'],
+            ['Kanhangad',                '23:32'],
+            ['Nileshwar',                '23:45'],
+            ['Cheruvathur',              '23:55'],
+            ['Payyannur',                '00:05'],
+            ['Kannapuram',               '00:18'],
+            ['Kannur',                   '00:35'],
+            ['Thalassery',               '00:55'],
+            ['Mahe',                     '01:05'],
+            ['Vadakara',                 '01:20'],
+            ['Kozhikode',                '02:00'],
+            ['Tirur',                    '02:40'],
+            ['Shoranur',                 '03:30'],
+            ['Thrissur',                 '04:20'],
+            ['Aluva',                    '05:15'],
+            ['Ernakulam Town',           '05:35'],
+            ['Ernakulam Junction',       '05:50'],
+        ],
+    },
+
+    /* ==============================================================
+     * 22637 — West Coast Express (MAS → MAQ, daily)
+     * ============================================================== */
+    {
+        number: '22637',
+        name_en: 'West Coast Express',
+        name_ml: 'വെസ്റ്റ് കോസ്റ്റ് എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'മംഗലാപുരം സെൻട്രൽ (MAQ)',
+        direction: 'north',
+        stops: [
+            ['Shoranur',                 '00:20'],
+            ['Tirur',                    '01:05'],
+            ['Kozhikode',                '01:55'],
+            ['Vadakara',                 '02:25'],
+            ['Mahe',                     '02:33'],
+            ['Thalassery',               '02:45'],
+            ['Kannur',                   '03:05'],
+            ['Kannapuram',               '03:18'],
+            ['Payyannur',                '03:30'],
+            ['Cheruvathur',              '03:42'],
+            ['Nileshwar',                '03:55'],
+            ['Kanhangad',                '04:12'],
+            ['Kasaragod',                '04:35'],
+            ['Mangaluru Junction',       '05:15'],
+            ['Mangaluru Central',        '05:30'],
+        ],
+    },
+
+    /* ==============================================================
+     * 22638 — West Coast Express (MAQ → MAS, daily)
+     * ============================================================== */
+    {
+        number: '22638',
+        name_en: 'West Coast Express',
+        name_ml: 'വെസ്റ്റ് കോസ്റ്റ് എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'ചെന്നൈ സെൻട്രൽ (MAS)',
+        direction: 'south',
+        stops: [
+            ['Mangaluru Central',        '23:00'],
+            ['Mangaluru Junction',       '23:10'],
+            ['Kasaragod',                '23:55'],
+            ['Kanhangad',                '00:22'],
+            ['Nileshwar',                '00:55'],
+            ['Cheruvathur',              '01:05'],
+            ['Payyannur',                '01:12'],
+            ['Kannapuram',               '01:25'],
+            ['Kannur',                   '01:45'],
+            ['Thalassery',               '02:05'],
+            ['Mahe',                     '02:15'],
+            ['Vadakara',                 '02:35'],
+            ['Kozhikode',                '03:20'],
+            ['Tirur',                    '04:00'],
+            ['Shoranur',                 '04:45'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16347 — Mangalore Express (TVC → MAQ, daily, via Alp)
+     * ============================================================== */
+    {
+        number: '16347',
+        name_en: 'Mangalore Express',
+        name_ml: 'മംഗലാപുരം എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'മംഗലാപുരം സെൻട്രൽ (MAQ)',
+        direction: 'north',
+        stops: [
+            ['Thiruvananthapuram Central','22:00'],
+            ['Varkala',                  '22:45'],
+            ['Kollam Junction',          '23:25'],
+            ['Kayamkulam Junction',      '00:00'],
+            ['Alappuzha',                '00:55'],
+            ['Ernakulam Junction',       '02:40'],
+            ['Ernakulam Town',           '02:52'],
+            ['Aluva',                    '03:15'],
+            ['Thrissur',                 '04:12'],
+            ['Shoranur',                 '05:10'],
+            ['Tirur',                    '05:55'],
+            ['Kozhikode',                '06:50'],
+            ['Vadakara',                 '07:22'],
+            ['Mahe',                     '07:32'],
+            ['Thalassery',               '07:48'],
+            ['Kannur',                   '08:15'],
+            ['Kannapuram',               '08:28'],
+            ['Payyannur',                '08:37'],
+            ['Cheruvathur',              '08:50'],
+            ['Nileshwar',                '09:12'],
+            ['Kanhangad',                '09:30'],
+            ['Kasaragod',                '09:55'],
+            ['Mangaluru Junction',       '10:45'],
+            ['Mangaluru Central',        '11:00'],
+        ],
+    },
+
+    /* ==============================================================
+     * 16348 — Trivandrum Express (MAQ → TVC, daily, via Alp)
+     * ============================================================== */
+    {
+        number: '16348',
+        name_en: 'Thiruvananthapuram Express',
+        name_ml: 'തിരുവനന്തപുരം എക്സ്പ്രസ്',
+        frequency: 'Daily',
+        dest_label: 'തിരുവനന്തപുരം സെൻട്രൽ (TVC)',
+        direction: 'south',
+        stops: [
+            ['Mangaluru Central',        '14:50'],
+            ['Mangaluru Junction',       '15:05'],
+            ['Kasaragod',                '15:20'],
+            ['Kanhangad',                '15:38'],
+            ['Nileshwar',                '15:52'],
+            ['Cheruvathur',              '16:03'],
+            ['Payyannur',                '16:15'],
+            ['Kannapuram',               '16:27'],
+            ['Kannur',                   '16:40'],
+            ['Thalassery',               '17:02'],
+            ['Mahe',                     '17:12'],
+            ['Vadakara',                 '17:30'],
+            ['Kozhikode',                '18:10'],
+            ['Tirur',                    '18:52'],
+            ['Shoranur',                 '19:35'],
+            ['Thrissur',                 '20:20'],
+            ['Aluva',                    '21:18'],
+            ['Ernakulam Town',           '21:35'],
+            ['Ernakulam Junction',       '21:50'],
+            ['Alappuzha',                '22:50'],
+            ['Kayamkulam Junction',      '23:25'],
+            ['Kollam Junction',          '23:55'],
+            ['Varkala',                  '00:30'],
+            ['Thiruvananthapuram Central','01:35'],
+        ],
+    },
+
+];
+
+/* ---------- Canonical aliases (English → canonical) ----------
+ * Used by the loader when matching a fromEn from a station page
+ * back to a schedule stop. Keep keys lowercase. */
+const CANONICAL = {
+    'payyanur':           'Payyannur',
+    'payyannur':          'Payyannur',
+    'from payyannur':     'Payyannur',
+    'nileshwar':          'Nileshwar',
+    'nileshwaram':        'Nileshwar',
+    'kannur':             'Kannur',
+    'cannanore':          'Kannur',
+};
+
+/* ---- Public API ---- */
+window.KL79_TrainSchedules = {
+    schedules:       SCHEDULES,
+    stationLabels:   STATION_LABELS,
+    canonicalFrom:   CANONICAL,
+    /* Ordered display list of stations — north → south, used in
+       the "From" dropdown. */
+    orderedStations: [
+        'Mangaluru Central', 'Mangaluru Junction', 'Kasaragod',
+        'Kanhangad', 'Nileshwar', 'Cheruvathur', 'Payyannur',
+        'Kannapuram', 'Kannur', 'Thalassery', 'Mahe', 'Vadakara',
+        'Kozhikode', 'Tirur', 'Shoranur', 'Thrissur', 'Aluva',
+        'Ernakulam Town', 'Ernakulam Junction', 'Kottayam',
+        'Alappuzha', 'Kayamkulam Junction', 'Kollam Junction',
+        'Varkala', 'Thiruvananthapuram Central',
+    ],
+};
+
+})();
