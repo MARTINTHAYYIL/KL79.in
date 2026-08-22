@@ -79,10 +79,10 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 <span>Search</span>
             </a>
-            <a href="https://wa.me/916238693615" target="_blank" rel="noopener" class="accent" aria-label="WhatsApp">
+            <button type="button" id="kl79-nav-wa-btn" class="accent" aria-label="WhatsApp" aria-haspopup="dialog" aria-expanded="false">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
                 <span>WhatsApp</span>
-            </a>
+            </button>
             <button type="button" id="kl79-nav-more-btn" class="${cls(isMore).trim()}" aria-label="More" aria-haspopup="dialog" aria-expanded="false">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>
                 <span>More</span>
@@ -152,12 +152,52 @@
         `;
     }
 
+    function buildWaSheet() {
+        const groupIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
+        const waIcon = MORE_ICONS.whatsapp;
+        const arrow = '<svg class="kl79-sheet-row-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+
+        return `
+            <div class="kl79-sheet-overlay" id="kl79-wa-overlay" hidden></div>
+            <div class="kl79-sheet" id="kl79-wa-sheet" role="dialog" aria-modal="true" aria-labelledby="kl79-wa-sheet-title" hidden>
+                <div class="kl79-sheet-handle" aria-hidden="true"></div>
+                <div class="kl79-sheet-head">
+                    <div>
+                        <div id="kl79-wa-sheet-title" class="kl79-sheet-title">WhatsApp</div>
+                        <div class="kl79-sheet-subtitle">എന്ത് സഹായമാണ് വേണ്ടത്? · How can we help?</div>
+                    </div>
+                    <button type="button" class="kl79-sheet-close" data-sheet-close="wa" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+                <div class="kl79-sheet-list">
+                    <a href="https://chat.whatsapp.com/Fu5FrjzTQiSKZ3TJFIGU28?s=cl&p=a&ilr=0" target="_blank" rel="noopener" class="kl79-sheet-row kl79-sheet-row-more">
+                        <span class="kl79-sheet-row-icon">${groupIcon}</span>
+                        <span class="kl79-sheet-row-text">
+                            <span class="kl79-sheet-row-ml">ബസ് വിവരങ്ങൾക്ക് ഗ്രൂപ്പിൽ ചേരുക</span>
+                            <span class="kl79-sheet-row-en">Bus timings — join our WhatsApp group</span>
+                        </span>
+                        ${arrow}
+                    </a>
+                    <a href="https://wa.me/916238693615?text=Hello!%20I%20have%20a%20doubt%20about%20the%20KL79.in%20website." target="_blank" rel="noopener" class="kl79-sheet-row kl79-sheet-row-more">
+                        <span class="kl79-sheet-row-icon">${waIcon}</span>
+                        <span class="kl79-sheet-row-text">
+                            <span class="kl79-sheet-row-ml">വെബ്സൈറ്റ് സംബന്ധമായ സംശയങ്ങൾ</span>
+                            <span class="kl79-sheet-row-en">Website doubts — message me directly</span>
+                        </span>
+                        ${arrow}
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+
     function openSheet(kind) {
         const overlay = document.getElementById(`kl79-${kind}-overlay`);
         const sheet   = document.getElementById(`kl79-${kind}-sheet`);
         if (!overlay || !sheet) return;
         /* Close any other open sheet first */
-        ['bus','more'].forEach(other => {
+        ['bus','more','wa'].forEach(other => {
             if (other !== kind) closeSheet(other);
         });
         overlay.hidden = false;
@@ -191,18 +231,21 @@
         document.body.insertAdjacentHTML('beforeend', navHtml);
         document.body.insertAdjacentHTML('beforeend', buildBusSheet());
         document.body.insertAdjacentHTML('beforeend', buildMoreSheet());
+        document.body.insertAdjacentHTML('beforeend', buildWaSheet());
 
         const busBtn  = document.getElementById('kl79-nav-bus-btn');
         const moreBtn = document.getElementById('kl79-nav-more-btn');
+        const waBtn   = document.getElementById('kl79-nav-wa-btn');
 
         if (busBtn)  busBtn.addEventListener('click', (e) => { e.preventDefault(); openSheet('bus'); });
         if (moreBtn) moreBtn.addEventListener('click', (e) => { e.preventDefault(); openSheet('more'); });
+        if (waBtn)   waBtn.addEventListener('click', (e) => { e.preventDefault(); openSheet('wa'); });
 
         /* Close buttons + overlay clicks */
         document.querySelectorAll('[data-sheet-close]').forEach(btn => {
             btn.addEventListener('click', () => closeSheet(btn.dataset.sheetClose));
         });
-        ['bus','more'].forEach(k => {
+        ['bus','more','wa'].forEach(k => {
             const ov = document.getElementById(`kl79-${k}-overlay`);
             if (ov) ov.addEventListener('click', () => closeSheet(k));
         });
@@ -211,6 +254,7 @@
             if (e.key === 'Escape') {
                 closeSheet('bus');
                 closeSheet('more');
+                closeSheet('wa');
             }
         });
     }
